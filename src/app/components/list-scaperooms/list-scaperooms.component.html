@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="title sm-auto">
+        <h4>List ScapeRooms</h4>
+        <button type="button" class="btn btn-primary">Add ScapeRoom</button>
+    </div>
+    
+    <div class="row">
+        <div class="col-12 col-xl-12">
+            <h4>Hola</h4>
+        </div>
+        <div class="col">
+            <div class="card-body">
+                <div class="parent">
+                    @for(item of listScapeRooms;track item){
+                    <div class="card shadow div1 text-center my-auto">
+                        <h3>{{item.id}}</h3>
+                        </div>
+                }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
