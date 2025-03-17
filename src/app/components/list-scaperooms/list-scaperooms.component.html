@@ -13,7 +13,11 @@
                 <div class="parent">
                     @for(item of listScapeRooms;track item){
                     <div class="card shadow div1 text-center my-auto">
+                        <a [routerLink]="['/card', item.id]"class="text-decoration-none">
                         <h3>{{item.id}}</h3>
+                        </a>
+                        <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                        <button type="button" (click)="deleteScapeRoom(item.id)" class="btn btn-secondary btn-sm">Delete</button>
                         </div>
                 }
                 </div>
@@ -21,4 +25,5 @@
         </div>
     </div>
 </div>
+
 

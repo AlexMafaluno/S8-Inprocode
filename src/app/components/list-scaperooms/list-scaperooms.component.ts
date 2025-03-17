@@ -1,31 +1,44 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Scaperoom } from '../../interfaces/scaperoom';
+import { Scaperoom, ScapeRoomItem } from '../../interfaces/scaperoom';
 import { ScaperoomService } from '../../services/scaperoom.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ScapeRoomCardComponent } from "../scape-room-card/scape-room-card.component";
 
 @Component({
   selector: 'app-list-scaperooms',
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: './list-scaperooms.component.html',
   styleUrl: './list-scaperooms.component.scss',
 })
 export class ListScaperoomsComponent implements OnInit {
-  listScapeRooms: Scaperoom[] = [
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-  ];
+  listScapeRooms: ScapeRoomItem[] = [];
   private scaperoomService = inject(ScaperoomService);
   
-  ngOnInit():void{
+ ngOnInit(){
 this.getlistScapeRooms();
   }
 
   getlistScapeRooms(){
-    this.scaperoomService.getListScapeRooms().subscribe((data)=>{
-      console.log(data);
+    this.scaperoomService.getListScapeRooms().subscribe({
+      next: (response) => {
+        console.log('Respuesta de la API:', response); // 🔍 Para verificar los datos
+        console.log('📢 Tipo de response:', typeof response);
+        this.listScapeRooms = response.data || []; // ✅ Asigna directamente la respuesta
+      },
+      error: (error) => {
+        console.error('Error al obtener escape rooms:', error);
+        this.listScapeRooms = []; // En caso de error, evita que Angular intente iterar `undefined`
+      }
+    });
+  }
+
+  deleteScapeRoom(id: number) {
+
+    this.scaperoomService.deleteScapeRoom(id).subscribe(() =>{
+      //arra loadig = true
+      this.getlistScapeRooms();
+      //arra loadig = false;
     })
   }
 }
