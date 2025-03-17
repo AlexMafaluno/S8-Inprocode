@@ -13,7 +13,7 @@ export const routes: Routes = [
 {path: 'callendar', component: FullcalendarComponent},
 {path:'charts', component: ChartsComponent},
 {path:'crud', component: ListScaperoomsComponent},
-{path:'details', component: ScapeRoomCardComponent},
+{path:'card/:id', component: ScapeRoomCardComponent},
 {path: '', redirectTo: 'home', pathMatch: 'full'},
 {path: '**', redirectTo: ''}
 ];
