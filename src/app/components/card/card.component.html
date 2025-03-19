@@ -1,0 +1,7 @@
+<div class="card shadow div1 text-center my-auto">
+  <a [routerLink]="['/card', item.id]" class="text-decoration-none">
+    <h3>{{ item.id }}</h3>
+  </a>
+  <app-edit-button />
+  <app-delete-button [id]="item.id" (delete)="handleDelete($event)"> </app-delete-button>
+</div>
