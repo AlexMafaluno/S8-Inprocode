@@ -4,10 +4,12 @@ import { ScaperoomService } from '../../services/scaperoom.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ScapeRoomCardComponent } from "../scape-room-card/scape-room-card.component";
+import { FilterComponent } from "../filter/filter.component";
+import { CardComponent } from "../card/card.component";
 
 @Component({
   selector: 'app-list-scaperooms',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FilterComponent, CardComponent],
   templateUrl: './list-scaperooms.component.html',
   styleUrl: './list-scaperooms.component.scss',
 })
@@ -33,7 +35,7 @@ this.getlistScapeRooms();
     });
   }
 
-  deleteScapeRoom(id: number) {
+  deleteScapeRoom(id: number){ {
 
     this.scaperoomService.deleteScapeRoom(id).subscribe(() =>{
       //arra loadig = true
@@ -41,4 +43,5 @@ this.getlistScapeRooms();
       //arra loadig = false;
     })
   }
+}
 }
