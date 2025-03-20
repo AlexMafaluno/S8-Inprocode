@@ -5,6 +5,7 @@ import { FullcalendarComponent } from './pages/fullcalendar/fullcalendar.compone
 import { ChartsComponent } from './pages/charts/charts.component';
 import { ListScaperoomsComponent } from './components/list-scaperooms/list-scaperooms.component';
 import { ScapeRoomCardComponent} from './components/scape-room-card/scape-room-card.component';
+import { CrudViewComponent } from './pages/crud-view/crud-view.component';
 
 export const routes: Routes = [
 {path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -12,7 +13,7 @@ export const routes: Routes = [
 {path: 'map', component: MapComponent },
 {path: 'callendar', component: FullcalendarComponent},
 {path:'charts', component: ChartsComponent},
-{path:'crud', component: ListScaperoomsComponent},
+{path:'crud', component: CrudViewComponent},
 {path:'card/:id', component: ScapeRoomCardComponent},
 {path: '', redirectTo: 'home', pathMatch: 'full'},
 {path: '**', redirectTo: ''}
