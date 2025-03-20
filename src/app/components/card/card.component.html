@@ -3,5 +3,5 @@
     <h3>{{ item.id }}</h3>
   </a>
   <app-edit-button />
-  <app-delete-button [id]="item.id" (delete)="handleDelete($event)"> </app-delete-button>
+  <app-delete-button [id]="item.id" (delete)="handleDelete()"></app-delete-button>
 </div>
