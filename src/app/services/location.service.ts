@@ -12,7 +12,7 @@ private myApiUrl: string;
 
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
-    this.myApiUrl = 'save-location'
+    this.myApiUrl = 'location/save-location'
   }
 
   addLocation(lat: number, lng: number):Observable<any>{
