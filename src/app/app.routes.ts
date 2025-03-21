@@ -26,5 +26,5 @@ export const routes: Routes = [
   },
   { path: 'card/:id', component: ScapeRoomCardComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: '' , pathMatch: 'full'},
 ];
