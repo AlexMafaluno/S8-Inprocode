@@ -6,12 +6,21 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <input type="text" class="form-control" placeholder="Name">
-          <input type="text" class="form-control" placeholder="Description">
+            <form [formGroup]="form" (ngSubmit)="addProduct()">
+          <input formControlName="title" type="text" class="form-control" placeholder="Insert title">
+          <input formControlName="director" type="text" class="form-control mt-2" placeholder="Insert director">
+          <div class="row mt-2 text-center">
+            <div class="col-lg-6">
+          <button type="submit" routerLink="/crud" class="btn btn-primary">Aceptar</button>
+        </div>
+        <div class="col-lg-6">
+          <button type="button" routerLink="/crud" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
+        </div>
+        </div>
+        </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
+          
         </div>
       </div>
     </div>
