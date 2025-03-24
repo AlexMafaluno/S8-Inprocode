@@ -1,0 +1,7 @@
+<div class="card shadow div1 text-center my-auto">
+  <a [routerLink]="['/card', item.id]" class="text-decoration-none">
+    <h3>{{ item.id }}</h3>
+  </a>
+  <app-edit-button [id]="item.id"/>
+  <app-delete-button [id]="item.id" (delete)="handleDelete()"></app-delete-button>
+</div>
