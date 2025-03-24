@@ -1,5 +1,5 @@
 export interface ScapeRoomItem {
-    id: number;
+    id?: number;
     title?: string;
     director?: string;
     poster?: string;
