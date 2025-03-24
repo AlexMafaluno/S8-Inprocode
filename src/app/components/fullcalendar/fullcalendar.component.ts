@@ -9,6 +9,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { EventsService } from '../../services/events.service';
 import esLocale from '@fullcalendar/core/locales/es';
+import { EventItem } from '../../interfaces/event';
 
 @Component({
   selector: 'app-fullcalendar',
@@ -114,9 +115,9 @@ export class FullcalendarComponent implements OnInit, AfterViewInit {
 
   loadEventsFromBackend(){
     this.eventsService.getEvents().subscribe({
-      next:(response)=> {
-        if(response && Array.isArray(response.data)){
-          this.calendarOptions.events = response.data.map((event: { idEvents: any; event_name: any; date: any; }) => ({
+      next:(response: any)=> {
+        if(response.data && Array.isArray(response.data)){
+          this.calendarOptions.events = response.data.map((event: EventItem) => ({
             id:event.idEvents,
             title:event.event_name,
             date:event.date
