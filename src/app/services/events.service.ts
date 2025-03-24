@@ -13,6 +13,12 @@ private myApiUrl: string;
     this.myAppUrl= environment.endpoint;
     this.myApiUrl= 'event/';
   }
+
+  getEvents(): Observable<any>{
+  return this.http.get<any>(this.myAppUrl + this.myApiUrl);
+  }
+  
+
   addEvent(name:string, description:string, date:string, time:string, people:number): Observable<any>{
    return this.http.post((this.myAppUrl+ this.myApiUrl + "save-Event"),{name, description, date, time, people});
    }
