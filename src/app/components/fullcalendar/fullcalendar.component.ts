@@ -57,10 +57,10 @@ export class FullcalendarComponent implements AfterViewInit {
       alert("evento agregado con exito:");
 
       if (Array.isArray(this.calendarOptions.events)) {
-        this.calendarOptions.events.push({
+        this.calendarOptions.events = [...this.calendarOptions.events, {
           title: newEvent.name,
           date: newEvent.date
-        });
+        }];
       }
       if (this.calendar) {
         this.calendar.getApi().refetchEvents();  // Actualiza los eventos en el calendario
