@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EventItem } from '../interfaces/event';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,8 @@ private myApiUrl: string;
     this.myApiUrl= 'event/';
   }
 
-  getEvents(): Observable<any>{
-  return this.http.get<any>(this.myAppUrl + this.myApiUrl);
+  getEvents(): Observable<Event>{
+  return this.http.get<Event>(this.myAppUrl + this.myApiUrl);
   }
   
 
