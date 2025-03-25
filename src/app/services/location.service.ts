@@ -12,10 +12,14 @@ private myApiUrl: string;
 
   constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
-    this.myApiUrl = 'location/save-location'
+    this.myApiUrl = 'location/'
   }
 
   addLocation(lat: number, lng: number):Observable<any>{
-    return this.http.post((this.myAppUrl + this.myApiUrl), { lat, lng });
+    return this.http.post(`${this.myAppUrl + this.myApiUrl + `save-location`}`, { lat, lng });
   }
+
+  getListLocations(): Observable<Location[]> {
+    return this.http.get<Location[]>(this.myAppUrl+ this.myApiUrl);
+   }
 }
