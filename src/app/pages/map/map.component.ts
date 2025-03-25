@@ -14,7 +14,7 @@ import { Location, LocationItem } from '../../interfaces/location';
 export class MapComponent implements AfterViewInit {
   private map!: L.Map;
   marker!: L.Marker;
-  listLocations: Location[] = [];
+  listLocations: LocationItem[] = [];
 
   private locationService = inject(LocationService);
   ngAfterViewInit(): void {
@@ -57,31 +57,31 @@ export class MapComponent implements AfterViewInit {
   getlistLocations(){
     
     this.locationService.getListLocations().subscribe({
-      next: (response: LocationItem) => {
+      next: (response: LocationItem[]) => {
         console.log('Respuesta de la API:', response); // 🔍 Para verificar los datos
-        this.listLocations = response.data || []; // ✅ Asigna directamente la respuesta
-        console.log(this.listLocations);
+        this.listLocations = response;
+        const dataArray = this.listLocations;
       
-      this.listLocations.forEach((location)=> {
+        dataArray.forEach((location: Location)=> {
 
-        const lat = parseFloat(location.latitud);  // Convierte latitud a número
+        const lat = parseFloat(location.latitud);  
         const lng = parseFloat(location.longitud);
 
         if(!isNaN(lat) && !isNaN(lng)){
           L.marker([lat, lng]).addTo(this.map);
         }
       });
-      
       },
-
-
       error: (error) => {
         console.error('Error al obtener escape rooms:', error);
         this.listLocations = []; // En caso de error, evita que Angular intente iterar `undefined`
       }
-    });
-  }
+    
+  })
+
+}
+}
   
 
-  
-}
+
+
