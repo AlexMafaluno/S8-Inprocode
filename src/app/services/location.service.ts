@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { LocationItem } from '../interfaces/location';
@@ -21,6 +21,9 @@ private myApiUrl: string;
   }
 
   getListLocations(): Observable<LocationItem[]> {
-    return this.http.get<LocationItem[]>(this.myAppUrl+ this.myApiUrl);
+    return this.http.get<{ code: number, message: string, data: LocationItem[] }>(this.myAppUrl+ this.myApiUrl).
+    pipe(
+      map(response => response.data)
+    );
    }
 }
