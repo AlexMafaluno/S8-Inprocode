@@ -3,6 +3,7 @@ import { AfterViewInit, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import * as L from 'leaflet'; // ✅ Importa Leaflet
 import { LocationService } from '../../services/location.service';
+import { Location, LocationItem } from '../../interfaces/location';
 
 @Component({
   selector: 'app-map',
@@ -18,6 +19,7 @@ export class MapComponent implements AfterViewInit {
   private locationService = inject(LocationService);
   ngAfterViewInit(): void {
     this.initMap();
+    this.getlistLocations();
   }
 
   private initMap(): void {
@@ -55,10 +57,24 @@ export class MapComponent implements AfterViewInit {
   getlistLocations(){
     
     this.locationService.getListLocations().subscribe({
-      next: (response) => {
+      next: (response: LocationItem) => {
         console.log('Respuesta de la API:', response); // 🔍 Para verificar los datos
-        this.listLocations = response || []; // ✅ Asigna directamente la respuesta
+        this.listLocations = response.data || []; // ✅ Asigna directamente la respuesta
+        console.log(this.listLocations);
+      
+      this.listLocations.forEach((location)=> {
+
+        const lat = parseFloat(location.latitud);  // Convierte latitud a número
+        const lng = parseFloat(location.longitud);
+
+        if(!isNaN(lat) && !isNaN(lng)){
+          L.marker([lat, lng]).addTo(this.map);
+        }
+      });
+      
       },
+
+
       error: (error) => {
         console.error('Error al obtener escape rooms:', error);
         this.listLocations = []; // En caso de error, evita que Angular intente iterar `undefined`
