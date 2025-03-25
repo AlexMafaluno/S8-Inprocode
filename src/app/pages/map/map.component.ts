@@ -13,6 +13,7 @@ import { LocationService } from '../../services/location.service';
 export class MapComponent implements AfterViewInit {
   private map!: L.Map;
   marker!: L.Marker;
+  listLocations: Location[] = [];
 
   private locationService = inject(LocationService);
   ngAfterViewInit(): void {
@@ -50,4 +51,21 @@ export class MapComponent implements AfterViewInit {
    
     
   };
+
+  getlistLocations(){
+    
+    this.locationService.getListLocations().subscribe({
+      next: (response) => {
+        console.log('Respuesta de la API:', response); // 🔍 Para verificar los datos
+        this.listLocations = response || []; // ✅ Asigna directamente la respuesta
+      },
+      error: (error) => {
+        console.error('Error al obtener escape rooms:', error);
+        this.listLocations = []; // En caso de error, evita que Angular intente iterar `undefined`
+      }
+    });
+  }
+  
+
+  
 }
