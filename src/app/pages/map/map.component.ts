@@ -3,7 +3,7 @@ import { AfterViewInit, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import * as L from 'leaflet'; // ✅ Importa Leaflet
 import { LocationService } from '../../services/location.service';
-import { Location, LocationItem } from '../../interfaces/location';
+import { Location } from '../../interfaces/location';
 
 @Component({
   selector: 'app-map',
@@ -14,7 +14,7 @@ import { Location, LocationItem } from '../../interfaces/location';
 export class MapComponent implements AfterViewInit {
   private map!: L.Map;
   marker!: L.Marker;
-  listLocations: LocationItem[] = [];
+  listLocations: Location[] = [];
 
   private locationService = inject(LocationService);
   ngAfterViewInit(): void {
@@ -57,21 +57,34 @@ export class MapComponent implements AfterViewInit {
   getlistLocations(){
     
     this.locationService.getListLocations().subscribe({
-      next: (response: LocationItem[]) => {
+      next: (response) => {
         console.log('Respuesta de la API:', response); // 🔍 Para verificar los datos
-        this.listLocations = response;
-        const dataArray = this.listLocations;
-      
-        dataArray.forEach((location: Location)=> {
+        this.listLocations = Array.isArray(response)
+          ? response.map((location: any) => ({
+              idLocations: location.idLocations || null,
+              latitud: location.latitud || '',
+              longitud: location.longitud || '',
+            }))
+          : [];
 
-        const lat = parseFloat(location.latitud);  
-        const lng = parseFloat(location.longitud);
-
-        if(!isNaN(lat) && !isNaN(lng)){
+          // Verificamos si hay datos en listLocations y agregamos los marcadores
+      if (this.listLocations.length > 0) {
+        this.listLocations.forEach((location: any) => {
+          const lat = parseFloat(location.latitud);
+          const lng = parseFloat(location.longitud);
+       
+         // Si las coordenadas son válidas, colocamos un marcador en el mapa
+         if (!isNaN(lat) && !isNaN(lng)) {
           L.marker([lat, lng]).addTo(this.map);
+        } else {
+          console.error(`Latitud o longitud no válidas para el idLocation ${location.idLocations}`);
         }
       });
-      },
+    } else {
+      console.error('No se encontraron ubicaciones.');
+    }
+  },
+       
       error: (error) => {
         console.error('Error al obtener escape rooms:', error);
         this.listLocations = []; // En caso de error, evita que Angular intente iterar `undefined`
