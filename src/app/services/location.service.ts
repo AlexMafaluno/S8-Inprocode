@@ -20,7 +20,7 @@ private myApiUrl: string;
     return this.http.post(`${this.myAppUrl + this.myApiUrl + `save-location`}`, { lat, lng });
   }
 
-  getListLocations(): Observable<Location[]> {
-    return this.http.get<Location[]>(this.myAppUrl+ this.myApiUrl);
+  getListLocations(): Observable<LocationItem[]> {
+    return this.http.get<LocationItem[]>(this.myAppUrl+ this.myApiUrl);
    }
 }
