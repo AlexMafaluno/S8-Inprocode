@@ -26,4 +26,13 @@ private myApiUrl: string;
       map(response => response.data)
     );
    }
+
+   getLocationsByGenre(genre: string): Observable<LocationItem[]>{
+    return this.http.get<{ code: number, message: string, data: LocationItem[] }>(`${this.myAppUrl}location?genre=${genre}`).
+    pipe(
+      map(response => response.data)
+    )
+   }
+  
+  
 }
