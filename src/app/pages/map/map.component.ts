@@ -16,7 +16,7 @@ export class MapComponent implements AfterViewInit {
   private map!: L.Map;
   marker!: L.Marker;
   listLocations: Location[] = [];
-  selectedGenre: string = 'terror';
+  selectedGenre: string = 'default';
 
   private locationService = inject(LocationService);
   ngAfterViewInit(): void {
@@ -99,6 +99,11 @@ export class MapComponent implements AfterViewInit {
 
 onGenreChange(genre:string){
 
+  if (genre === 'default') {
+    return this.getlistLocations();
+  }
+  
+  
   console.log('Filtrando por género:', genre);
   this.locationService.getLocationsByGenre(genre).subscribe({
     next:(response) => {
