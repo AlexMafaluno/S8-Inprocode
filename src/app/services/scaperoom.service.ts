@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Scaperoom, ScapeRoomItem } from '../interfaces/scaperoom';
+import { map, Observable } from 'rxjs';
+import { ScapeRoom, ScapeRoomItem } from '../interfaces/scaperoom';
 
 @Injectable({
   providedIn: 'root'
@@ -17,20 +17,30 @@ private myApiUrl: string;
     this.myApiUrl= 'api/scaperoom/';
    }
 
-   getListScapeRooms(): Observable<Scaperoom> {
-   return this.http.get<Scaperoom>(this.myAppUrl + this.myApiUrl);
+   getListScapeRooms(): Observable<ScapeRoomItem> {
+   return this.http.get<{ data: ScapeRoomItem }>(this.myAppUrl + this.myApiUrl).
+   pipe(
+     map(response => response.data)
+   )
   }
 
   deleteScapeRoom(id: number):Observable<void> {
     return this.http.delete<void>(this.myAppUrl + this.myApiUrl + id);
   }
 
-  saveScapeRoom(scapeRoom :ScapeRoomItem): Observable<void>{
+  saveScapeRoom(scapeRoom :ScapeRoom): Observable<void>{
    return this.http.post<void>(this.myAppUrl + this.myApiUrl, scapeRoom )
   }
 
-  getScapeRoom(id: Number): Observable<ScapeRoomItem>{
-    return this.http.get<ScapeRoomItem>(this.myAppUrl + this.myApiUrl + id);
+  getScapeRoom(id: Number): Observable<ScapeRoom>{
+    return this.http.get<{ data: ScapeRoom }>(this.myAppUrl + this.myApiUrl + id).
+    pipe(
+      map(response => response.data)
+    )
+  }
+
+  updateScapeRoom(id:number, scapeRoom: ScapeRoom): Observable<void>{
+    return this.http.patch<void>((this.myAppUrl + this.myApiUrl + id),scapeRoom);
   }
 /*async getListScapeRooms(): Promise<Scaperoom[]> {
   try {
