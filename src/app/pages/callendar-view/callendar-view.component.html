@@ -1,7 +1,14 @@
 <div class="container">
   <div class="row mt-3">
+    <button type="button" routerlink ="/callendar/add" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Añadir Evento
+    </button>
     <div class="col-xl-8 mx-auto">
       <app-fullcalendar></app-fullcalendar>
     </div>
   </div>
 </div>
+
+<section>
+<app-modal-event/>
+</section>
