@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Scaperoom, ScapeRoomItem } from '../../interfaces/scaperoom';
+import { ScapeRoom, ScapeRoomItem } from '../../interfaces/scaperoom';
 import { ScaperoomService } from '../../services/scaperoom.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -16,7 +16,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './list-scaperooms.component.scss',
 })
 export class ListScaperoomsComponent implements OnInit {
-  listScapeRooms: ScapeRoomItem[] = [];
+  listScapeRooms: ScapeRoom[] = [];
   private scaperoomService = inject(ScaperoomService);
   private toastr = inject(ToastrService);
   loading: boolean = false;
@@ -31,7 +31,7 @@ this.getlistScapeRooms();
       next: (response) => {
         console.log('Respuesta de la API:', response); // 🔍 Para verificar los datos
         console.log('📢 Tipo de response:', typeof response);
-        this.listScapeRooms = response.data || []; // ✅ Asigna directamente la respuesta
+        this.listScapeRooms = Array.isArray(response) ? response : []; // ✅ Verifica que la respuesta sea un array
         this.loading = false;
       },
       error: (error) => {
