@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ScapeRoomItem } from '../../interfaces/scaperoom';
+import { ScapeRoom, ScapeRoomItem } from '../../interfaces/scaperoom';
 import { RouterModule } from '@angular/router';
 import { DeleteButtonComponent } from "../atoms/delete-button/delete-button.component";
 import { EditButtonComponent } from "../atoms/edit-button/edit-button.component";
@@ -11,7 +11,7 @@ import { EditButtonComponent } from "../atoms/edit-button/edit-button.component"
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
-  @Input() item!: ScapeRoomItem;
+  @Input() item!: ScapeRoom;
   @Output() onDelete = new EventEmitter<number>();
 
   handleDelete() {
