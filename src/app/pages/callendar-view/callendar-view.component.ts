@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-callendar-view',
-  imports: [FullcalendarComponent, ModalEventComponent,CommonModule, RouterModule],
+  imports: [FullcalendarComponent,CommonModule, RouterModule],
   templateUrl: './callendar-view.component.html',
   styleUrl: './callendar-view.component.scss'
 })
