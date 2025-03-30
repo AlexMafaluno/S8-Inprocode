@@ -9,16 +9,19 @@
             <form [formGroup]="formEvent" (ngSubmit)="addEvent()">
           <input formControlName="name" type="text" class="form-control" placeholder="Insert name">
           <span *ngIf="formEvent.get('name')?.hasError('required') && formEvent.get('name')?.touched">
-            El campo del titulo es <strong>requerido</strong> </span>
+            El campo del nombre es <strong>requerido</strong> </span>
           <input formControlName="description" type="text" class="form-control mt-2" placeholder="Insert description">
           <span *ngIf="formEvent.get('description')?.hasError('required') && formEvent.get('description')?.touched">
-            El campo del titulo es <strong>requerido</strong> </span>
-          <input formControlName="time" type="text" class="form-control mt-2" placeholder="Insert time">
+            El campo del description es <strong>requerido</strong> </span>
+            <input formControlName="date" type="date" class="form-control mt-2" placeholder="Insert date">
+            <span *ngIf="formEvent.get('date')?.hasError('required') && formEvent.get('date')?.touched">
+              El campo fecha es <strong>requerido</strong> </span>
+          <input formControlName="time" type="time" class="form-control mt-2" placeholder="Insert time">
           <span *ngIf="formEvent.get('time')?.hasError('required') && formEvent.get('time')?.touched">
-            El campo del titulo es <strong>requerido</strong> </span>
+            El campo hora es <strong>requerido</strong> </span>
           <input formControlName="people" type="number" class="form-control mt-2" placeholder="Insert people">
           <span *ngIf="formEvent.get('people')?.hasError('required') && formEvent.get('people')?.touched">
-            El campo del titulo es <strong>requerido</strong> </span>
+            El campo equipo es <strong>requerido</strong> </span>
           <div class="row mt-2 text-center">
             <div class="col-lg-6">
           <button type="submit" routerLink="/callendar" class="btn btn-primary">Aceptar</button>
