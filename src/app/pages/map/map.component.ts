@@ -3,20 +3,26 @@ import { AfterViewInit, Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import * as L from 'leaflet'; // ✅ Importa Leaflet
 import { LocationService } from '../../services/location.service';
+import { Location } from '../../interfaces/location';
+import { DropdownButtomComponent } from "../../components/dropdown-buttom/dropdown-buttom.component";
 
 @Component({
   selector: 'app-map',
-  imports: [CommonModule],
+  imports: [CommonModule, DropdownButtomComponent],
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements AfterViewInit {
   private map!: L.Map;
   marker!: L.Marker;
+  listLocations: Location[] = [];
+  selectedGenre: string = 'default';
 
   private locationService = inject(LocationService);
   ngAfterViewInit(): void {
     this.initMap();
+    this.getlistLocations();
+    this.onGenreChange(this.selectedGenre);
   }
 
   private initMap(): void {
@@ -50,4 +56,91 @@ export class MapComponent implements AfterViewInit {
    
     
   };
+
+  getlistLocations(){
+    
+    this.locationService.getListLocations().subscribe({
+      next: (response) => {
+        console.log('Respuesta de la API:', response); // 🔍 Para verificar los datos
+        this.listLocations = Array.isArray(response)
+          ? response.map((location: any) => ({
+              idLocations: location.idLocations || null,
+              latitud: location.latitud || '',
+              longitud: location.longitud || '',
+            }))
+          : [];
+
+          // Verificamos si hay datos en listLocations y agregamos los marcadores
+      if (this.listLocations.length > 0) {
+        this.listLocations.forEach((location: any) => {
+          const lat = parseFloat(location.latitud);
+          const lng = parseFloat(location.longitud);
+       
+         // Si las coordenadas son válidas, colocamos un marcador en el mapa
+         if (!isNaN(lat) && !isNaN(lng)) {
+          L.marker([lat, lng]).addTo(this.map);
+        } else {
+          console.error(`Latitud o longitud no válidas para el idLocation ${location.idLocations}`);
+        }
+      });
+    } else {
+      console.error('No se encontraron ubicaciones.');
+    }
+  },
+       
+      error: (error) => {
+        console.error('Error al obtener escape rooms:', error);
+        this.listLocations = []; // En caso de error, evita que Angular intente iterar `undefined`
+      }
+    
+  })
+
+}
+
+onGenreChange(genre:string){
+
+  if (genre === 'default') {
+    return this.getlistLocations();
+  }
+  
+  
+  console.log('Filtrando por género:', genre);
+  this.locationService.getLocationsByGenre(genre).subscribe({
+    next:(response) => {
+      console.log('Localziaciones filtradas:',response);
+
+  // Limpiar marcadores anteriores
+  this.map.eachLayer((layer) => {
+    if (layer instanceof L.Marker) this.map.removeLayer(layer);
+    });
+
+
+
+      this.listLocations = Array.isArray(response)
+          ? response.map((location: any) => ({
+              idLocations: location.idLocations || null,
+              latitud: location.latitud || '',
+              longitud: location.longitud || '',
+            }))
+          : [];
+
+      
+
+          // Verificamos si hay datos en listLocations y agregamos los marcadores
+      if (this.listLocations.length > 0) {
+        this.listLocations.forEach((location: any) => {
+          const lat = parseFloat(location.latitud);
+          const lng = parseFloat(location.longitud);
+       
+         // Si las coordenadas son válidas, colocamos un marcador en el mapa
+         if (!isNaN(lat) && !isNaN(lng)) {
+          L.marker([lat, lng]).addTo(this.map);
+        }})
+
+  }}
+    
+})
+}
+
+
 }
