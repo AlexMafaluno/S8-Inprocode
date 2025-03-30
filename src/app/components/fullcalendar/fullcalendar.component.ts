@@ -9,15 +9,17 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import { EventsService } from '../../services/events.service';
 import esLocale from '@fullcalendar/core/locales/es';
-import { EventItem } from '../../interfaces/event';
+import { EventItem, Event } from '../../interfaces/event';
+import { ModalEventComponent } from "../modal-event/modal-event.component";
 
 @Component({
   selector: 'app-fullcalendar',
-  imports: [CommonModule, FullCalendarModule],
+  imports: [CommonModule, FullCalendarModule, ModalEventComponent],
   templateUrl: './fullcalendar.component.html',
   styleUrl: './fullcalendar.component.scss',
 })
 export class FullcalendarComponent implements OnInit, AfterViewInit {
+
   private eventsService = inject(EventsService);
 
   @ViewChild('calendar') calendar: FullCalendarComponent | undefined;
@@ -25,7 +27,7 @@ export class FullcalendarComponent implements OnInit, AfterViewInit {
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     plugins: [dayGridPlugin, interactionPlugin],
-    dateClick: (arg) => this.handleDateClick(arg),
+   // dateClick: (arg) => this.handleDateClick(arg),
     locale: esLocale,
     eventClick: (arg) => this.handleEventClick(arg),
     events: [{ title: 'pepe', date: '2025-03-24' }],
@@ -44,7 +46,17 @@ export class FullcalendarComponent implements OnInit, AfterViewInit {
       console.log('FullCalendar instance is available');
     }
   }
+  handleEventAdded(event: Event) {
+    if (Array.isArray(this.calendarOptions.events)) {
+      this.calendarOptions.events = [...this.calendarOptions.events, event];
+    }
 
+    if (this.calendar) {
+      this.calendar.getApi().refetchEvents(); // Actualiza los eventos en el calendario
+    }
+    }
+
+/*
   handleDateClick(arg: any) {
     const selectedDate = arg.dateStr;
     alert('date click!' + selectedDate);
@@ -91,6 +103,7 @@ export class FullcalendarComponent implements OnInit, AfterViewInit {
         },
       });
   }
+*/
 
   handleEventClick(arg: any) {
     if (
@@ -115,12 +128,12 @@ export class FullcalendarComponent implements OnInit, AfterViewInit {
 
   loadEventsFromBackend(){
     this.eventsService.getEvents().subscribe({
-      next:(response: any)=> {
-        if(response.data && Array.isArray(response.data)){
-          this.calendarOptions.events = response.data.map((event: EventItem) => ({
-            id:event.idEvents,
-            title:event.event_name,
-            date:event.date
+      next:(response: EventItem)=> {
+        if(response && Array.isArray(response)){
+          this.calendarOptions.events = response.map((event: Event) => ({
+            id: String(event.idEvents),
+            title: event.event_name,
+            date: event.date
           }));
         }
       },
