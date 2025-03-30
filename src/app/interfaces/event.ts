@@ -1,14 +1,15 @@
-export interface EventItem {
-    idEvents:    number;
+export interface Event {
+    idEvents?:    number;
     event_name:  string;
     description: string;
-    date:        Date;
+    date?:        Date;
     time_start:  string;
+    people: number;
 
 }
 
-export interface Event {
+export interface EventItem {
     code:    number;
     message: string;
-    data:    EventItem[];
+    data:    Event;
 }

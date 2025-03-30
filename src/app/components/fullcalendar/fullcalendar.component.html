@@ -1,3 +1,6 @@
+<app-modal-event (eventAdded)="handleEventAdded($event)"></app-modal-event>
+
+
 <full-calendar #calendar [options]="calendarOptions">
     <ng-template #eventContent let-arg>
         <b>{{ arg.event.title }}</b>
