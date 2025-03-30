@@ -1,22 +1,31 @@
+@if(loading){
+<app-progress-spinner/>
+}
+@if(!loading){
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">Add ScapeRoom</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">{{operacion}} ScapeRoom</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form [formGroup]="form" (ngSubmit)="addProduct()">
           <input formControlName="title" type="text" class="form-control" placeholder="Insert title">
+          <span *ngIf="form.get('title')?.hasError('required') && form.get('title')?.touched">
+            El campo del titulo es <strong>requerido</strong> </span>
           <input formControlName="director" type="text" class="form-control mt-2" placeholder="Insert director">
+          <span *ngIf="form.get('director')?.hasError('required') && form.get('director')?.touched">
+            El campo del director es <strong>requerido</strong> </span>
           <div class="row mt-2 text-center">
             <div class="col-lg-6">
-          <button type="submit" routerLink="/crud" class="btn btn-primary">Aceptar</button>
+          <button type="submit" [disabled]="form.invalid" routerLink="/crud" class="btn btn-primary">Aceptar</button>
         </div>
         <div class="col-lg-6">
           <button type="button" routerLink="/crud" class="btn btn-secondary" data-bs-dismiss="modal">Volver</button>
         </div>
         </div>
+        <pre>{{ form.value | json }}</pre>
         </form>
         </div>
         <div class="modal-footer">
@@ -25,3 +34,6 @@
       </div>
     </div>
   </div>
+}
+
+<router-outlet />

@@ -1,15 +1,15 @@
-export interface ScapeRoomItem {
-    id: number;
-    title?: string;
-    director?: string;
+export interface ScapeRoom {
+    id?: number;
+    title: string;
+    director: string;
     poster?: string;
     genre?: string;
 }
 
-export interface Scaperoom {
+export interface ScapeRoomItem {
     code: number;
     message: string;
-    data: ScapeRoomItem[]; // ✅ Ahora `data` es un array de objetos dinámico
+    data: ScapeRoom; // ✅ Ahora `data` es un array de objetos dinámico
 }
 
 
