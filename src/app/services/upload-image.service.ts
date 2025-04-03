@@ -16,8 +16,8 @@ export class UploadImageService {
 
 uploadImage(file: File, scaperoomId:number ): Observable<any>{
   const formData = new FormData();
-  formData.append('image', file);
-  formData.append('ScapeRoomid', scaperoomId.toString());
+  formData.append('file', file);
+  formData.append('id', scaperoomId.toString());
 
   return this.http.post<any>((this.myAppUrl + this.myApiUrl),formData);
 
