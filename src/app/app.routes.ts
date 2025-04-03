@@ -9,6 +9,7 @@ import { ModalComponent } from './components/modal/modal.component';
 import { CallendarViewComponent } from './pages/callendar-view/callendar-view.component';
 import { ChartViewComponent } from './pages/chart-view/chart-view.component';
 import { ModalEventComponent } from './components/modal-event/modal-event.component';
+import { CardDetailPageComponent } from './pages/card-detail-page/card-detail-page.component';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -27,7 +28,7 @@ export const routes: Routes = [
       { path: 'edit/:id', component: ModalComponent } // 👈 Child route dentro de 'crud'
     ]
   },
-  { path: 'card/:id', component: ScapeRoomCardComponent },
+  { path: 'card/:id', component: CardDetailPageComponent  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: '' , pathMatch: 'full'},
 ];
