@@ -6,6 +6,7 @@
 }
 
 .parent {
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -16,9 +17,21 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 16px;
-    height: 300px;
+    height: auto;
     border-radius: 8px;
     background-color: #f7f7f7;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }  
 
+@media (max-width: 768px) {
+    .parent {
+      grid-template-columns: repeat(3, 1fr); /* Sigue manteniendo 3 columnas */
+    }
+  }
+
+  @media (max-width: 480px) { 
+    .parent {
+      grid-template-columns: repeat(3, 1fr); /* En pantallas muy pequeñas, pasa a 2 columnas */
+    }
+  }
+  
