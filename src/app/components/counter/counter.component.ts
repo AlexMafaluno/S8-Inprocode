@@ -10,11 +10,8 @@ export class CounterComponent implements OnInit {
 counter: number = 0;
 
 constructor() {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
- 
-ngOninit(): void {
+  
+ngOnInit(): void {
 }
 
 
