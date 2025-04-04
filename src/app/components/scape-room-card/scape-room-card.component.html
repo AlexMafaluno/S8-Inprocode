@@ -1,16 +1,20 @@
-<div class="container">
-<div class="row align-items-center">
-    <div class="col-12 col-xl-8  mx-auto">
-        <div class="card text-center">
-            <div class="details">
-                
-                <h2>Hola</h2>
+<div class="card-detail">
+    <app-image [src]="card.imageUrl || 'assets/images/default-image.png'"></app-image>
+    <h1>{{card.title}}</h1>
+    <h4>{{card.director}}</h4>
+                <div>
+                    <input type="file" (change)="onFileSelected($event)">
+                    <button (click)="onUpload(card.id)">Subir imagen</button>
+                  </div>
                 
                 <button type="button" class="btn btn-primary btn-sm">Edit</button>
             <button type="button" class="btn btn-secondary btn-sm">Delete</button>
             </div>
+  <div>
+
+    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
+    <label class="btn btn-outline-primary" for="btn-check-outlined">Hecho</label><br>
+
+            <app-exit-button></app-exit-button>
+
         </div>
-    </div>
-</div>
-
-

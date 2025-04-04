@@ -4,15 +4,19 @@
   }
 
   @if(!loading){
-<div class="container">
-  <div class="title sm-auto">
-    <h4>List ScapeRooms</h4>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col col-12 col-xl-12 mx-auto">
+      <div class="title">
+    <h4>Mis fotos</h4>
+  </div>  
     <app-filter />
+  </div>
   </div>
 
   <div class="row">
-    <div class="col-12 col-xl-12"></div>
-    <div class="col">
+    
+    <div class="col-12 col-xl-12">
       <div class="card">
         @if(listScapeRooms.length > 0){
         <div class="parent">

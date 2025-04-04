@@ -3,10 +3,11 @@ import { ScapeRoom, ScapeRoomItem } from '../../interfaces/scaperoom';
 import { RouterModule } from '@angular/router';
 import { DeleteButtonComponent } from "../atoms/delete-button/delete-button.component";
 import { EditButtonComponent } from "../atoms/edit-button/edit-button.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-card',
-  imports: [RouterModule, DeleteButtonComponent, EditButtonComponent],
+  imports: [RouterModule, DeleteButtonComponent,CommonModule, EditButtonComponent],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })

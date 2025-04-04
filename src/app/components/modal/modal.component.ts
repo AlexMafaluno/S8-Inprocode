@@ -56,6 +56,7 @@ constructor(private fb: FormBuilder){
 
 addProduct(){
   const scapeRoom: ScapeRoom = {
+    id: this.id,
     title: this.form.value.title,
     director: this.form.value.director
   }

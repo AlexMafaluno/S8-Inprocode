@@ -1,14 +1,42 @@
 import { Component, inject, Input } from '@angular/core';
-import { ScapeRoomItem } from '../../interfaces/scaperoom';
+import { ScapeRoom, ScapeRoomItem } from '../../interfaces/scaperoom';
 import { ScaperoomService } from '../../services/scaperoom.service';
+import { ImageComponent } from "../atoms/image/image.component";
+import { UploadImageService } from '../../services/upload-image.service';
+import { ExitButtonComponent } from "../atoms/exit-button/exit-button.component";
 
 @Component({
   selector: 'app-scape-room-card',
-  imports: [],
+  imports: [ImageComponent, ExitButtonComponent],
   templateUrl: './scape-room-card.component.html',
   styleUrl: './scape-room-card.component.scss'
 })
 export class ScapeRoomCardComponent {
+  selectedFile!: File;
+  
+  @Input() card!: ScapeRoom;
   @Input() scapeRoom:ScapeRoomItem[] = [];
 
+  private uploadImageService = inject(UploadImageService);
+
+  onUpload(arg0: number) {
+    if (!this.selectedFile) {
+      console.error('No se ha seleccionado un archivo.');
+      return;
+    }
+    this.uploadImageService.uploadImage(this.selectedFile, arg0).subscribe({
+      next: (response) => {
+        console.log('Imagen subida con éxito', response);
+      },
+      error: (error) => {
+        console.error('Error al subir la imagen', error);
+      },
+  })
 }
+
+    onFileSelected($event: Event) {
+      this.selectedFile = ($event.target as HTMLInputElement).files![0];
+      console.log(this.selectedFile);
+    }
+  }
+
