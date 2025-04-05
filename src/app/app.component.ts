@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from "./Layouts/header/header.component";
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,5 +11,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'Sprint8_Inprocode';
+  showNavbar= true;
+
+  private router = inject(Router);
+
+  constructor(){
+    this.router.events.subscribe(()=> {
+      this.showNavbar = !['/login', '/register'].includes(this.router.url);
+    });
+  }
+
 }

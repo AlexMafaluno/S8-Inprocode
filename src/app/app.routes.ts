@@ -10,10 +10,17 @@ import { CallendarViewComponent } from './pages/callendar-view/callendar-view.co
 import { ChartViewComponent } from './pages/chart-view/chart-view.component';
 import { ModalEventComponent } from './components/modal-event/modal-event.component';
 import { CardDetailPageComponent } from './pages/card-detail-page/card-detail-page.component';
+import { LoginViewComponent } from './pages/login-view/login-view.component';
+import { RegisterViewComponent } from './pages/register-view/register-view.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/home' },
-  { path: 'home', component: HomeComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/login' },
+//Rutas de auth
+  {path: "login", component: LoginViewComponent},
+  {path: "register", component: RegisterViewComponent},
+
+  { path: 'home', component: HomeComponent, canMatch: [AuthGuard]},
   { path: 'map', component: MapComponent },
   { path: 'callendar', component: CallendarViewComponent
     ,children: [
@@ -30,5 +37,5 @@ export const routes: Routes = [
   },
   { path: 'card/:id', component: CardDetailPageComponent  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: '' , pathMatch: 'full'},
+  { path: '**', redirectTo: 'login' , pathMatch: 'full'},
 ];

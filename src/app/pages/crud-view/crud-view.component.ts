@@ -6,7 +6,7 @@ import { ModalComponent } from '../../components/modal/modal.component';
 
 @Component({
   selector: 'app-crud-view',
-  imports: [ListScaperoomsComponent, RouterOutlet, CommonModule, ModalComponent],
+  imports: [ListScaperoomsComponent, CommonModule, ModalComponent],
   templateUrl: './crud-view.component.html',
   styleUrl: './crud-view.component.scss'
 })
