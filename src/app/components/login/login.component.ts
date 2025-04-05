@@ -40,6 +40,7 @@ export class LoginComponent {
             loginPassword
           );
           console.log(userCredential.user);
+
           this.router.navigate(['/home']);
         } catch (error) {
           console.log(error);
