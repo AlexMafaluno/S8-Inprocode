@@ -8,16 +8,20 @@ import { FilterComponent } from "../filter/filter.component";
 import { CardComponent } from "../card/card.component";
 import { ProgressSpinnerComponent } from "../progress-spinner/progress-spinner.component";
 import { ToastrService } from 'ngx-toastr';
+import { ModalFilterComponent } from "../modal-filter/modal-filter.component";
+import { FilterService } from '../../services/filter.service';
 
 @Component({
   selector: 'app-list-scaperooms',
-  imports: [CommonModule, RouterModule, FilterComponent, CardComponent, ProgressSpinnerComponent],
+  imports: [CommonModule, RouterModule, FilterComponent, CardComponent, ProgressSpinnerComponent, ModalFilterComponent],
   templateUrl: './list-scaperooms.component.html',
   styleUrl: './list-scaperooms.component.scss',
 })
 export class ListScaperoomsComponent implements OnInit {
+
   listScapeRooms: ScapeRoom[] = [];
   private scaperoomService = inject(ScaperoomService);
+  private filterService = inject(FilterService);
   private toastr = inject(ToastrService);
   loading: boolean = false;
 
@@ -41,7 +45,7 @@ this.getlistScapeRooms();
     });
   }
 
-  deleteScapeRoom(id: number){ {
+  deleteScapeRoom(id: number){ 
 
     this.scaperoomService.deleteScapeRoom(id).subscribe(() =>{
       this.loading = true;
@@ -50,6 +54,18 @@ this.getlistScapeRooms();
       this.toastr.warning('El producto fue eliminado con exito', 'Producto eliminado');
     })
   }
-}
+
+
+sortBy(criteria: string) {
+  console.log('Orden seleccionado:', criteria);
+  this.loading = true;
+  try {
+    this.listScapeRooms = this.filterService.sortedBy(criteria, this.listScapeRooms);
+  } catch (error) {
+    console.error('Error al ordenar:', error);
+  } finally {
+    this.loading = false;
+  }
+  }
 
 }
