@@ -4,6 +4,7 @@ import { ScaperoomService } from '../../services/scaperoom.service';
 import { ImageComponent } from "../atoms/image/image.component";
 import { UploadImageService } from '../../services/upload-image.service';
 import { ExitButtonComponent } from "../atoms/exit-button/exit-button.component";
+import { PhotoService } from '../../services/photo.service';
 
 @Component({
   selector: 'app-scape-room-card',
@@ -18,13 +19,15 @@ export class ScapeRoomCardComponent {
   @Input() scapeRoom:ScapeRoomItem[] = [];
 
   private uploadImageService = inject(UploadImageService);
+  private photoService = inject(PhotoService);
+
 
   onUpload(arg0: number) {
     if (!this.selectedFile) {
       console.error('No se ha seleccionado un archivo.');
       return;
     }
-    this.uploadImageService.uploadImage(this.selectedFile, arg0).subscribe({
+    this.photoService.uploadImage(this.selectedFile, arg0).subscribe({
       next: (response) => {
         console.log('Imagen subida con éxito', response);
       },
