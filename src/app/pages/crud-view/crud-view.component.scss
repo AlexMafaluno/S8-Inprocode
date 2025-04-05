@@ -1,0 +1,6 @@
+.app-filter-button{
+    position: fixed;
+    bottom: 1rem;     /* equivalente a Bootstrap's bottom-0 + m-4 */
+    right: 1rem;      /* 'end-0' es igual a right: 0 + margen */
+    z-index: 1050;
+}
