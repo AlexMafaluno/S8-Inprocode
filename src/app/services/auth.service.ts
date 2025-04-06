@@ -58,7 +58,7 @@ export class AuthService {
 // Método para guardar el token en las cookies
 private async setAuthToken(user: any) {
   const token = await user.getIdToken();
-  document.cookie = `token=${token}; path=/; Secure; SameSite=Strict`;
+  document.cookie = `token=${token}; path=/; SameSite=Lax`;
   console.log("Token guardado en cookies ✅");
   console.log("Token:", token); // 👀 Ver el token guardado
   console.log(typeof token); // 👀 Ver el token guardado
@@ -66,7 +66,7 @@ private async setAuthToken(user: any) {
 }
   // Método para eliminar el token de las cookies
   private clearAuthToken() {
-    document.cookie = `token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; Secure; SameSite=Strict`;
+    document.cookie = `token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax`;
     console.log("Token eliminado de las cookies ❌");
   }
 }
