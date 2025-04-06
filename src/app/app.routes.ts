@@ -15,7 +15,7 @@ import { RegisterViewComponent } from './pages/register-view/register-view.compo
 import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/login' },
+ // { path: '', pathMatch: 'full', redirectTo: '/login' },
 //Rutas de auth
   {path: "login", component: LoginViewComponent},
   {path: "register", component: RegisterViewComponent},
