@@ -1,4 +1,4 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { ScapeRoom, ScapeRoomItem } from '../../interfaces/scaperoom';
 import { ScaperoomService } from '../../services/scaperoom.service';
 import { ImageComponent } from "../atoms/image/image.component";
@@ -18,6 +18,8 @@ export class ScapeRoomCardComponent {
   @Input() card!: ScapeRoom;
   @Input() scapeRoom:ScapeRoomItem[] = [];
 
+  
+
   private uploadImageService = inject(UploadImageService);
   private photoService = inject(PhotoService);
 
@@ -30,6 +32,7 @@ export class ScapeRoomCardComponent {
     this.photoService.uploadImage(this.selectedFile, arg0).subscribe({
       next: (response) => {
         console.log('Imagen subida con éxito', response);
+        
       },
       error: (error) => {
         console.error('Error al subir la imagen', error);
