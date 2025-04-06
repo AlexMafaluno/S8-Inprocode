@@ -19,9 +19,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrl: './list-scaperooms.component.scss',
 })
 export class ListScaperoomsComponent implements OnInit {
-onPhotoUploaded($event: number) {
-throw new Error('Method not implemented.');
-}
+
   listScapeRooms: ScapeRoom[] = [];
   userPhotos: Photo[] = [];
   userId: number = 359;
@@ -103,4 +101,7 @@ attachPhotosToScaperooms(): void {
     };
   });
 }
+
+
+
 }
