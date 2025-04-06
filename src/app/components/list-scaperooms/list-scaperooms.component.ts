@@ -10,6 +10,7 @@ import { ProgressSpinnerComponent } from "../progress-spinner/progress-spinner.c
 import { ToastrService } from 'ngx-toastr';
 import { PhotoService } from '../../services/photo.service';
 import { Photo } from '../../interfaces/photo';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-list-scaperooms',
@@ -18,10 +19,16 @@ import { Photo } from '../../interfaces/photo';
   styleUrl: './list-scaperooms.component.scss',
 })
 export class ListScaperoomsComponent implements OnInit {
+onPhotoUploaded($event: number) {
+throw new Error('Method not implemented.');
+}
   listScapeRooms: ScapeRoom[] = [];
   userPhotos: Photo[] = [];
   userId: number = 359;
 
+
+  
+private authService = inject(AuthService);
 private photoService = inject(PhotoService);
   private scaperoomService = inject(ScaperoomService);
   private toastr = inject(ToastrService);
@@ -29,7 +36,12 @@ private photoService = inject(PhotoService);
 
  ngOnInit(){
 this.getlistScapeRooms();
-  }
+const uid = this.authService.getUid();
+console.log('UID del usuario:', uid);
+
+}
+
+
 
   getlistScapeRooms(){
     this.loading = true;
@@ -57,6 +69,7 @@ this.getlistScapeRooms();
         console.log('📢 Tipo de response:', typeof response);
       this.userPhotos = Array.isArray(response) ? response : []; // Suponiendo que la respuesta contiene un array de fotos en 'data'
       // Ahora puedes asociar estas fotos con los scaperooms si lo necesitas
+      console.log('userPhotos:', this.userPhotos);
       this.attachPhotosToScaperooms();
     },
       error: (error) => { 
@@ -83,7 +96,7 @@ this.getlistScapeRooms();
 attachPhotosToScaperooms(): void {
   // Asumimos que las fotos tienen el campo 'scaperoom_id' para vincularlas con los scaperooms
   this.listScapeRooms = this.listScapeRooms.map(scaperoom => {
-    const photo = this.userPhotos.find(photo => photo.scaperoom_id === scaperoom.id);
+    const photo = this.userPhotos.find(photo => photo.scaperoom_id === Number(scaperoom.id));
     return {
       ...scaperoom,
       imageUrl: photo ? photo.photoURL : undefined, // Añades la URL de la foto al scaperoom
