@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { Photo, PhotoItem } from '../interfaces/photo';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,12 @@ private myApiUrl3: string;
     this.myApiUrl = 'photo/';
     this.myApiUrl2 = 'photos/user/';
     this.myApiUrl3 = 'upload-photo';
-   }
+}
 
-   getPhotosByUser(id: Number): Observable<any> {
-    return this.http.get<any>(this.myAppUrl + this.myApiUrl + this.myApiUrl2 + id) ;
+   getPhotosByUser(id: Number): Observable<PhotoItem> {
+    return this.http.get<{ data: PhotoItem}>(this.myAppUrl + this.myApiUrl + this.myApiUrl2 + id).
+    pipe(
+      map(response => response.data));
 }
 
 
@@ -29,8 +32,9 @@ uploadImage(file: File, scaperoomId:number): Observable<any>{
   formData.append('file', file);
   formData.append('id', scaperoomId.toString());
   
-  return this.http.post<any>((this.myAppUrl + this.myApiUrl + this.myApiUrl3),formData);  
-}
+  return this.http.post<any>(`${this.myAppUrl + this.myApiUrl + this.myApiUrl3}`,formData,{
+    withCredentials: true 
+  });
 
 }
-
+}
