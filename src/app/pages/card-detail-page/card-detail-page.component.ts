@@ -25,5 +25,4 @@ ngOnInit(): void {
     this.selectedCard = scaperoom;
   })
 }
-
 }
