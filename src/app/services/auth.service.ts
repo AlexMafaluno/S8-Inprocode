@@ -6,6 +6,7 @@ import { Auth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEma
 })
 export class AuthService {
   private auth = inject(Auth);
+  private currentUserUid: string | null = null;
   private readonly isLoggedIn = new BehaviorSubject<boolean>(false);
   //private userSubject = new BehaviorSubject<User | null>(null);
   
@@ -20,12 +21,21 @@ export class AuthService {
 
     // Si hay un usuario, obtenemos el token y lo guardamos en cookies
     if (user) {
+      this.currentUserUid = user.uid;
       this.setAuthToken(user);
     }
 
     });
   }
   
+
+// Getter para usar en componentes
+getUid(): string | null {
+  return this.currentUserUid;
+}
+
+
+
   async login(email: string, password: string) {
     const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
     const user = userCredential.user;
