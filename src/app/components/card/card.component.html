@@ -4,8 +4,6 @@
     <img *ngIf="item.imageUrl" [src]="item.imageUrl" alt="Scaperoom Image" class="card-image">
     <div class="card-content">
     <h1>{{ item.id }}</h1>
-    <!-- <h4>{{ item.title }}</h4>
-    <h4>{{ item.director }}</h4> -->
   <app-edit-button [id]="item.id!"/>
   <app-delete-button [id]="item.id!" (delete)="handleDelete()"></app-delete-button>
 </div>
