@@ -1,3 +1,9 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 .title{
     margin-top: 10px;
     display:flex;
@@ -7,10 +13,11 @@
 
 .parent {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 8px;
+    //overflow: hidden;
+    box-sizing: border-box; 
 }
 .card {
     display: flex;
@@ -18,20 +25,22 @@
     justify-content: space-between;
     padding: 16px;
     height: auto;
+    max-height: auto;
     border-radius: 8px;
     background-color: #f7f7f7;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(33.333% - 8px); /* Controla el tamaño de las tarjetas para 3 columnas */
 }  
 
 @media (max-width: 768px) {
-    .parent {
-      grid-template-columns: repeat(3, 1fr); /* Sigue manteniendo 3 columnas */
-    }
+  .parent {
+    flex: 1 1 calc(50% - 8px); /* Ajusta a 2 columnas en pantallas medianas */
+  }
   }
 
   @media (max-width: 480px) { 
     .parent {
-      grid-template-columns: repeat(3, 1fr); /* En pantallas muy pequeñas, pasa a 2 columnas */
+      flex: 1 1 calc(33.333% - 8px); /* Mantiene 3 columnas incluso en pantallas pequeñas */
     }
   }
   
