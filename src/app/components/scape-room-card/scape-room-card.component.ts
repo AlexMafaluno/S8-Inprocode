@@ -5,6 +5,7 @@ import { ImageComponent } from "../atoms/image/image.component";
 import { UploadImageService } from '../../services/upload-image.service';
 import { ExitButtonComponent } from "../atoms/exit-button/exit-button.component";
 import { PhotoService } from '../../services/photo.service';
+import { CounterService } from '../../services/counter.service';
 
 @Component({
   selector: 'app-scape-room-card',
@@ -22,7 +23,7 @@ export class ScapeRoomCardComponent {
 
   private uploadImageService = inject(UploadImageService);
   private photoService = inject(PhotoService);
-
+  private counterService = inject(CounterService)
 
   onUpload(arg0: number) {
     if (!this.selectedFile) {
@@ -43,6 +44,11 @@ export class ScapeRoomCardComponent {
     onFileSelected($event: Event) {
       this.selectedFile = ($event.target as HTMLInputElement).files![0];
       console.log(this.selectedFile);
+    }
+
+
+    increaseCounter(value: number): void {
+      this.counterService.increaseCounter(value); // Aumenta el contador en 1
     }
   }
 
