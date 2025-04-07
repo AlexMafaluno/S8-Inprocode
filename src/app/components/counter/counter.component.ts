@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit, Signal } from '@angular/core';
+import { CounterService } from '../../services/counter.service';
 
 @Component({
   selector: 'app-counter',
@@ -6,19 +7,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './counter.component.html',
   styleUrl: './counter.component.scss'
 })
-export class CounterComponent implements OnInit {
-counter: number = 0;
-
-constructor() {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
+export class CounterComponent{
  
-ngOninit(): void {
-}
 
+private counterService = inject(CounterService); // Inyectamos el servicio CounterService
 
-increaseBy(value: number) {
-  this.counter+= value;
+counter: Signal<number> = inject(CounterService).counterSignal;
+
+increaseBy(value: number): void {
+  this.counterService.increaseCounter(value); // Llamamos al servicio para aumentar el contador
 }
 }
