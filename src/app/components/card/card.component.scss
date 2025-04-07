@@ -1,10 +1,12 @@
 .card {
     position: relative; /* Para que los elementos internos se posicionen respecto a este */
-  width: 300px; /* Ajusta según tu diseño */
-  height: 400px; /* Ajusta según tu diseño */
+    width: 100%; /* Hace que el ancho de .card sea flexible */
+    height: 300px; /* Ajusta la altura automáticamente según el contenido */
+    //max-width: 300px;
   overflow: hidden; /* Evita que la imagen sobresalga */
   border-radius: 10px; /* Opcional: bordes redondeados */
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   }
@@ -28,3 +30,14 @@
     border-radius: 10px; /* Opcional: bordes redondeados */
   }
 
+  @media (max-width: 768px) {
+    .card {
+      width: calc(50% - 8px); /* Ajusta a 2 columnas en pantallas medianas */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .card {
+      width: calc(100% - 8px); /* Mantiene 3 columnas incluso en pantallas pequeñas */
+    }
+  }
