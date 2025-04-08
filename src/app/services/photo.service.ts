@@ -20,8 +20,8 @@ private myApiUrl3: string;
     this.myApiUrl3 = 'upload-photo';
 }
 
-   getPhotosByUser(id: Number): Observable<PhotoItem> {
-    return this.http.get<{ data: PhotoItem}>(this.myAppUrl + this.myApiUrl + this.myApiUrl2 + id).
+   getPhotosByUser(id: Number): Observable<Photo[]> {
+    return this.http.get<{ data: Photo[]}>(this.myAppUrl + this.myApiUrl + this.myApiUrl2 + id).
     pipe(
       map(response => response.data));
 }
