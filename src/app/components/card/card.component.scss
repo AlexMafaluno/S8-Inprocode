@@ -1,7 +1,7 @@
 .card {
     position: relative; /* Para que los elementos internos se posicionen respecto a este */
-    width: 100%; /* Hace que el ancho de .card sea flexible */
-    height: 300px; /* Ajusta la altura automáticamente según el contenido */
+    width: 80%; /* Hace que el ancho de .card sea flexible */
+    height: 500px; /* Ajusta la altura automáticamente según el contenido */
     //max-width: 300px;
   overflow: hidden; /* Evita que la imagen sobresalga */
   border-radius: 10px; /* Opcional: bordes redondeados */

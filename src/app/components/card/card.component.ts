@@ -12,11 +12,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
-  @Input() item!: ScapeRoom;
+  @Input() card!: ScapeRoom;
   @Output() onDelete = new EventEmitter<number>();
 
   handleDelete() {
-    this.onDelete.emit(this.item.id);
+    this.onDelete.emit(this.card.id);
   }
 }
 
