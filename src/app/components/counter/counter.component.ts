@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, Signal } from '@angular/core';
+import { Component, inject, OnInit, signal, Signal } from '@angular/core';
 import { CounterService } from '../../services/counter.service';
 
 @Component({
@@ -8,13 +8,14 @@ import { CounterService } from '../../services/counter.service';
   styleUrl: './counter.component.scss'
 })
 export class CounterComponent{
- 
+  // Definimos una señal para el contador
+  // La señal es una forma de manejar el estado reactivo en Angular
+  // En este caso, la señal se inicializa con un valor de 0
+  counter: Signal<number> = signal(0); // Inicializamos el contador en 0
 
 private counterService = inject(CounterService); // Inyectamos el servicio CounterService
 
-counter: Signal<number> = inject(CounterService).counterSignal;
-
-increaseBy(value: number): void {
-  this.counterService.increaseCounter(value); // Llamamos al servicio para aumentar el contador
+increaseBy(): void {
+  this.counterService.increaseCounter(this.counter()); // Llamamos al servicio para aumentar el contador
 }
 }
