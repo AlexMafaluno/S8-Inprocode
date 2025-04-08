@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { HomeViewComponent } from './pages/home-view/home-view.component';
 import { MapComponent } from './pages/map/map.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import { ListScaperoomsComponent } from './components/list-scaperooms/list-scaperooms.component';
@@ -20,7 +20,7 @@ export const routes: Routes = [
   {path: "login", component: LoginViewComponent},
   {path: "register", component: RegisterViewComponent},
 
-  { path: 'home', component: HomeComponent, canMatch: [AuthGuard]},
+  { path: 'home', component: HomeViewComponent, canMatch: [AuthGuard]},
   { path: 'map', component: MapComponent },
   { path: 'callendar', component: CallendarViewComponent
     ,children: [
@@ -28,7 +28,7 @@ export const routes: Routes = [
   ] },
   { path: 'charts', component: ChartsComponent },
   {
-    path: 'crud',
+    path: 'scaperooms',
     component: ScaperoomsCollectionViewComponent,
     children: [
       { path: 'add', component: ModalComponent },
