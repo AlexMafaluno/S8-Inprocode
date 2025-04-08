@@ -11,10 +11,11 @@ import { ToastrService } from 'ngx-toastr';
 import { PhotoService } from '../../services/photo.service';
 import { Photo } from '../../interfaces/photo';
 import { AuthService } from '../../services/auth.service';
+import { ScaperoomFacadeService } from '../../services/scaperoom-facade.service';
 
 @Component({
   selector: 'app-list-scaperooms',
-  imports: [CommonModule, RouterModule, FilterComponent, CardComponent, ProgressSpinnerComponent],
+  imports: [CommonModule, RouterModule, CardComponent, ProgressSpinnerComponent],
   templateUrl: './list-scaperooms.component.html',
   styleUrl: './list-scaperooms.component.scss',
 })
@@ -27,20 +28,33 @@ export class ListScaperoomsComponent implements OnInit {
 
   
 private authService = inject(AuthService);
-private photoService = inject(PhotoService);
   private scaperoomService = inject(ScaperoomService);
-  private toastr = inject(ToastrService);
+  private scaperoomFacade = inject(ScaperoomFacadeService);
+  private toastr = inject(ToastrService); 
   loading: boolean = false;
 
  ngOnInit(){
-this.getlistScapeRooms();
+this.loadScapeRooms(this.userId);
 const uid = this.authService.getUid();
 console.log('UID del usuario:', uid);
 
 }
 
-
-
+loadScapeRooms(userId: number): void {
+  this.loading = true;
+  this.scaperoomFacade.getScapeRoomWithPotos(userId).subscribe({
+    next: (scapeRooms) => {
+      this.listScapeRooms = scapeRooms;
+      this.loading = false;
+    },
+    error: (err) => {
+      console.error('Error al cargar los scaperooms con fotos:', err);
+      this.listScapeRooms = [];
+      this.loading = false;
+    }
+  });
+}
+/*
   getlistScapeRooms(){
     this.loading = true;
     this.scaperoomService.getListScapeRooms().subscribe({
@@ -58,8 +72,8 @@ console.log('UID del usuario:', uid);
       }
     });
   }
-
-
+*/
+/*
   loadUserPhotos(userId: number): void {
     this.photoService.getPhotosByUser(userId).subscribe({
       next: (response) => {
@@ -77,19 +91,19 @@ console.log('UID del usuario:', uid);
   
   });
 }
-
+*/
   
   deleteScapeRoom(id: number){ {
 
     this.scaperoomService.deleteScapeRoom(id).subscribe(() =>{
       this.loading = true;
-      this.getlistScapeRooms();
+      //this.getlistScapeRooms();
       this.loading = false;
       this.toastr.warning('El producto fue eliminado con exito', 'Producto eliminado');
     })
   }
 }
-
+/*
 
 attachPhotosToScaperooms(): void {
   // Asumimos que las fotos tienen el campo 'scaperoom_id' para vincularlas con los scaperooms
@@ -101,7 +115,7 @@ attachPhotosToScaperooms(): void {
     };
   });
 }
-
+*/
 
 
 }
