@@ -5,10 +5,22 @@ import { Injectable, signal } from '@angular/core';
 })
 export class CounterService {
 
-  counter = signal(0); 
+  private photoCount = signal<number>(0);
 
-  increaseCounter(value: number) {
-    this.counter.set(this.counter() + value);
+  get count() {
+    return this.photoCount.asReadonly(); // acceso solo lectura desde fuera
   }
-  constructor() { }
+
+  setCount(newCount: number) {
+    this.photoCount.set(newCount);
+  }
+
+  increment(value: number) {
+    console.log('Incrementando contador...');
+    this.photoCount.update(count => count + value);
+  }
+
+  reset() {
+    this.photoCount.set(0);
+  }
 }
