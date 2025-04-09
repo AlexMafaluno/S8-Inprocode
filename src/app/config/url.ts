@@ -16,8 +16,8 @@ export const API_ENDPOINTS = {
     },
     PHOTO: {
         BASE: `${API_ROOT}/photo/`,
-        USER: `${API_ROOT}/photos/user/`,
-        UPLOAD: `${API_ROOT}/upload-photo`,
+        USER: `${API_ROOT}/photo/photos/user/`,
+        UPLOAD: `${API_ROOT}/photo/upload-photo`,
     },
 
 
@@ -27,4 +27,5 @@ export const API_ENDPOINTS = {
   updateScaperoomById: (id: number) => `${API_ENDPOINTS.SCAPEROOM.BASE}${id}`,
   getPhotoByUserId: (userId: string) => `${API_ROOT}/api/photos/user/${userId}`,
   deleteEventById: (id: number) => `${API_ENDPOINTS.EVENT.BASE}${id}`,
+  getPhotosByUser: (id: number) => `${API_ENDPOINTS.PHOTO.USER}${id}`,
 }
