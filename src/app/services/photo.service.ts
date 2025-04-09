@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { map, Observable } from 'rxjs';
 import { Photo, PhotoItem } from '../interfaces/photo';
+import { API_ROOT} from '../config/url';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ private myApiUrl2: string;
 private myApiUrl3: string;
   constructor(private http:HttpClient) {
 
-    this.myAppUrl = environment.endpoint;
+    this.myAppUrl = API_ROOT;
     this.myApiUrl = 'photo/';
     this.myApiUrl2 = 'photos/user/';
     this.myApiUrl3 = 'upload-photo';
