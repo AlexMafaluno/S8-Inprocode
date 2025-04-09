@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  endpoint: 'http://localhost:3000/',
+  
   firebaseConfig :{
     apiKey: "AIzaSyCOrApQv23ihspYQX20SbCNd3r5A_HV6j4",
   authDomain: "scape-snap.firebaseapp.com",
