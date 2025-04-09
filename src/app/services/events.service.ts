@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { EventItem } from '../interfaces/event';
+import { url } from '../config/url';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,8 @@ export class EventsService {
 private myAppUrl: string;
 private myApiUrl: string;
   constructor(private http: HttpClient) {
-    this.myAppUrl= environment.endpoint;
-    this.myApiUrl= 'event/';
+    this.myAppUrl= url.API_URL;
+    this.myApiUrl= url.API_EVENT;
   }
 
   getEvents(): Observable<EventItem>{
