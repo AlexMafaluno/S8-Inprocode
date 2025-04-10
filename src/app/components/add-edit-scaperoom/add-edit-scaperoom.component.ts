@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './add-edit-scaperoom.component.html',
   styleUrl: './add-edit-scaperoom.component.scss'
 })
-export class AddEditScaperoomComponent implements OnInit {
+export class AddEditScaperoomComponent implements OnInit  {
 
  form: FormGroup;
  loading: boolean = false;
@@ -29,7 +29,7 @@ constructor(private fb: FormBuilder){
   this.form = this.fb.group({
     title: ['', Validators.required],
     director: ['', Validators.required],
-    poster: ['', Validators.required],
+    poster: [''],
     genre: ['',Validators.required]
   })
     
@@ -37,21 +37,32 @@ constructor(private fb: FormBuilder){
     console.log(this.id);
 }
 
-
-  ngOnInit(): void {
+ngOnInit(): void {
+  if(this.id !== 0){
+    this.operacion = "edit";
+    console.log('Operación cambiada a:', this.operacion);
+    this.updateProduct(this.id);
   }
-
+}
 
 addScapeRoom(){
-
+  if (this.form.invalid) {
+    this.toastr.warning('Por favor completa todos los campos requeridos', 'Formulario incompleto');
+    return;
+  }
   const scapeRoom: ScapeRoom = {
-
     title: this.form.value.title,
     director: this.form.value.director,
     poster: this.form.value.poster,
     genre: this.form.value.genre
   }
-
+if(this.id !== 0){
+  this.scaperoomService.updateScapeRoom(this.id, scapeRoom).subscribe(() => {
+    this.loading = false; 
+    this.toastr.success(`El producto ${scapeRoom.title} fue actualizado con exito`,`Producto actualizado`);
+    this.router.navigate(['/crud'])
+  });
+}else{
   this.scaperoomService.saveScapeRoom(scapeRoom).subscribe(() => {
     console.log('ScapeRoom registrado:', scapeRoom);
     this.loading = false; 
@@ -59,46 +70,35 @@ addScapeRoom(){
     this.router.navigate(['/crud'])
   });
   }
+}
   
-  
-
-
-// updateProduct(id: Number){
-//   this.loading =true;
-//   this.scaperoomService.getScapeRoom(id).subscribe((data: ScapeRoom)=>{
-
-// if (!data) {
-//   console.error("No se recibió data del servidor.");
-//   return;
-// }
-//     this.loading =false;
-//     if (!this.form) {
-//       console.error("El formulario no está inicializado.");
-//       return;
-//     }
-
-
-// // // Verificar si el formulario tiene los controles adecuados
-// // if (!this.form.controls['title']) {
-// //   this.form.addControl('title', new FormControl(''));
-// // }
-// // if (!this.form.controls['director']) {
-// //   this.form.addControl('director', new FormControl(''));
-// // }
 
 
 
+updateProduct(id: Number){
+  this.loading =true;
+  this.scaperoomService.getScapeRoom(id).subscribe((data: ScapeRoom)=>{
 
-//     this.form.patchValue({
-//       title: data.title || '',
-//       director: data.director || ''
-//     });
-//     console.log('Form values after patch:', this.form.value);
-//      // Forzar la detección de cambios para actualizar el formulario
-//      //this.cdRef.detectChanges();
-//      this.cdRef.detectChanges();
+if (!data) {
+  console.error("No se recibió data del servidor.");
+  return;
+}
+    this.loading =false;
+    if (!this.form) {
+      console.error("El formulario no está inicializado.");
+      return;
+    }
+
+    this.form.patchValue({
+      title: data.title || '',
+      director: data.director || ''
+    });
+    console.log('Form values after patch:', this.form.value);
+     // Forzar la detección de cambios para actualizar el formulario
+     //this.cdRef.detectChanges();
+     this.cdRef.detectChanges();
      
-//   });
-// }
+  });
+}
 }
 
