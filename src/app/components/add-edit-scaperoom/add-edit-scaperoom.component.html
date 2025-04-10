@@ -1,0 +1,32 @@
+<div class="row mt-3">
+    <div class="col-lg-4 mx-auto">
+
+<div class="card border-secondary mb-3" style="max-width: 25rem;">
+    <div class="card-header text-center">{{operacion}} ScapeRoom</div>
+    <form [formGroup]="form" (ngSubmit)="addScapeRoom()">
+        <input formControlName="title" type="text" class="form-control" placeholder="Inserte el titulo">
+        <span *ngIf="form.get('title')?.hasError('required') && form.get('title')?.touched">
+          El campo del titulo es <strong>requerido</strong> </span>
+        <input formControlName="director" type="text" class="form-control mt-2" placeholder="Inserte la empresa">
+        <span *ngIf="form.get('director')?.hasError('required') && form.get('director')?.touched">
+          El campo del director es <strong>requerido</strong> </span>
+          <input formControlName="poster" type="file" class="form-control mt-2" placeholder="Insert el poster">
+        <span *ngIf="form.get('poster')?.hasError('required') && form.get('poster')?.touched">
+          El campo del poster es <strong>requerido</strong> </span>
+          <input formControlName="genre" type="text" class="form-control mt-2" placeholder="Inserte el genero">
+        <span *ngIf="form.get('genre')?.hasError('required') && form.get('genre')?.touched">
+          El campo del genero es <strong>requerido</strong> </span>
+        <div class="row mt-2 text-center">
+          <div class="col-lg-6">
+        <button type="submit" [disabled]="form.invalid" routerLink="/crud" class="btn btn-primary">Aceptar</button>
+      </div>
+      <div class="col-lg-6">
+        <button type="button" routerLink="/crud" class="btn btn-secondary">Volver</button>
+      </div>
+      </div>
+      <!-- <pre>{{ form.value | json }}</pre> -->
+      </form>
+  </div>
+</div>
+
+</div>
