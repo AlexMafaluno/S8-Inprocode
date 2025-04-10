@@ -13,6 +13,8 @@ import { CardDetailPageComponent } from './pages/card-detail-page/card-detail-pa
 import { LoginViewComponent } from './pages/login-view/login-view.component';
 import { RegisterViewComponent } from './pages/register-view/register-view.component';
 import { AuthGuard } from './guards/auth.guard';
+import { AdminCrudPageComponent } from './pages/admin-crud-page/admin-crud-page.component';
+import { AddEditScaperoomComponent } from './components/add-edit-scaperoom/add-edit-scaperoom.component';
 
 export const routes: Routes = [
  // { path: '', pathMatch: 'full', redirectTo: '/login' },
@@ -27,13 +29,19 @@ export const routes: Routes = [
     { path: 'add', component: ModalEventComponent }
   ] },
   { path: 'charts', component: ChartsComponent },
+  
+  //admin
+  {path: 'crud', component: AdminCrudPageComponent},
+  {path: 'crud/add', component: AddEditScaperoomComponent},
+  {path: 'crud/edit/:id', component: AddEditScaperoomComponent},
+  
   {
     path: 'scaperooms',
     component: ScaperoomsCollectionViewComponent,
-    children: [
-      { path: 'add', component: ModalComponent },
-      { path: 'edit/:id', component: ModalComponent } // 👈 Child route dentro de 'crud'
-    ]
+    // children: [
+    //   { path: 'add', component: ModalComponent },
+    //   { path: 'edit/:id', component: ModalComponent } // 👈 Child route dentro de 'crud'
+    // ]
   },
   { path: 'card/:id', component: CardDetailPageComponent  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
