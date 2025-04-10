@@ -9,7 +9,7 @@ import { CounterService } from '../../services/counter.service';
 
 @Component({
   selector: 'app-scape-room-card',
-  imports: [ImageComponent, ExitButtonComponent],
+  imports: [ExitButtonComponent],
   templateUrl: './scape-room-card.component.html',
   styleUrl: './scape-room-card.component.scss'
 })
