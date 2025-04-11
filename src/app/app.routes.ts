@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { HomeViewComponent } from './pages/home-view/home-view.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 import { MapComponent } from './pages/map/map.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import { ListScaperoomsComponent } from './components/list-scaperooms/list-scaperooms.component';
@@ -20,7 +20,7 @@ export const routes: Routes = [
   {path: "login", component: LoginViewComponent},
   {path: "register", component: RegisterViewComponent},
 
-  { path: 'home', component: HomeViewComponent, canMatch: [AuthGuard]},
+  { path: 'home', component: HomePageComponent, canMatch: [AuthGuard]},
   { path: 'map', component: MapComponent },
   { path: 'callendar', component: CallendarViewComponent
     ,children: [
