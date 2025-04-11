@@ -1,0 +1,6 @@
+@charset "UTF-8";
+.small-image {
+  max-width: 100%; /* La imagen nunca será más ancha que su contenedor */
+  width: 50%; /* Ajusta el tamaño a la mitad del contenedor */
+  height: auto; /* Mantiene la proporción de la imagen */
+}/*# sourceMappingURL=image.component.css.map */

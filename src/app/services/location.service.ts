@@ -3,32 +3,30 @@ import { map, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { LocationItem } from '../interfaces/location';
+import { API_ENDPOINTS } from '../config/url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
-private myAppUrl: string;
-private myApiUrl: string;
 
-  constructor(private http: HttpClient) {
-    this.myAppUrl = environment.endpoint;
-    this.myApiUrl = 'location/'
-  }
-
-  addLocation(lat: number, lng: number):Observable<any>{
-    return this.http.post(`${this.myAppUrl + this.myApiUrl + `save-location`}`, { lat, lng });
-  }
+  constructor(private http: HttpClient) {}
 
   getListLocations(): Observable<LocationItem[]> {
-    return this.http.get<{ code: number, message: string, data: LocationItem[] }>(this.myAppUrl+ this.myApiUrl).
+    return this.http.get<{ code: number, message: string, data: LocationItem[] }>(API_ENDPOINTS.LOCATION.BASE).
     pipe(
       map(response => response.data)
     );
    }
 
+
+  addLocation(lat: number, lng: number):Observable<any>{
+    return this.http.post(API_ENDPOINTS.LOCATION.SAVE, { lat, lng });
+  }
+
+ 
    getLocationsByGenre(genre: string): Observable<LocationItem[]>{
-    return this.http.get<{ code: number, message: string, data: LocationItem[] }>(`${this.myAppUrl}location?genre=${genre}`).
+    return this.http.get<{ code: number, message: string, data: LocationItem[] }>(`${API_ENDPOINTS.LOCATION.BY_GENRE}${genre}`).
     pipe(
       map(response => response.data)
     )

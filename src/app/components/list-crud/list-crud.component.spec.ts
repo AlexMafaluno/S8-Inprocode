@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrudViewComponent } from './crud-view.component';
+import { ListCrudComponent } from './list-crud.component';
 
-describe('CrudViewComponent', () => {
-  let component: CrudViewComponent;
-  let fixture: ComponentFixture<CrudViewComponent>;
+describe('ListCrudComponent', () => {
+  let component: ListCrudComponent;
+  let fixture: ComponentFixture<ListCrudComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CrudViewComponent]
+      imports: [ListCrudComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CrudViewComponent);
+    fixture = TestBed.createComponent(ListCrudComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

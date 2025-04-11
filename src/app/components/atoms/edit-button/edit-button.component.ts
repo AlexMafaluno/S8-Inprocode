@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-edit-button',
   imports: [RouterModule],
-  template: `<button type="button" [routerLink]="['/crud/edit', id]" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"> {{text}}
+  template: `<button type="button" class="btn btn-info btn-sm"> {{text}}
 </button>`,
   styleUrl: './edit-button.component.scss'
 })

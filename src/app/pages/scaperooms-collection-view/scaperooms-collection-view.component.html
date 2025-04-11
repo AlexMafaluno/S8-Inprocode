@@ -1,0 +1,18 @@
+@if(loading){
+  <app-progress-spinner/>
+  }
+
+<div class="title">
+  <h4>Mis fotos</h4>
+</div>
+<section>
+<app-filter />
+</section>
+@if(!loading){
+<section class="flex-1 max-w-7xl mx-auto">
+  <app-list-scaperooms [listScapeRooms]="listScapeRooms" [userPhotos]="userPhotos"></app-list-scaperooms>
+</section>
+}
+<section>
+  <app-modal></app-modal>
+</section>

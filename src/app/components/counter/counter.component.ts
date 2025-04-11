@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal, Signal } from '@angular/core';
+import { CounterService } from '../../services/counter.service';
+import { PhotoService } from '../../services/photo.service';
 
 @Component({
   selector: 'app-counter',
@@ -6,16 +8,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './counter.component.html',
   styleUrl: './counter.component.scss'
 })
-export class CounterComponent implements OnInit {
-counter: number = 0;
+export class CounterComponent{
 
-constructor() {}
-  
-ngOnInit(): void {
-}
-
-
-increaseBy(value: number) {
-  this.counter+= value;
-}
+counter = inject(CounterService).count; 
 }

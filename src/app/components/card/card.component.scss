@@ -1,10 +1,12 @@
 .card {
     position: relative; /* Para que los elementos internos se posicionen respecto a este */
-  width: 300px; /* Ajusta según tu diseño */
-  height: 400px; /* Ajusta según tu diseño */
+    width: 100%; /* Hace que el ancho de .card sea flexible */
+    height: 500px; /* Ajusta la altura automáticamente según el contenido */
+    //max-width: 300px;
   overflow: hidden; /* Evita que la imagen sobresalga */
   border-radius: 10px; /* Opcional: bordes redondeados */
-  display: flex;
+  // display: flex;
+  // flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   }
@@ -22,9 +24,20 @@
   .content {
     position: relative; /* Para que quede encima de la imagen */
     z-index: 1; /* Superior a la imagen */
-    background: rgba(0, 0, 0, 0.6); /* Fondo oscuro semitransparente */
-    color: rgb(0, 0, 0); /* Texto en color blanco */
+    background: rgba(215, 215, 215, 0.6); /* Fondo oscuro semitransparente */
+    color: #9f9f9f; /* Texto en color blanco */
     padding: 20px;
     border-radius: 10px; /* Opcional: bordes redondeados */
   }
 
+  @media (max-width: 768px) {
+    // .card {
+    //   width: calc(50% - 8px); /* Ajusta a 2 columnas en pantallas medianas */
+    // }
+  }
+  
+  @media (max-width: 480px) {
+    .card {
+      height: 160px;
+    }
+  }

@@ -3,71 +3,46 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { ScapeRoom, ScapeRoomItem } from '../interfaces/scaperoom';
+import { API_ROOT, API_ENDPOINTS } from '../config/url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScaperoomService {
-private myAppUrl: string;
-private myApiUrl: string;
-//private listScapeRooms: Scaperoom = [];
-
   constructor(private http: HttpClient) {
-    this.myAppUrl= environment.endpoint;
-    this.myApiUrl= 'api/scaperoom/';
+   
    }
-
-   getListScapeRooms(): Observable<ScapeRoomItem> {
-   return this.http.get<{ data: ScapeRoomItem }>(this.myAppUrl + this.myApiUrl).
+   getListScapeRooms(): Observable<ScapeRoom[]> {
+   return this.http.get<{ data: ScapeRoom []}>(API_ENDPOINTS.SCAPEROOM.BASE).
    pipe(
      map(response => response.data)
    )
   }
 
-  deleteScapeRoom(id: number):Observable<void> {
-    return this.http.delete<void>(this.myAppUrl + this.myApiUrl + id);
-  }
-
-  saveScapeRoom(scapeRoom :ScapeRoom): Observable<void>{
-   return this.http.post<void>(this.myAppUrl + this.myApiUrl, scapeRoom )
-  }
-
-  getScapeRoom(id: Number): Observable<ScapeRoom>{
-    return this.http.get<{ data: ScapeRoom }>(this.myAppUrl + this.myApiUrl + id).
+    getScapeRoom(id: number): Observable<ScapeRoom>{
+    return this.http.get<{ data: ScapeRoom }>(API_ENDPOINTS.getScaperoomById(id)).
     pipe(
       map(response => response.data)
     )
   }
 
-  updateScapeRoom(id:number, scapeRoom: ScapeRoom): Observable<void>{
-    return this.http.patch<void>((this.myAppUrl + this.myApiUrl + id),scapeRoom);
-  }
-/*async getListScapeRooms(): Promise<Scaperoom[]> {
-  try {
-    const response = await fetch((this.myAppUrl + this.myApiUrl), {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
+  deleteScapeRoom(id: number):Observable<void> {
+    return this.http.delete<void>(API_ENDPOINTS.deleteScaperoomById(id), {
+      withCredentials: true 
     });
-
-    if (!response.ok) {
-      console.warn("Error en la respuesta de l'API");
-      return this.listScapeRooms;
-    }
-
-    const data = await response.json();
-
-    if (!data.data || data.data.length === 0) {
-      console.warn('No se encontraron más naves.');
-      return this.listScapeRooms;
-    }
-
-    return this.listScapeRooms;
-  } catch (error) {
-    console.error('Ha habido un error:', error);
-    throw error;
   }
-}
-*/
+
+  saveScapeRoom(scapeRoom :ScapeRoom): Observable<void>{
+   return this.http.post<void>(API_ENDPOINTS.SCAPEROOM.BASE, scapeRoom, {
+    withCredentials: true 
+  })
+  }
+
+ 
+  updateScapeRoom(id:number, scapeRoom: ScapeRoom): Observable<void>{
+    return this.http.patch<void>(API_ENDPOINTS.updateScaperoomById(id),scapeRoom, {
+      withCredentials: true 
+    });
+  }
+
 }

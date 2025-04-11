@@ -1,7 +1,13 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-12 col-xl-8">
+    <div class="col-12 col-xl-4 mx-auto">
+      <section class="py-4">
+      <app-card [card]="selectedCard"></app-card>
+    </section>
+    <section>
       <app-scape-room-card [card]="selectedCard"></app-scape-room-card>
+    </section>
     </div>
   </div>
 </div>
+
