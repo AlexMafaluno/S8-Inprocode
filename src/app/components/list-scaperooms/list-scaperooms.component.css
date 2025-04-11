@@ -1,3 +1,10 @@
+@charset "UTF-8";
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
 .title {
   margin-top: 10px;
   display: flex;
@@ -5,10 +12,11 @@
 }
 
 .parent {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
   gap: 8px;
+  box-sizing: border-box;
 }
 
 .card {
@@ -16,8 +24,21 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 16px;
-  height: 300px;
+  height: auto;
+  max-height: auto;
   border-radius: 8px;
   background-color: #f7f7f7;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  flex: 1 1 calc(33.333% - 8px); /* Controla el tamaño de las tarjetas para 3 columnas */
+}
+
+@media (max-width: 768px) {
+  .parent {
+    flex: 1 1 calc(50% - 8px); /* Ajusta a 2 columnas en pantallas medianas */
+  }
+}
+@media (max-width: 480px) {
+  .parent {
+    flex: 1 1 calc(33.333% - 8px); /* Mantiene 3 columnas incluso en pantallas pequeñas */
+  }
 }/*# sourceMappingURL=list-scaperooms.component.css.map */
