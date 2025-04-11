@@ -37,6 +37,7 @@ private authService = inject(AuthService);
 this.loadScapeRooms(this.userId);
 const uid = this.authService.getUid();
 console.log('UID del usuario:', uid);
+console.log(this.listScapeRooms.length)
 
 }
 

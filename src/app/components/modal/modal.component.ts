@@ -21,8 +21,9 @@ export class ModalComponent implements OnInit{
 
 private scaperoomService = inject(ScaperoomService);
 private router = inject(Router);
-private toastr =  inject(ToastrService);
 private aRouter = inject(ActivatedRoute);
+private toastr =  inject(ToastrService);
+
 private cdRef = inject(ChangeDetectorRef); // Inyectamos ChangeDetectorRef
 
 constructor(private fb: FormBuilder){
