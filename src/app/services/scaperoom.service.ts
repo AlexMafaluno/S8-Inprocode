@@ -27,16 +27,22 @@ export class ScaperoomService {
   }
 
   deleteScapeRoom(id: number):Observable<void> {
-    return this.http.delete<void>(API_ENDPOINTS.deleteScaperoomById(id));
+    return this.http.delete<void>(API_ENDPOINTS.deleteScaperoomById(id), {
+      withCredentials: true 
+    });
   }
 
   saveScapeRoom(scapeRoom :ScapeRoom): Observable<void>{
-   return this.http.post<void>(API_ENDPOINTS.SCAPEROOM.BASE, scapeRoom )
+   return this.http.post<void>(API_ENDPOINTS.SCAPEROOM.BASE, scapeRoom, {
+    withCredentials: true 
+  })
   }
 
  
   updateScapeRoom(id:number, scapeRoom: ScapeRoom): Observable<void>{
-    return this.http.patch<void>(API_ENDPOINTS.updateScaperoomById(id),scapeRoom);
+    return this.http.patch<void>(API_ENDPOINTS.updateScaperoomById(id),scapeRoom, {
+      withCredentials: true 
+    });
   }
 
 }
