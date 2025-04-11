@@ -26,7 +26,7 @@ export class LocationService {
 
  
    getLocationsByGenre(genre: string): Observable<LocationItem[]>{
-    return this.http.get<{ code: number, message: string, data: LocationItem[] }>(`${API_ENDPOINTS.LOCATION.BY_GENRE}+${genre}`).
+    return this.http.get<{ code: number, message: string, data: LocationItem[] }>(`${API_ENDPOINTS.LOCATION.BY_GENRE}${genre}`).
     pipe(
       map(response => response.data)
     )
