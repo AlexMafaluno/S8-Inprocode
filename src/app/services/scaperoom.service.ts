@@ -28,7 +28,9 @@ private myApiUrl: string;
   }
 
   saveScapeRoom(scapeRoom :ScapeRoom): Observable<void>{
-   return this.http.post<void>(this.myAppUrl + this.myApiUrl, scapeRoom )
+   return this.http.post<void>(this.myAppUrl + this.myApiUrl, scapeRoom,{
+    withCredentials: true 
+  })
   }
 
   getScapeRoom(id: Number): Observable<ScapeRoom>{
