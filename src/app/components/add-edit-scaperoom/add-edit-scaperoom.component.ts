@@ -75,7 +75,7 @@ if(this.id !== 0){
 
 
 
-updateProduct(id: Number){
+updateProduct(id: number){
   this.loading =true;
   this.scaperoomService.getScapeRoom(id).subscribe((data: ScapeRoom)=>{
 
