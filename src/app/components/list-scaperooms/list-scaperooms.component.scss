@@ -4,33 +4,12 @@ body, html {
   overflow-x: hidden;
 }
 
-.title{
-    margin-top: 10px;
-    display:flex;
-    justify-content: space-between;
-    
-}
-
-.parent {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    //overflow: hidden;
-    box-sizing: border-box; 
-}
-.card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 16px;
-    height: auto;
-    max-height: auto;
-    border-radius: 8px;
-    background-color: #f7f7f7;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-    flex: 1 1 calc(33.333% - 8px); /* Controla el tamaño de las tarjetas para 3 columnas */
-}  
+.parent{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.6rem; /* Espacio entre las cards */
+  }
+ 
 
 @media (max-width: 768px) {
   .parent {
