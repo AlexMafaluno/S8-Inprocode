@@ -1,9 +1,4 @@
-<div
-  class="card div1 text-center my-auto"
-  
-  class="text-decoration-none"
->
-  <div class="card shadow content text-center">
+<div class="card shadow content text-center">
     <img
       *ngIf="card.imageUrl"
       [src]="card.imageUrl"
@@ -12,11 +7,5 @@
     />
     <div class="card-content">
       <h1>{{ card.id }}</h1>
-      <!-- <app-edit-button [id]="card.id!" />
-      <app-delete-button
-        [id]="card.id!"
-        (delete)="handleDelete()"
-      ></app-delete-button> -->
     </div>
   </div>
-</div>
