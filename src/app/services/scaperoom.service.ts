@@ -3,45 +3,40 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { ScapeRoom, ScapeRoomItem } from '../interfaces/scaperoom';
+import { API_ROOT, API_ENDPOINTS } from '../config/url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScaperoomService {
-private myAppUrl: string;
-private myApiUrl: string;
-
   constructor(private http: HttpClient) {
-    this.myAppUrl= environment.endpoint;
-    this.myApiUrl= 'api/scaperoom/';
+   
    }
-
    getListScapeRooms(): Observable<ScapeRoom[]> {
-   return this.http.get<{ data: ScapeRoom []}>(this.myAppUrl + this.myApiUrl).
+   return this.http.get<{ data: ScapeRoom []}>(API_ENDPOINTS.SCAPEROOM.BASE).
    pipe(
      map(response => response.data)
    )
   }
 
-  deleteScapeRoom(id: number):Observable<void> {
-    return this.http.delete<void>(this.myAppUrl + this.myApiUrl + id);
-  }
-
-  saveScapeRoom(scapeRoom :ScapeRoom): Observable<void>{
-   return this.http.post<void>(this.myAppUrl + this.myApiUrl, scapeRoom,{
-    withCredentials: true 
-  })
-  }
-
-  getScapeRoom(id: Number): Observable<ScapeRoom>{
-    return this.http.get<{ data: ScapeRoom }>(this.myAppUrl + this.myApiUrl + id).
+    getScapeRoom(id: number): Observable<ScapeRoom>{
+    return this.http.get<{ data: ScapeRoom }>(API_ENDPOINTS.getScaperoomById(id)).
     pipe(
       map(response => response.data)
     )
   }
 
+  deleteScapeRoom(id: number):Observable<void> {
+    return this.http.delete<void>(API_ENDPOINTS.deleteScaperoomById(id));
+  }
+
+  saveScapeRoom(scapeRoom :ScapeRoom): Observable<void>{
+   return this.http.post<void>(API_ENDPOINTS.SCAPEROOM.BASE, scapeRoom )
+  }
+
+ 
   updateScapeRoom(id:number, scapeRoom: ScapeRoom): Observable<void>{
-    return this.http.patch<void>((this.myAppUrl + this.myApiUrl + id),scapeRoom);
+    return this.http.patch<void>(API_ENDPOINTS.updateScaperoomById(id),scapeRoom);
   }
 
 }

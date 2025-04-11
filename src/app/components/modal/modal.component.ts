@@ -81,7 +81,7 @@ addProduct(){
   
 }
 
-updateProduct(id: Number){
+updateProduct(id: number){
   this.loading =true;
   this.scaperoomService.getScapeRoom(id).subscribe((data: ScapeRoom)=>{
     console.log("respeusta del servidor:", data);
