@@ -1,22 +1,34 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { ScapeRoom, ScapeRoomItem } from '../interfaces/scaperoom';
-import { API_ROOT, API_ENDPOINTS } from '../config/url';
+import { ScapeRoom, ScapeRoomItem} from '../interfaces/scaperoom';
+import {API_ENDPOINTS } from '../config/url';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScaperoomService {
-  constructor(private http: HttpClient) {
-   
+  constructor(private http: HttpClient) {}
+
+  getAllScapeRooms(): Observable<ScapeRoom[]> {
+    return this.http.get<{ data: ScapeRoom []}>(API_ENDPOINTS.SCAPEROOM.BASE).
+    pipe(
+      map(response => response.data)
+    )
    }
-   getListScapeRooms(): Observable<ScapeRoom[]> {
-   return this.http.get<{ data: ScapeRoom []}>(API_ENDPOINTS.SCAPEROOM.BASE).
+
+   getListScapeRooms(page: number, genre: string = ''): Observable<ScapeRoomItem> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('genre', genre);
+   return this.http.get<{ data: ScapeRoom[]; pagination: any}>(API_ENDPOINTS.SCAPEROOM.BASE, { params }).
    pipe(
-     map(response => response.data)
-   )
+     map(response => ({
+      data: response.data,
+      pagination: response.pagination,
+      map: (callback: (scapeRoom: ScapeRoom) => any) => response.data.map(callback) // Ensure 'map' is included
+    }))
+  );
   }
 
     getScapeRoom(id: number): Observable<ScapeRoom>{
