@@ -30,12 +30,12 @@ export class ScapeRoomCardComponent{
   private router = inject(Router);
   private aRouter = inject(ActivatedRoute);
 
-  onUpload(arg0: number) {
+  onUpload(value: number) {
     if (!this.selectedFile) {
       console.error('No se ha seleccionado un archivo.');
       return;
     }
-    this.photoService.uploadImage(this.selectedFile, arg0).subscribe({
+    this.photoService.uploadImage(this.selectedFile, value).subscribe({
       next: (response) => {
         console.log('Imagen subida con éxito', response);
         this.increaseCounter();
