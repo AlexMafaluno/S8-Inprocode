@@ -3,31 +3,44 @@ import { ListScaperoomsComponent } from '../../components/list-scaperooms/list-s
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { FilterComponent } from "../../components/filter/filter.component";
-import { ScapeRoom } from '../../interfaces/scaperoom';
+import { ScapeRoom, ScapeRoomItem } from '../../interfaces/scaperoom';
 import { Photo } from '../../interfaces/photo';
 import { ScaperoomFacadeService } from '../../services/scaperoom-facade.service';
 import { ProgressSpinnerComponent } from "../../components/progress-spinner/progress-spinner.component";
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 
 @Component({
   selector: 'app-scaperooms-collection-view',
-  imports: [ListScaperoomsComponent, CommonModule, ModalComponent, FilterComponent, ProgressSpinnerComponent],
+  imports: [ListScaperoomsComponent, CommonModule, ModalComponent, FilterComponent, InfiniteScrollDirective, ProgressSpinnerComponent],
   templateUrl: './scaperooms-collection-view.component.html',
   styleUrl: './scaperooms-collection-view.component.scss'
 })
 export class ScaperoomsCollectionViewComponent implements OnInit {
   listScapeRooms: ScapeRoom[] = [];
   userPhotos: Photo[] = [];
+  page: number = 1;
+  hasMore: boolean = true;
   loading: boolean = false;
   
   private scaperoomFacade = inject(ScaperoomFacadeService);
   
-  
+  ngOnInit(): void {
+    // this.page = 1;
+  this.hasMore = true;
+    this.loadScapeRooms(359); // Cambia el ID según sea necesario
+  }
 
 loadScapeRooms(userId: number): void {
+
+  if(this.loading || !this.hasMore) return;
+
     this.loading = true;
-    this.scaperoomFacade.getScapeRoomWithPotos(userId).subscribe({
-      next: (scapeRooms) => {
-        this.listScapeRooms = scapeRooms;
+    this.scaperoomFacade.getScapeRoomWithPotos(userId, this.page).subscribe({
+      next: (res: ScapeRoom[]) => {
+        this.listScapeRooms = [...this.listScapeRooms, ...res];
+        this.hasMore = res.length > 0; // Adjust logic if pagination is needed
+        this.page++;
+        console.log('Cargando página:', this.page);
         this.loading = false;
       },
       error: (err) => {
@@ -37,7 +50,8 @@ loadScapeRooms(userId: number): void {
       }
     });
   }
-  ngOnInit(): void {
-    this.loadScapeRooms(359); // Cambia el ID según sea necesario
+  onScroll() {
+    this.loadScapeRooms(359);
+    console.log('scrolled!!')
   }
 }
