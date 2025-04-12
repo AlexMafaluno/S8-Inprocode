@@ -15,26 +15,5 @@ export class ListScaperoomsComponent{
 
   @Input() listScapeRooms: ScapeRoom[] = [];
   @Input() userPhotos: Photo[] = [];
-  // userId: number = 359;
-
-// ngOnInit(){
-// const uid = this.authService.getUid();
-// console.log('UID del usuario:', uid);
-// console.log(this.listScapeRooms.length)
-
-// }
-
-
-  
-//   deleteScapeRoom(id: number){ {
-
-//     this.scaperoomService.deleteScapeRoom(id).subscribe(() =>{
-//       this.loading = true;
-//       //this.getlistScapeRooms();
-//       this.loading = false;
-//       this.toastr.warning('El producto fue eliminado con exito', 'Producto eliminado');
-//     })
-//   }
-// }
 
 }
