@@ -11,10 +11,9 @@ export class ScaperoomFacadeService {
   private scaperoomService = inject(ScaperoomService);
   private photoService = inject(PhotoService);
 
-
-  getScapeRoomWithPotos(userId: number): Observable<ScapeRoom[]> {
+  getScapeRoomWithPotos(userId: number, page?: number): Observable<ScapeRoom[]> {
     return forkJoin({
-      scaperooms: this.scaperoomService.getListScapeRooms(),
+      scaperooms: this.scaperoomService.getListScapeRooms(page ?? 1),
       photos: this.photoService.getPhotosByUser(userId)
     }).pipe(
       map(({ scaperooms, photos }) =>
