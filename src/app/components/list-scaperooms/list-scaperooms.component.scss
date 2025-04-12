@@ -13,13 +13,13 @@ body, html {
 
 @media (max-width: 768px) {
   .parent {
-    flex: 1 1 calc(50% - 8px); /* Ajusta a 2 columnas en pantallas medianas */
+    grid-template-columns: repeat(3, 1fr);
   }
   }
 
   @media (max-width: 480px) { 
     .parent {
-      flex: 1 1 calc(33.333% - 8px); /* Mantiene 3 columnas incluso en pantallas pequeñas */
+      grid-template-columns: repeat(3, 1fr); /* sigue forzando 3 columnas */
     }
   }
   
