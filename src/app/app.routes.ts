@@ -15,6 +15,7 @@ import { RegisterViewComponent } from './pages/register-view/register-view.compo
 import { AuthGuard } from './guards/auth.guard';
 import { AdminCrudPageComponent } from './pages/admin-crud-page/admin-crud-page.component';
 import { AddEditScaperoomComponent } from './components/add-edit-scaperoom/add-edit-scaperoom.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 
 export const routes: Routes = [
  // { path: '', pathMatch: 'full', redirectTo: '/login' },
@@ -35,6 +36,7 @@ export const routes: Routes = [
   {path: 'crud/add', component: AddEditScaperoomComponent},
   {path: 'crud/edit/:id', component: AddEditScaperoomComponent},
   
+  {path:'profile', component: ProfilePageComponent},
   {
     path: 'scaperooms',
     component: ScaperoomsCollectionViewComponent,
