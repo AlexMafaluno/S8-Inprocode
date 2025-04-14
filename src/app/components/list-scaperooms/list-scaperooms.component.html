@@ -3,9 +3,15 @@
         @if(listScapeRooms.length > 0){
         <div class="parent">
           @for(item of listScapeRooms;track item){
-          <app-card
-            [card]="item" [routerLink]="['/card', item.id]"
-          ></app-card>
+            @if(item.type ==='logro'){
+              <app-achivement-card 
+              [card]="item"
+              ></app-achivement-card>
+            }@else{
+              <app-card
+                [card]="item" [routerLink]="['/card', item.id]"
+              ></app-card>
+            }
           }
         </div>
       }
