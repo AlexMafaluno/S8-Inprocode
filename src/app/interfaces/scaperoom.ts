@@ -1,10 +1,11 @@
 export interface ScapeRoom {
-  id?: number;
-  title: string;
-  director: string;
+  id: number;
+  title?: string;
+  director?: string;
   poster?: string;
   genre?: string;
   imageUrl?: string;
+  type?: string;
 }
 
 export interface ScapeRoomItem {
