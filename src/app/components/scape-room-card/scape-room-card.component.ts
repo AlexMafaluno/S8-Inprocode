@@ -8,10 +8,10 @@ import { PhotoService } from '../../services/photo.service';
 import { CounterService } from '../../services/counter.service';
 import { Photo } from '../../interfaces/photo';
 import { NotificationService } from '../../services/notification.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-scape-room-card',
-  imports: [ExitButtonComponent],
+  imports: [ExitButtonComponent, RouterModule],
   templateUrl: './scape-room-card.component.html',
   styleUrl: './scape-room-card.component.scss'
 })

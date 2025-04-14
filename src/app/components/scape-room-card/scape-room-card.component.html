@@ -7,7 +7,7 @@
 
     <div>
       <input type="file" (change)="onFileSelected($event)">
-      <button (click)="card.id !== undefined && onUpload(card.id)">Subir imagen</button>
+      <button (click)="onUpload(card.id)">Subir imagen</button>
     </div>
     <!-- <div class="btn-group">
     <button type="button" class="btn btn-primary btn-sm">Edit</button>
@@ -18,7 +18,7 @@
     <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
     <label class="btn btn-outline-primary" for="btn-check-outlined">Hecho</label><br>
 
-    <app-exit-button></app-exit-button>
+    <a [routerLink]="['/scaperooms']" style="text-decoration: none; color: inherit;"><app-exit-button></app-exit-button></a>
   </div>
     </div>
 </div>
