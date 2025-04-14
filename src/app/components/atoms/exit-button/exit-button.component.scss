@@ -1,0 +1,19 @@
+.icon-button {
+
+position: fixed; /* o absolute, según tu layout */
+  bottom: 2rem; /* o top: 2rem; si lo querés arriba */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999; /* bien alto para estar por encima del contenido */
+
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    color: inherit; /* o el color que quieras */
+  }
+  
+  .icon-button:focus {
+    outline: none;
+  }
