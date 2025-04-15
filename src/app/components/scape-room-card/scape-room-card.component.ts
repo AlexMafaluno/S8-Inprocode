@@ -9,6 +9,7 @@ import { CounterService } from '../../services/counter.service';
 import { Photo } from '../../interfaces/photo';
 import { NotificationService } from '../../services/notification.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { catchError, EMPTY, throwError } from 'rxjs';
 @Component({
   selector: 'app-scape-room-card',
   imports: [ExitButtonComponent, RouterModule],
@@ -17,7 +18,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 })
 export class ScapeRoomCardComponent{
   selectedFile!: File;
-  
+  errorMessage: string ='';
   @Input() card!: ScapeRoom;
   @Input() scapeRoom:ScapeRoomItem[] = [];
   userPhotos = signal<Photo[]>([]);
@@ -35,7 +36,13 @@ export class ScapeRoomCardComponent{
       console.error('No se ha seleccionado un archivo.');
       return;
     }
-    this.photoService.uploadImage(this.selectedFile, arg0).subscribe({
+    console.log(this.card);
+    this.photoService.uploadImage(this.selectedFile, arg0).pipe(
+      catchError((errorMessage) => {
+        this.errorMessage = errorMessage;
+        return EMPTY;
+      })
+    ).subscribe({
       next: (response) => {
         console.log('Imagen subida con éxito', response);
         this.increaseCounter();
@@ -45,12 +52,13 @@ export class ScapeRoomCardComponent{
       error: (error) => {
         console.error('Error al subir la imagen', error);
       },
-  })
+    });
 }
 
     onFileSelected($event: Event) {
       this.selectedFile = ($event.target as HTMLInputElement).files![0];
       console.log(this.selectedFile);
+      this.errorMessage= '';
     }
 
 
