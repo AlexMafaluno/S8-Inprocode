@@ -11,7 +11,8 @@ export class ApiConfigService {
 
   get<T>(url: string, options?:{
     headers?: HttpHeaders;
-    params?: HttpParams;}): Observable<T> {
+    params?: HttpParams;
+    withCredentials?: boolean;}): Observable<T> {
     return this.http.get<T>(url, options);
   }
   post<T>(url: string, body: any, options?: {
@@ -22,12 +23,14 @@ export class ApiConfigService {
   }
   put<T>(url: string, body: any, options?: {
     headers?: HttpHeaders;
-    params?: HttpParams;}): Observable<T> {
+    params?: HttpParams;
+    withCredentials?: boolean;}): Observable<T> {
     return this.http.put<T>(url, body, options);
   }
   delete<T>(url: string, options?: {
     headers?: HttpHeaders;
-    params?: HttpParams;}): Observable<T> {
+    params?: HttpParams;
+    withCredentials?: boolean;}): Observable<T> {
     return this.http.delete<T>(url, options);
   }
 
