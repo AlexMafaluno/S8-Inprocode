@@ -16,7 +16,8 @@ export class ApiConfigService {
   }
   post<T>(url: string, body: any, options?: {
     headers?: HttpHeaders;
-    params?: HttpParams;}): Observable<T> {
+    params?: HttpParams;
+    withCredentials?: boolean;}): Observable<T> {
     return this.http.post<T>(url, body, options);
   }
   put<T>(url: string, body: any, options?: {
