@@ -12,12 +12,14 @@
                 [card]="item" [routerLink]="['/card', item.id]"
               ></app-card>
             }
+          }@empty {
+            <p>No hay scapeRooms para mostrar</p>
           }
         </div>
       }
-      @if(listScapeRooms.length == 0 ){
-        <h5>No hay scapeRooms para mostrar</h5>
-      }
+      <!-- @if(listScapeRooms.length == 0 ){
+       } -->
+     
       </div>
 
 

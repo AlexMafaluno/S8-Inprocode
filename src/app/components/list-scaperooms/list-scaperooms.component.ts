@@ -17,4 +17,5 @@ export class ListScaperoomsComponent{
   @Input() listScapeRooms: ScapeRoom[] = [];
   @Input() userPhotos: Photo[] = [];
 
+ // errorMessage : string = 'No hay scape rooms';
 }
