@@ -8,6 +8,7 @@ import { Photo } from '../../interfaces/photo';
 import { ScaperoomFacadeService } from '../../services/scaperoom-facade.service';
 import { ProgressSpinnerComponent } from "../../components/progress-spinner/progress-spinner.component";
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { catchError, of, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-scaperooms-collection-view',
@@ -21,7 +22,7 @@ export class ScaperoomsCollectionViewComponent implements OnInit {
   page: number = 1;
   hasMore: boolean = true;
   loading: boolean = false;
-  
+  errorMessage: string = '';
   private scaperoomFacade = inject(ScaperoomFacadeService);
   
   ngOnInit(): void {
@@ -35,7 +36,15 @@ loadScapeRooms(userId: number): void {
   if(this.loading || !this.hasMore) return;
 
     this.loading = true;
-    this.scaperoomFacade.getScapeRoomWithPotos(userId, this.page).subscribe({
+    this.scaperoomFacade.getScapeRoomWithPotos(userId, this.page).pipe(
+      catchError((errorMessage) => {
+        console.log('Error desde el componente');
+        this.errorMessage = errorMessage.message;
+        console.log(this.errorMessage);
+        return of([]);
+        // return throwError(() => errorMessage);
+      })
+    ).subscribe({
       next: (res: ScapeRoom[]) => {
         this.listScapeRooms = [...this.listScapeRooms, ...res];
         this.hasMore = res.length > 0; // Adjust logic if pagination is needed
@@ -50,6 +59,9 @@ loadScapeRooms(userId: number): void {
       }
     });
   }
+
+
+
   onScroll() {
     this.loadScapeRooms(359);
     console.log('scrolled!!')
