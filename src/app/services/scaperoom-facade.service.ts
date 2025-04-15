@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { forkJoin, map, Observable } from 'rxjs';
+import { catchError, forkJoin, map, Observable, throwError } from 'rxjs';
 import { ScapeRoom } from '../interfaces/scaperoom';
 import { ScaperoomService } from './scaperoom.service';
 import { PhotoService } from './photo.service';
@@ -24,7 +24,10 @@ export class ScaperoomFacadeService {
             imageUrl: photo?.photoURL || null
           }as ScapeRoom;
         })
-      )
-    );
+      ), 
+      catchError((err)=> {
+        return throwError(() => err);
+      })
+    )
   }
 }
