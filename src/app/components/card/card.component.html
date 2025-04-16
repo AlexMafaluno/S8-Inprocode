@@ -1,6 +1,6 @@
 <div class="card shadow content text-center">
     <img
-      *ngIf="card.imageUrl"
+      *ngIf="card?.imageUrl"
       [src]="card.imageUrl"
       alt="Scaperoom Image"
       class="card-image"
@@ -9,3 +9,6 @@
       <h1>{{ card.id }}</h1>
     </div>
   </div>
+
+
+ 
