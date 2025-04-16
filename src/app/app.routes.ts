@@ -47,5 +47,5 @@ export const routes: Routes = [
   },
   { path: 'card/:id', component: CardDetailPageComponent  },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'login' , pathMatch: 'full'},
+  { path: '**', redirectTo: 'home' , pathMatch: 'full'},
 ];
