@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,8 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   formLogin: FormGroup;
   private authService = inject(AuthService);
+  private userService = inject(UserService);
+
   private router = inject(Router);
   
    constructor(private fb: FormBuilder) {
@@ -40,8 +43,17 @@ export class LoginComponent {
             loginPassword
           );
           console.log(userCredential.user);
-
-          this.router.navigate(['/home']);
+ 
+          // 🔥 Petición al backend para traer los datos extendidos
+           this.userService.getUserFromBackend().subscribe({
+            next: (userData) => {
+            console.log('✅ Usuario desde la base de datos:', userData);
+            this.router.navigate(['/home']);
+          },
+          error: (err) => {
+            console.error('❌ Error al obtener datos del backend:', err);
+          }
+        });
         } catch (error) {
           console.log(error);
         }
