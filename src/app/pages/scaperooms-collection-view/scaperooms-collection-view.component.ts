@@ -8,7 +8,9 @@ import { Photo } from '../../interfaces/photo';
 import { ScaperoomFacadeService } from '../../services/scaperoom-facade.service';
 import { ProgressSpinnerComponent } from "../../components/progress-spinner/progress-spinner.component";
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
-import { catchError, of, throwError } from 'rxjs';
+import { catchError, EMPTY, of, throwError } from 'rxjs';
+import { PhotoService } from '../../services/photo.service';
+import { CounterService } from '../../services/counter.service';
 
 @Component({
   selector: 'app-scaperooms-collection-view',
@@ -24,11 +26,14 @@ export class ScaperoomsCollectionViewComponent implements OnInit {
   loading: boolean = false;
   errorMessage: string = '';
   private scaperoomFacade = inject(ScaperoomFacadeService);
+  private photoService = inject(PhotoService);
+  private counterService = inject(CounterService);
   
   ngOnInit(): void {
     // this.page = 1;
   this.hasMore = true;
     this.loadScapeRooms(359); // Cambia el ID según sea necesario
+    this.loadUserPhotos(359);
   }
 
 loadScapeRooms(userId: number): void {
@@ -36,15 +41,16 @@ loadScapeRooms(userId: number): void {
   if(this.loading || !this.hasMore) return;
 
     this.loading = true;
-    this.scaperoomFacade.getScapeRoomWithPotos(userId, this.page).pipe(
-      catchError((errorMessage) => {
-        console.log('Error desde el componente padre');
-        this.errorMessage = errorMessage.message;
-        console.log(this.errorMessage);
-        return of([]);
-        // return throwError(() => errorMessage);
-      })
-    ).subscribe({
+    this.scaperoomFacade.getScapeRoomWithPotos(userId, this.page)
+    // .pipe(
+    //   catchError((errorMessage) => {
+    //     console.log('Error desde el componente padre');
+    //     this.errorMessage = errorMessage;
+    //     this.loading = false;
+    //     return EMPTY;
+    //     // return throwError(() => errorMessage);
+    //   }))
+      .subscribe({
       next: (res: ScapeRoom[]) => {
         this.listScapeRooms = [...this.listScapeRooms, ...res];
         this.hasMore = res.length > 0; // Adjust logic if pagination is needed
@@ -55,12 +61,19 @@ loadScapeRooms(userId: number): void {
       error: (err) => {
         console.error('Error al cargar los scaperooms con fotos:', err);
         this.listScapeRooms = [];
+        this.errorMessage = err;
         this.loading = false;
       }
     });
   }
 
-
+  loadUserPhotos(userId: number): void {
+    this.photoService.getPhotosByUser(userId).subscribe((photos) => {
+      this.userPhotos = photos;
+      this.counterService.setCount(photos.length);
+      console.log('Fotos del usuario:', photos);
+    });
+  }
 
   onScroll() {
     this.loadScapeRooms(359);
