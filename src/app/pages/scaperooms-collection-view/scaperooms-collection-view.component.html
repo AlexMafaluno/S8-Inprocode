@@ -17,7 +17,7 @@ class="scroll-container"
   (scrolled)="onScroll()"
 >
 <!-- class="flex-1 max-w-7xl mx-auto"> -->
-  <app-list-scaperooms [listScapeRooms]="listScapeRooms" [userPhotos]="userPhotos"></app-list-scaperooms>
+  <app-list-scaperooms [listScapeRooms]="listScapeRooms"></app-list-scaperooms>
 </section>
 @if(!!errorMessage){
   <div class="alert alert-danger" role="alert">{{errorMessage}}</div>

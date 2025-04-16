@@ -38,7 +38,7 @@ loadScapeRooms(userId: number): void {
     this.loading = true;
     this.scaperoomFacade.getScapeRoomWithPotos(userId, this.page).pipe(
       catchError((errorMessage) => {
-        console.log('Error desde el componente');
+        console.log('Error desde el componente padre');
         this.errorMessage = errorMessage.message;
         console.log(this.errorMessage);
         return of([]);
