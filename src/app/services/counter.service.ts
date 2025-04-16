@@ -8,7 +8,8 @@ export class CounterService {
 private toastrService = inject(ToastrService);
   private readonly storageKey = 'user-photo-count';
   private photoCount = signal<number>(this.getStoredCount());
-  private counterThresholds = [10, 25, 50, 75, 99, 149]; // niveles 1, 2, 3, 4, etc.
+  private counterThresholds = [8, 25, 50, 75, 99, 149]; // niveles 1, 2, 3, 4, etc.
+  private lastThresholdReached = 0;
   private getStoredCount():number{
     const stored = localStorage.getItem(this.storageKey);
     return stored ? +stored : 0;
@@ -42,9 +43,13 @@ private toastrService = inject(ToastrService);
         lastThreshold = this.counterThresholds[i];
       }
     }
-    this.toastrService.success(`Alcanzaste un total de ${lastThreshold} scapeRooms`, 'Exito')
-    this.photoCount.set(newCount);
+    // Mostrar el mensaje SOLO si es un nuevo threshold
+  if (lastThreshold > this.lastThresholdReached) {
+    this.toastrService.success(`Alcanzaste un total de ${lastThreshold} scapeRooms`, 'Nuevo logro');
+    this.lastThresholdReached = lastThreshold;
   }
+  this.photoCount.set(newCount);
+}
 
   reset() {
     localStorage.removeItem(this.storageKey);
