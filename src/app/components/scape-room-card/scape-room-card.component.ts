@@ -77,14 +77,13 @@ ngOnInit(): void {
 
 
     increaseCounter() {
-      
-      const userId = 359; // dinámico si quieres
-    this.photoService.getPhotosByUser(userId).subscribe((photos) => {
-      this.userPhotos.set(photos);
-      console.log('Fotos del usuario:', photos);
-      console.log(photos.length);
-      this.counterService.setCount(photos.length);
-    });
+    //   const userId = 359; // dinámico si quieres
+    // this.photoService.getPhotosByUser(userId).subscribe((photos) => {
+    //   this.userPhotos.set(photos);
+    //   console.log('Fotos del usuario:', photos);
+    //   console.log(photos.length);
+    //   this.counterService.setCount(photos.length);
+    // });
     this.counterService.increment(1);
     console.log('Nuevo valor:', this.counterService.count());
   }
