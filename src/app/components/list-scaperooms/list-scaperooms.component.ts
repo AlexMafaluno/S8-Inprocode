@@ -15,7 +15,7 @@ import { AchivementCardComponent } from "../achivement-card/achivement-card.comp
 export class ListScaperoomsComponent{
 
   @Input() listScapeRooms: ScapeRoom[] = [];
-  @Input() userPhotos: Photo[] = [];
+  //@Input() userPhotos: Photo[] = [];
 
  // errorMessage : string = 'No hay scape rooms';
 }
