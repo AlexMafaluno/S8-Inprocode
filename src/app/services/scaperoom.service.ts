@@ -40,11 +40,9 @@ private loggingService = inject(LoggingService);
             response.data.map(callback), // Ensure 'map' is included
         })),
         catchError((err) => {
-          console.log(err.error.message);
-          console.log('Error desde el servicio')
+          console.log('Error desde el servicio Scaperoom', err)
           const errorObj = createAppError(err);
           this.loggingService.logError(errorObj);
-          console.error('Error fetching scape rooms:', err);
           return throwError(()=> err); // Re-throw the error to propagate it
         })
       );
