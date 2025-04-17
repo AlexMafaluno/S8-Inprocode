@@ -1,6 +1,4 @@
-import { Component, inject, OnInit, signal, Signal } from '@angular/core';
-import { CounterService } from '../../services/counter.service';
-import { PhotoService } from '../../services/photo.service';
+import { Component, inject, Input, OnInit, signal, Signal } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
@@ -10,5 +8,8 @@ import { PhotoService } from '../../services/photo.service';
 })
 export class CounterComponent{
 
-counter = inject(CounterService).count; 
+@Input() counter!: Signal<number>; 
+get count(): number {
+  return this.counter();
+}
 }
