@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AvatarPicComponent } from "../../components/atoms/avatar-pic/avatar-pic.component";
 import { RouterModule } from '@angular/router';
 import { AddButtonComponent } from "../../components/atoms/add-button/add-button.component";
@@ -9,24 +9,25 @@ import { ExitButtonComponent } from "../../components/atoms/exit-button/exit-but
 import { LevelComponent } from "../../components/atoms/level/level.component";
 import { UserBadgeComponent } from "../../components/user-badge/user-badge.component";
 import { LevelService } from '../../services/level.service';
+import { ExperienceComponent } from "../../components/atoms/experience/experience.component";
+import { AchivementsService } from '../../services/achivements.service';
 
 @Component({
   selector: 'app-profile-page',
-  imports: [RouterModule, CounterComponent, ListScaperoomsComponent, ExitButtonComponent, UserBadgeComponent],
+  imports: [RouterModule, CounterComponent, ListScaperoomsComponent, ExitButtonComponent, UserBadgeComponent, ExperienceComponent],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss'
 })
-export class ProfilePageComponent {
+export class ProfilePageComponent implements OnInit{
   private levelService = inject(LevelService);
+private achivementsService = inject(AchivementsService)
+achivements: any = [];
 
-achivements: { id: number; description: string, type:'logro' }[] = [
-  {id:1, description: 'jugar 10 scape rooms', type:'logro'},
-  {id:2, description: 'jugar 30 scape rooms', type:'logro'},
-  {id:3, description: 'jugar 50 scape rooms',type:'logro'}
-];
-
+ngOnInit(): void {
+  this.achivements = this.achivementsService.achivements;
+}
 gainExperience(value: number){
  this.levelService.gainExperience(value);
- 
+
 }
 }
