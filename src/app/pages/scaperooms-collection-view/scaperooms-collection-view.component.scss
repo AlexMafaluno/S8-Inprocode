@@ -1,5 +1,6 @@
-/* En tu .scss del componente */
-// .scroll-container {
-//     height: 80vh;
-//     overflow-y: auto;
-//   }
+.app-filter-button{
+    position:fixed;
+    bottom: 5rem;
+    right: 1rem;
+    z-index:1050;
+}

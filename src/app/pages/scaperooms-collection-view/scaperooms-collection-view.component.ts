@@ -12,10 +12,11 @@ import { catchError, EMPTY, of, throwError } from 'rxjs';
 import { PhotoService } from '../../services/photo.service';
 import { CounterService } from '../../services/counter.service';
 import { UserStatsComponent } from "../../components/organisms/user-stats/user-stats.component";
+import { FilterButtonComponent } from "../../components/atoms/filter-button/filter-button.component";
 
 @Component({
   selector: 'app-scaperooms-collection-view',
-  imports: [ListScaperoomsComponent, CommonModule, ModalComponent, FilterComponent, InfiniteScrollDirective, ProgressSpinnerComponent, UserStatsComponent],
+  imports: [ListScaperoomsComponent, CommonModule, ModalComponent, FilterComponent, InfiniteScrollDirective, ProgressSpinnerComponent, UserStatsComponent, FilterButtonComponent],
   templateUrl: './scaperooms-collection-view.component.html',
   styleUrl: './scaperooms-collection-view.component.scss'
 })
