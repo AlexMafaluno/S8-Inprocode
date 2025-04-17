@@ -11,10 +11,11 @@ import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { catchError, EMPTY, of, throwError } from 'rxjs';
 import { PhotoService } from '../../services/photo.service';
 import { CounterService } from '../../services/counter.service';
+import { UserStatsComponent } from "../../components/organisms/user-stats/user-stats.component";
 
 @Component({
   selector: 'app-scaperooms-collection-view',
-  imports: [ListScaperoomsComponent, CommonModule, ModalComponent, FilterComponent, InfiniteScrollDirective, ProgressSpinnerComponent],
+  imports: [ListScaperoomsComponent, CommonModule, ModalComponent, FilterComponent, InfiniteScrollDirective, ProgressSpinnerComponent, UserStatsComponent],
   templateUrl: './scaperooms-collection-view.component.html',
   styleUrl: './scaperooms-collection-view.component.scss'
 })
