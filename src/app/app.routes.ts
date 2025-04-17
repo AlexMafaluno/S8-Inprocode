@@ -10,42 +10,54 @@ import { CallendarViewComponent } from './pages/callendar-view/callendar-view.co
 import { ChartViewComponent } from './pages/chart-view/chart-view.component';
 import { ModalEventComponent } from './components/modal-event/modal-event.component';
 import { CardDetailPageComponent } from './pages/card-detail-page/card-detail-page.component';
-import { LoginViewComponent } from './pages/login-view/login-view.component';
-import { RegisterViewComponent } from './pages/register-view/register-view.component';
-import { AuthGuard } from './guards/auth.guard';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { RegisterPageComponent } from './pages/register-page/register-page.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminCrudPageComponent } from './pages/admin-crud-page/admin-crud-page.component';
 import { AddEditScaperoomComponent } from './components/add-edit-scaperoom/add-edit-scaperoom.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
+import { LayoutComponent } from './Layouts/layout/layout.component';
 
 export const routes: Routes = [
  // { path: '', pathMatch: 'full', redirectTo: '/login' },
 //Rutas de auth
-  {path: "login", component: LoginViewComponent},
-  {path: "register", component: RegisterViewComponent},
 
-  { path: 'home', component: HomeViewComponent, canMatch: [AuthGuard]},
-  { path: 'map', component: MapComponent },
+//Rutas publicas sin layout
+
+{path: "login", component: LoginPageComponent},
+{path: "register", component: RegisterPageComponent},
+
+//rutas protegidas con layout
+
+{path:'', component: LayoutComponent,
+  children: [
+    { path: 'home', component: HomeViewComponent, canMatch: [AuthGuard]},
+    {
+      path: 'scaperooms',
+      component: ScaperoomsCollectionViewComponent},
+    { path: 'scaperoom/:id', component: CardDetailPageComponent},
+    { path:'profile', component: ProfilePageComponent},
+     
+    //admin
+    {path: 'crud', component: AdminCrudPageComponent},
+    {path: 'crud/add', component: AddEditScaperoomComponent},
+    {path: 'crud/edit/:id', component: AddEditScaperoomComponent},
+  
+  ]
+}
+
+  
+  ,{ path: 'map', component: MapComponent },
   { path: 'callendar', component: CallendarViewComponent
     ,children: [
     { path: 'add', component: ModalEventComponent }
   ] },
   { path: 'charts', component: ChartsComponent },
   
-  //admin
-  {path: 'crud', component: AdminCrudPageComponent},
-  {path: 'crud/add', component: AddEditScaperoomComponent},
-  {path: 'crud/edit/:id', component: AddEditScaperoomComponent},
+ 
   
-  {path:'profile', component: ProfilePageComponent},
-  {
-    path: 'scaperooms',
-    component: ScaperoomsCollectionViewComponent,
-    // children: [
-    //   { path: 'add', component: ModalComponent },
-    //   { path: 'edit/:id', component: ModalComponent } // 👈 Child route dentro de 'crud'
-    // ]
-  },
-  { path: 'card/:id', component: CardDetailPageComponent  },
+  
+ 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', redirectTo: 'home' , pathMatch: 'full'},
 ];
