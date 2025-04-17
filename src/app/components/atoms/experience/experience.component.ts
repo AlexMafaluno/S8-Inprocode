@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { LevelService } from '../../../services/level.service';
+import { Component, Input, Signal } from '@angular/core';
 
 @Component({
   selector: 'app-experience',
@@ -8,5 +7,9 @@ import { LevelService } from '../../../services/level.service';
   styleUrl: './experience.component.scss'
 })
 export class ExperienceComponent {
-experience = inject(LevelService).exp; 
+@Input() experience!: Signal<number>;
+
+get exp(): number {
+  return this.experience();
+}
 }
