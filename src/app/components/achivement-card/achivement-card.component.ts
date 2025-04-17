@@ -9,5 +9,5 @@ import { ProgressBarComponent } from "../atoms/progress-bar/progress-bar.compone
   styleUrl: './achivement-card.component.scss'
 })
 export class AchivementCardComponent {
-@Input() card : any;
+@Input() card! : any;
 }
