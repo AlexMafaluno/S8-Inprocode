@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, 
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ScapeRoom, ScapeRoomItem } from '../../interfaces/scaperoom';
 import { ScaperoomService } from '../../services/scaperoom.service';
-import { ProgressSpinnerComponent } from "../progress-spinner/progress-spinner.component";
+import { ProgressSpinnerComponent } from "../atoms/progress-spinner/progress-spinner.component";
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

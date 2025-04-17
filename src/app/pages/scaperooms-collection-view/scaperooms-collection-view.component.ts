@@ -6,7 +6,7 @@ import { FilterComponent } from "../../components/filter/filter.component";
 import { ScapeRoom, ScapeRoomItem } from '../../interfaces/scaperoom';
 import { Photo } from '../../interfaces/photo';
 import { ScaperoomFacadeService } from '../../services/scaperoom-facade.service';
-import { ProgressSpinnerComponent } from "../../components/progress-spinner/progress-spinner.component";
+import { ProgressSpinnerComponent } from "../../components/atoms/progress-spinner/progress-spinner.component";
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { catchError, EMPTY, of, throwError } from 'rxjs';
 import { PhotoService } from '../../services/photo.service';
