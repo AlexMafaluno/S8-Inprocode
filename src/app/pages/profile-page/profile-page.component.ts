@@ -11,6 +11,7 @@ import { UserBadgeComponent } from "../../components/organisms/user-badge/user-b
 import { LevelService } from '../../services/level.service';
 import { ExperienceComponent } from "../../components/atoms/experience/experience.component";
 import { AchivementsService } from '../../services/achivements.service';
+import { CounterService } from '../../services/counter.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -19,15 +20,29 @@ import { AchivementsService } from '../../services/achivements.service';
   styleUrl: './profile-page.component.scss'
 })
 export class ProfilePageComponent implements OnInit{
-  private levelService = inject(LevelService);
+private levelService = inject(LevelService);
+private counterService = inject(CounterService);
 private achivementsService = inject(AchivementsService)
 achivements: any = [];
 
 ngOnInit(): void {
-  this.achivements = this.achivementsService.achivements;
+  this.achivements = this.achivementsService.getAchivements();
 }
 gainExperience(value: number){
  this.levelService.gainExperience(value);
 
+}
+onResetProgreso(){
+  if(confirm('¿Estás seguro de que quieres borrar el progreso?')){
+  this.counterService.reset();
+}
+}
+
+get count() {
+  return this.counterService.count; // Signal<number>
+}
+
+get experience(){
+  return this.levelService.exp;
 }
 }

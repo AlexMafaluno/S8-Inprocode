@@ -2,17 +2,18 @@
 <app-user-badge></app-user-badge>
 
 <button type="button" class="btn btn-primary" (click)="gainExperience(10)"></button>
+<button type="button" class="btn btn-secondary" (click)="onResetProgreso()">Resetear progreso</button>
 <section>
     <button type="button" class="btn btn-primary" routerLink="/charts">Estadisticas</button>
 </section>
 
 <section>
     <p>Cartas en la colección</p>
-    <app-counter></app-counter>
+    <app-counter [counter]="count"></app-counter>
 </section>
 <section>
     <p>Exp.</p>
-    <app-experience></app-experience>
+    <app-experience [experience]="experience"></app-experience>
 </section>
 <section>
    <p>Logros</p> 
