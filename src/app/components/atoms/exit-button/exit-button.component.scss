@@ -1,7 +1,7 @@
 .icon-button {
 
 position: fixed; /* o absolute, según tu layout */
-  bottom: 2rem; /* o top: 2rem; si lo querés arriba */
+  bottom: 5rem; /* o top: 2rem; si lo querés arriba */
   left: 50%;
   transform: translateX(-50%);
   z-index: 9999; /* bien alto para estar por encima del contenido */
