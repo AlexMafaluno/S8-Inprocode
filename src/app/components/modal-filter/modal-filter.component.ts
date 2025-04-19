@@ -11,6 +11,7 @@ export class ModalFilterComponent {
 @Output() sort = new EventEmitter<string>();
 
 ordenarPor(criteria: string) {
+  console.log('Emitido desde modal:', criteria);
 this.sort.emit(criteria);
 }
 
