@@ -10,7 +10,7 @@
 </section>
 
 <section>
-<app-filter />
+<app-filter (filtered)="handleFilteredRooms($event)"></app-filter>
 </section>
 
 <section 
@@ -27,7 +27,5 @@ class="scroll-container"
   <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
 }
 
-<section>
-  <app-modal></app-modal>
-</section>
 <app-filter-button class="app-filter-button"></app-filter-button>
+<app-modal-filter   (sort)="sortBy($event)"></app-modal-filter>

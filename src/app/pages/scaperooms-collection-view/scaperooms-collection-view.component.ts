@@ -13,10 +13,12 @@ import { PhotoService } from '../../services/photo.service';
 import { CounterService } from '../../services/counter.service';
 import { UserStatsComponent } from "../../components/organisms/user-stats/user-stats.component";
 import { FilterButtonComponent } from "../../components/atoms/filter-button/filter-button.component";
+import { ModalFilterComponent } from "../../components/modal-filter/modal-filter.component";
+import { FilterService } from '../../services/filter.service';
 
 @Component({
   selector: 'app-scaperooms-collection-view',
-  imports: [ListScaperoomsComponent, CommonModule, ModalComponent, FilterComponent, InfiniteScrollDirective, ProgressSpinnerComponent, UserStatsComponent, FilterButtonComponent],
+  imports: [ListScaperoomsComponent, CommonModule,FilterComponent, InfiniteScrollDirective, ProgressSpinnerComponent, UserStatsComponent, FilterButtonComponent, ModalFilterComponent],
   templateUrl: './scaperooms-collection-view.component.html',
   styleUrl: './scaperooms-collection-view.component.scss'
 })
@@ -30,6 +32,7 @@ export class ScaperoomsCollectionViewComponent implements OnInit {
   private scaperoomFacade = inject(ScaperoomFacadeService);
   private photoService = inject(PhotoService);
   private counterService = inject(CounterService);
+  private filterService = inject(FilterService);
   
   ngOnInit(): void {
     // this.page = 1;
@@ -57,7 +60,7 @@ loadScapeRooms(userId: number): void {
         this.listScapeRooms = [...this.listScapeRooms, ...res];
         this.hasMore = res.length > 0; // Adjust logic if pagination is needed
         this.page++;
-        console.log('Cargando página:', this.page);
+        console.log('Cargando página:', this.listScapeRooms);
         this.loading = false;
       },
       error: (err) => {
@@ -81,4 +84,22 @@ loadScapeRooms(userId: number): void {
     this.loadScapeRooms(359);
     console.log('scrolled!!')
   }
+
+
+
+sortBy(criteria: string) {
+  console.log('Orden seleccionado:', criteria);
+  this.loading = true;
+  try {
+    this.listScapeRooms = this.filterService.sortedBy(criteria, this.listScapeRooms);
+  } catch (error) {
+    console.error('Error al ordenar:', error);
+  } finally {
+    this.loading = false;
+  }
+  }
+  handleFilteredRooms(filteredList: ScapeRoom[]) {
+    this.listScapeRooms = filteredList;
+  }
 }
+
