@@ -59,6 +59,11 @@ private loggingService = inject(LoggingService);
       }));
   }
 
+  getScapeRoomByGenre(genre: string): Observable<ScapeRoom[]>{
+    return this.apiConfigService.get<{ data: ScapeRoom[] }>(`${API_ENDPOINTS.SCAPEROOM.BY_GENRE}${genre}`).
+    pipe(map((response) => response.data))
+  }
+
   deleteScapeRoom(id: number): Observable<void> {
     return this.http.delete<void>(API_ENDPOINTS.deleteScaperoomById(id), {
       withCredentials: true,
