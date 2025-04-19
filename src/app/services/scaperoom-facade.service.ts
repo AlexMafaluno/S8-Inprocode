@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { catchError, forkJoin, map, Observable, throwError } from 'rxjs';
 import { ScapeRoom } from '../interfaces/scaperoom';
 import { ScaperoomService } from './scaperoom.service';
@@ -9,11 +9,33 @@ import { createAppError } from '../config/response';
   providedIn: 'root'
 })
 export class ScaperoomFacadeService {
+ 
   private scaperoomService = inject(ScaperoomService);
   private photoService = inject(PhotoService);
   loggingService: any;
 
-  getScapeRoomWithPotos(userId: number, page?: number): Observable<ScapeRoom[]> {
+
+private scapeRoomsSignal = signal<ScapeRoom[]>([]);
+
+
+get scapeRooms(){
+  return this.scapeRoomsSignal.asReadonly();
+}
+
+setScapeRooms(newRooms: ScapeRoom[]){
+  this.scapeRoomsSignal.set(newRooms);
+}
+
+addScapeRooms(moreRooms: ScapeRoom[]) {
+  const current = this.scapeRoomsSignal();
+  this.scapeRoomsSignal.set([...current, ...moreRooms]);
+}
+
+clearScapeRooms() {
+  this.scapeRoomsSignal.set([]);
+}
+
+getScapeRoomWithPotos(userId: number, page?: number): Observable<ScapeRoom[]> {
     return forkJoin({
       scaperooms: this.scaperoomService.getListScapeRooms(page ?? 1),
       photos: this.photoService.getPhotosByUser(userId)
