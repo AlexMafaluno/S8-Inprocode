@@ -24,16 +24,20 @@ import { FilterService } from '../../services/filter.service';
 })
 export class ScaperoomsCollectionViewComponent implements OnInit {
   listScapeRooms: ScapeRoom[] = [];
+  listScapeRoomsOriginal: ScapeRoom[] = [];  // Respaldo sin filtro
   userPhotos: Photo[] = [];
   page: number = 1;
   hasMore: boolean = true;
   loading: boolean = false;
   errorMessage: string = '';
+
+
   private scaperoomFacade = inject(ScaperoomFacadeService);
   private photoService = inject(PhotoService);
   private counterService = inject(CounterService);
   private filterService = inject(FilterService);
   
+
   ngOnInit(): void {
     this.scaperoomFacade.clearScapeRooms();
     // this.page = 1;
@@ -60,6 +64,7 @@ loadScapeRooms(userId: number): void {
       next: (res: ScapeRoom[]) => {
         this.scaperoomFacade.addScapeRooms(res);
         this.listScapeRooms = this.scaperoomFacade.scapeRooms();
+        this.listScapeRoomsOriginal = this.scaperoomFacade.scapeRooms();
         this.hasMore = res.length > 0; // Adjust logic if pagination is needed
         this.page++;
         console.log('Cargando página:', this.listScapeRooms);
@@ -74,6 +79,27 @@ loadScapeRooms(userId: number): void {
     });
   }
 
+onGenreSelected(genre: string): void {
+    if (genre === 'default') {
+    this.listScapeRooms = this.listScapeRoomsOriginal;
+      return;
+    }
+     // Resetear la página al cambiar el género
+  this.page = 1;
+
+      // Si se ha seleccionado un género, hacemos la llamada con ese filtro
+      this.scaperoomFacade.getScapeRoomWithPotos(359, this.page, genre).subscribe({
+        next: (response) => {
+          console.log('Scaperooms filtrados por género:', response);
+          this.listScapeRooms = response; // Actualizamos la lista filtrada
+          this.page++;
+        },
+        error: (err) => {
+          console.error('Error al filtrar:', err);
+        }
+      });
+  }
+  
   loadUserPhotos(userId: number): void {
     this.photoService.getPhotosByUser(userId).subscribe((photos) => {
       this.userPhotos = photos;
@@ -100,8 +126,8 @@ sortBy(criteria: string) {
     this.loading = false;
   }
   }
-  handleFilteredRooms(filteredList: ScapeRoom[]) {
-    this.listScapeRooms = filteredList;
-  }
+
+
+
 }
 
