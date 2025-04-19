@@ -35,9 +35,9 @@ clearScapeRooms() {
   this.scapeRoomsSignal.set([]);
 }
 
-getScapeRoomWithPotos(userId: number, page?: number): Observable<ScapeRoom[]> {
+getScapeRoomWithPotos(userId: number, page?: number, genre?:string): Observable<ScapeRoom[]> {
     return forkJoin({
-      scaperooms: this.scaperoomService.getListScapeRooms(page ?? 1),
+      scaperooms: this.scaperoomService.getListScapeRooms(page ?? 1, genre),
       photos: this.photoService.getPhotosByUser(userId)
     }).pipe(
       map(({ scaperooms, photos }) =>
