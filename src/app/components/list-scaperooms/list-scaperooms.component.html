@@ -3,17 +3,23 @@
         @if(listScapeRooms.length > 0){
         <div class="parent">
           @for(item of listScapeRooms;track item){
-          <app-card
-            [card]="item" [routerLink]="['/card', item.id]"
-          ></app-card>
+            @if(item.type ==='logro'){
+              <app-achivement-card 
+              [card]="item"
+              ></app-achivement-card>
+            }@else{
+              <app-card
+                [card]="item" [routerLink]="['/scaperoom', item.id]"
+              ></app-card>
+            }
+          }@empty {
+            <p>No hay scapeRooms para mostrar</p>
           }
         </div>
-      }
-      @if(listScapeRooms.length == 0 ){
-        <h5>No hay scapeRooms para mostrar</h5>
       }
       </div>
 
 
 
   
+ 

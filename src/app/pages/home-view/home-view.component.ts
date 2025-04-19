@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
+import { AvatarPicComponent } from "../../components/atoms/avatar-pic/avatar-pic.component";
+import { RouterModule } from '@angular/router';
+import { UserBadgeComponent } from "../../components/organisms/user-badge/user-badge.component";
 
 @Component({
   selector: 'app-home-view',
-  imports: [],
+  imports: [AvatarPicComponent, RouterModule, UserBadgeComponent],
   templateUrl: './home-view.component.html',
   styleUrl: './home-view.component.scss'
 })

@@ -11,11 +11,11 @@ import { CommonModule } from '@angular/common';
 })
 export class CardComponent {
   @Input() card!: ScapeRoom;
-  @Output() onDelete = new EventEmitter<number>();
+  // @Output() onDelete = new EventEmitter<number>();
 
-  handleDelete() {
-    this.onDelete.emit(this.card.id);
-  }
+  // handleDelete() {
+  //   this.onDelete.emit(this.card.id);
+  // }
 }
 
 //! (Non-null assertion) → Le dice a TypeScript que item 

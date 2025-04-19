@@ -17,7 +17,7 @@ export class AdminCrudPageComponent implements OnInit {
    private scapeRoomService= inject(ScaperoomService)
   
   loadScapeRooms() {
-    this.scapeRoomService.getListScapeRooms().subscribe((data) => {
+    this.scapeRoomService.getAllScapeRooms().subscribe((data:ScapeRoom[]) => {
       this.listScapeRooms = data;
       console.log("Data:", data);
     });

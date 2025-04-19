@@ -8,16 +8,18 @@ import { PhotoService } from '../../services/photo.service';
 import { CounterService } from '../../services/counter.service';
 import { Photo } from '../../interfaces/photo';
 import { NotificationService } from '../../services/notification.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { catchError, EMPTY, throwError } from 'rxjs';
+import { LevelService } from '../../services/level.service';
 @Component({
   selector: 'app-scape-room-card',
-  imports: [ExitButtonComponent],
+  imports: [ExitButtonComponent, RouterModule],
   templateUrl: './scape-room-card.component.html',
   styleUrl: './scape-room-card.component.scss'
 })
-export class ScapeRoomCardComponent{
+export class ScapeRoomCardComponent implements OnInit{
   selectedFile!: File;
-  
+  errorMessage: string ='';
   @Input() card!: ScapeRoom;
   @Input() scapeRoom:ScapeRoomItem[] = [];
   userPhotos = signal<Photo[]>([]);
@@ -29,42 +31,61 @@ export class ScapeRoomCardComponent{
   private toastService = inject(NotificationService);
   private router = inject(Router);
   private aRouter = inject(ActivatedRoute);
+   private levelService = inject(LevelService);
+
+
+ngOnInit(): void {
+  // this.increaseCounter();
+}
+
 
   onUpload(arg0: number) {
     if (!this.selectedFile) {
       console.error('No se ha seleccionado un archivo.');
       return;
     }
-    this.photoService.uploadImage(this.selectedFile, arg0).subscribe({
-      next: (response) => {
-        console.log('Imagen subida con éxito', response);
+    console.log(this.card);
+    this.photoService.uploadImage(this.selectedFile, arg0).pipe(
+      catchError((errorMessage) => {
+        this.errorMessage = errorMessage;
+        return EMPTY;
+      })
+    ).subscribe({
+      next: () => {
         this.increaseCounter();
-        this.toastService.success('Imagen subida con éxito', 'Éxito'); 
+        this.levelService.gainExperience(25);
+        this.toastService.success('Imagen subida con éxito, +25 puntos de exp', 'Éxito'); 
         this.router.navigate(['/scaperooms']);    
       },
       error: (error) => {
-        console.error('Error al subir la imagen', error);
+        this.toastService.error('Error al subir la imagen', error);
       },
-  })
+    });
 }
 
     onFileSelected($event: Event) {
       this.selectedFile = ($event.target as HTMLInputElement).files![0];
+      const maxSize = 2 * 1024 * 1024; // 2MB
+
+      if (this.selectedFile.size > maxSize) {
+        this.toastService.error('La imagen excede el tamaño máximo de 2MB.', 'Error');
+        return;
+      }
       console.log(this.selectedFile);
+      this.errorMessage= '';
     }
 
 
     increaseCounter() {
-      
-      const userId = 359; // dinámico si quieres
-    this.photoService.getPhotosByUser(userId).subscribe((photos) => {
-      this.userPhotos.set(photos);
-      console.log('Fotos del usuario:', photos);
-      this.counterService.setCount(photos.length);
-    });
+    //   const userId = 359; // dinámico si quieres
+    // this.photoService.getPhotosByUser(userId).subscribe((photos) => {
+    //   this.userPhotos.set(photos);
+    //   console.log('Fotos del usuario:', photos);
+    //   console.log(photos.length);
+    //   this.counterService.setCount(photos.length);
+    // });
     this.counterService.increment(1);
     console.log('Nuevo valor:', this.counterService.count());
-      
   }
 }
 

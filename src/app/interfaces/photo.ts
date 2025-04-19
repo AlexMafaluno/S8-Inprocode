@@ -9,6 +9,6 @@ export interface Photo {
     user_id:      number;
     scaperoom_id: number;
     photoURL:     string;
-    played_at:    null;
+    played_at:    Date;
     uploaded_at:  Date;
 }

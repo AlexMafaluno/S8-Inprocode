@@ -6,13 +6,26 @@
   <h4>Mis fotos</h4>
 </div>
 <section>
-<app-filter />
+  <app-user-stats></app-user-stats>
 </section>
-@if(!loading){
-<section class="flex-1 max-w-7xl mx-auto">
-  <app-list-scaperooms [listScapeRooms]="listScapeRooms" [userPhotos]="userPhotos"></app-list-scaperooms>
-</section>
-}
+
 <section>
-  <app-modal></app-modal>
+<app-filter (filteredGenre)="onGenreSelected($event)"></app-filter>
 </section>
+
+<section 
+class="scroll-container"
+  infiniteScroll
+  [infiniteScrollDistance]="2" 
+  [infiniteScrollThrottle]="300"
+  (scrolled)="onScroll()"
+>
+<!-- class="flex-1 max-w-7xl mx-auto"> -->
+  <app-list-scaperooms [listScapeRooms]="listScapeRooms"></app-list-scaperooms>
+</section>
+@if(!!errorMessage){
+  <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+}
+
+<app-filter-button class="app-filter-button"></app-filter-button>
+<app-modal-filter   (sort)="sortBy($event)"></app-modal-filter>

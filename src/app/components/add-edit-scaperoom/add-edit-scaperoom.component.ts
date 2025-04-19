@@ -54,7 +54,8 @@ addScapeRoom(){
     title: this.form.value.title,
     director: this.form.value.director,
     poster: this.form.value.poster,
-    genre: this.form.value.genre
+    genre: this.form.value.genre,
+    id: 0
   }
 if(this.id !== 0){
   this.scaperoomService.updateScapeRoom(this.id, scapeRoom).subscribe(() => {

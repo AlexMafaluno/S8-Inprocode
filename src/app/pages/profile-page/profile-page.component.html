@@ -1,0 +1,24 @@
+<div class="container d-flex flex-column align-items-center text-center">
+<app-user-badge></app-user-badge>
+
+<button type="button" class="btn btn-primary" (click)="gainExperience(10)"></button>
+<button type="button" class="btn btn-secondary" (click)="onResetProgreso()">Resetear progreso</button>
+<section>
+    <button type="button" class="btn btn-primary" routerLink="/charts">Estadisticas</button>
+</section>
+
+<section>
+    <p>Cartas en la colección</p>
+    <app-counter [counter]="count"></app-counter>
+</section>
+<section>
+    <p>Exp.</p>
+    <app-experience [experience]="experience"></app-experience>
+</section>
+<section>
+   <p>Logros</p> 
+<app-list-scaperooms [listScapeRooms]="achivements"></app-list-scaperooms>
+</section>
+
+<a [routerLink]="['/home']"  style="text-decoration: none; color: inherit;"><app-exit-button class="app-exit-button"></app-exit-button></a>
+</div>
