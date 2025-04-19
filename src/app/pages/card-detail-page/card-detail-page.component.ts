@@ -22,17 +22,32 @@ private scaperoomFacadeService = inject(ScaperoomFacadeService)
 constructor(){}
 ngOnInit(): void {
   const id = Number(this.route.snapshot.paramMap.get('id'));
-  const userId = 359; 
+  const scapeRooms = this.scaperoomFacadeService.scapeRooms();
   
-  this.scaperoomFacadeService.getScapeRoomWithPotos(userId).subscribe((scapeRooms) => {
-    const scaperoom = scapeRooms.find(room => room.id === id);
-    if (scaperoom) {
-      this.selectedCard = scaperoom;
-      console.log("ScapeRoom con foto:", this.selectedCard);
-    } else {
-      console.warn(`No se encontró un scaperoom con id ${id}`);
-    }
+  const scapeRoom = scapeRooms.find(room => room.id === id);
+  
+  if (scapeRoom) {
+    this.selectedCard = scapeRoom;
+  
+  }else{
+     // fallback: si no estaba cargado, lo pide manualmente
+  this.scaperoomFacadeService.getScapeRoomWithPotos(359, 1).subscribe((res) => {
+    this.scaperoomFacadeService.setScapeRooms(res);
+    const fallbackRoom = res.find(r => r.id === id);
+    if (fallbackRoom) this.selectedCard = fallbackRoom;
   });
+  }
+  //   const userId = 359; 
+  
+  // this.scaperoomFacadeService.getScapeRoomWithPotos(userId).subscribe((scapeRooms) => {
+  //   const scaperoom = scapeRooms.find(room => room.id === id);
+  //   if (scaperoom) {
+  //     this.selectedCard = scaperoom;
+  //     console.log("ScapeRoom con foto:", this.selectedCard);
+  //   } else {
+  //     console.warn(`No se encontró un scaperoom con id ${id}`);
+  //   }
+  // });
   /*
   this.scaperoomService.getScapeRoom(id).subscribe((scaperoom) => {
     console.log("ScapeRoom recibido:", scaperoom);
