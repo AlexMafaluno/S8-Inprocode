@@ -35,6 +35,7 @@ export class ScaperoomsCollectionViewComponent implements OnInit {
   private filterService = inject(FilterService);
   
   ngOnInit(): void {
+    this.scaperoomFacade.clearScapeRooms();
     // this.page = 1;
   this.hasMore = true;
     this.loadScapeRooms(359); // Cambia el ID según sea necesario
@@ -57,7 +58,8 @@ loadScapeRooms(userId: number): void {
     //   }))
       .subscribe({
       next: (res: ScapeRoom[]) => {
-        this.listScapeRooms = [...this.listScapeRooms, ...res];
+        this.scaperoomFacade.addScapeRooms(res);
+        this.listScapeRooms = this.scaperoomFacade.scapeRooms();
         this.hasMore = res.length > 0; // Adjust logic if pagination is needed
         this.page++;
         console.log('Cargando página:', this.listScapeRooms);
