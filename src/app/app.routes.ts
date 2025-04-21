@@ -19,45 +19,75 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page.componen
 import { LayoutComponent } from './Layouts/layout/layout.component';
 
 export const routes: Routes = [
- // { path: '', pathMatch: 'full', redirectTo: '/login' },
-//Rutas de auth
+  { path: '', pathMatch: 'full', redirectTo: '/login' },
 
-//Rutas publicas sin layout
+  //Rutas de auth
 
-{path: "login", component: LoginPageComponent},
-{path: "register", component: RegisterPageComponent},
+  //Rutas publicas sin layout
 
-//rutas protegidas con layout
+  { path: 'login', component: LoginPageComponent },
+  { path: 'register', component: RegisterPageComponent },
 
-{path:'', component: LayoutComponent,
-  children: [
-    { path: 'home', component: HomeViewComponent, canMatch: [AuthGuard]},
-    {
-      path: 'scaperooms',
-      component: ScaperoomsCollectionViewComponent},
-    { path: 'scaperoom/:id', component: CardDetailPageComponent},
-    { path:'profile', component: ProfilePageComponent},
-     
-    //admin
-    {path: 'crud', component: AdminCrudPageComponent},
-    {path: 'crud/add', component: AddEditScaperoomComponent},
-    {path: 'crud/edit/:id', component: AddEditScaperoomComponent},
-  
-  ]
-}
+  //rutas protegidas con layout
 
-  
-  ,{ path: 'map', component: MapComponent },
-  { path: 'callendar', component: CallendarViewComponent
-    ,children: [
-    { path: 'add', component: ModalEventComponent }
-  ] },
-  { path: 'charts', component: ChartsComponent },
-  
- 
-  
-  
- 
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'home' , pathMatch: 'full'},
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {
+        path: 'profile',
+        canMatch: [AuthGuard],
+        loadComponent: () =>
+          import('./pages/profile-page/profile-page.component').then(
+            (m) => m.ProfilePageComponent
+          ),
+      },
+      {
+        path: 'scaperooms',
+        loadComponent: () =>
+          import(
+            './pages/scaperooms-collection-view/scaperooms-collection-view.component'
+          ).then((m) => m.ScaperoomsCollectionViewComponent),
+      },
+      {
+        path: 'scaperoom/:id',
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                './pages/card-detail-page/card-detail-page.component'
+              ).then((m) => m.CardDetailPageComponent),
+          },
+          {
+            path: 'map',
+            loadComponent: () =>
+              import('./pages/map/map.component').then((m) => m.MapComponent),
+          },
+          {
+            path: 'charts',
+            loadComponent: () =>
+              import('./pages/chart-view/chart-view.component').then(
+                (m) => m.ChartViewComponent
+              ),
+          },
+        ],
+      },
+    ],
+  },
+
+  // { path:'profile', component: ProfilePageComponent},
+
+  //admin
+  { path: 'crud', component: AdminCrudPageComponent },
+  { path: 'crud/add', component: AddEditScaperoomComponent },
+  { path: 'crud/edit/:id', component: AddEditScaperoomComponent },
+
+  {
+    path: 'callendar',
+    component: CallendarViewComponent,
+    children: [{ path: 'add', component: ModalEventComponent }],
+  },
+
+  { path: '**', redirectTo: 'profile', pathMatch: 'full' },
 ];
