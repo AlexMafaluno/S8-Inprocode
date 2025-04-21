@@ -2,6 +2,7 @@
     position: relative; /* Para que los elementos internos se posicionen respecto a este */
     width: 100%; /* Hace que el ancho de .card sea flexible */
     height: 500px; /* Ajusta la altura automáticamente según el contenido */
+    max-width: 400px; /* Máximo ancho para las tarjetas en pantallas grandes */
     //max-width: 300px;
   overflow: hidden; /* Evita que la imagen sobresalga */
   border-radius: 10px; /* Opcional: bordes redondeados */
