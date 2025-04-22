@@ -1,24 +1,25 @@
-<div class="container d-flex flex-column align-items-center text-center">
+<div class="container d-flex flex-column align-items-center text-center mt-5">
 <app-user-badge></app-user-badge>
 
-<button type="button" class="btn btn-primary" (click)="gainExperience(10)"></button>
-<button type="button" class="btn btn-secondary" (click)="onResetProgreso()">Resetear progreso</button>
+<!-- <button type="button" class="btn btn-primary" (click)="gainExperience(10)"></button>
+<button type="button" class="btn btn-secondary" (click)="onResetProgreso()">Resetear progreso</button> -->
 <section>
-    <button type="button" class="btn btn-primary" routerLink="/charts">Estadisticas</button>
+    <button type="button" class="btn btn-primary" routerLink="/profile/charts"><i class="bi bi-bar-chart fs-4"></i></button>
+    <p>Estádisticas</p>
 </section>
 
 <section>
-    <p>Cartas en la colección</p>
+    <h4>Cartas en la colección</h4>
     <app-counter [counter]="count"></app-counter>
 </section>
 <section>
-    <p>Exp.</p>
+    <h4>Exp.</h4>
     <app-experience [experience]="experience"></app-experience>
 </section>
 <section>
-   <p>Logros</p> 
+   <h4>Logros</h4> 
 <app-list-scaperooms [listScapeRooms]="achivements"></app-list-scaperooms>
 </section>
 
-<a [routerLink]="['/home']"  style="text-decoration: none; color: inherit;"><app-exit-button class="app-exit-button"></app-exit-button></a>
+<!-- <a [routerLink]="['/home']"  style="text-decoration: none; color: inherit;"><app-exit-button class="app-exit-button"></app-exit-button></a> -->
 </div>
