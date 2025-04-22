@@ -4,9 +4,9 @@
         <div class="parent">
           @for(item of listScapeRooms;track item){
             @if(item.type ==='logro'){
-              <app-achivement-card 
+              <app-achivement-item 
               [card]="item"
-              ></app-achivement-card>
+              ></app-achivement-item>
             }@else{
               <app-scaperoom-item
                 [card]="item" [routerLink]="['/scaperoom', item.id]"
