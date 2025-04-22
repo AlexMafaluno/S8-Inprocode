@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ListScaperoomsComponent } from '../../components/organisms/list-scaperooms/list-scaperooms.component';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../components/modal/modal.component';
-import { FilterComponent } from "../../components/filter/filter.component";
+import { FilterPanelComponent } from "../../components/filter-panel/filter-panel.component";
 import { ScapeRoom, ScapeRoomItem } from '../../interfaces/scaperoom';
 import { Photo } from '../../interfaces/photo';
 import { ScaperoomFacadeService } from '../../services/scaperoom-facade.service';
@@ -18,7 +18,7 @@ import { FilterService } from '../../services/filter.service';
 
 @Component({
   selector: 'app-scaperooms-collection-page',
-  imports: [ListScaperoomsComponent, CommonModule,FilterComponent, InfiniteScrollDirective, ProgressSpinnerComponent, UserStatsComponent, FilterButtonComponent, ModalFilterComponent],
+  imports: [ListScaperoomsComponent, CommonModule,FilterPanelComponent, InfiniteScrollDirective, ProgressSpinnerComponent, UserStatsComponent, FilterButtonComponent, ModalFilterComponent],
   templateUrl: './scaperooms-collection-page.component.html',
   styleUrl: './scaperooms-collection-page.component.scss'
 })
