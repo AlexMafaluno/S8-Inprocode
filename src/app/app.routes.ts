@@ -17,6 +17,7 @@ import { AdminCrudPageComponent } from './pages/admin-crud-page/admin-crud-page.
 import { AddEditScaperoomComponent } from './components/atoms/add-edit-scaperoom/add-edit-scaperoom.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { LayoutComponent } from './Layouts/layout/layout.component';
+import { adminGuard } from './shared/guards/admin.guard';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login' },
@@ -84,26 +85,23 @@ export const routes: Routes = [
               import('./pages/callendar-page/callendar-page.component').then(
                 (m) => m.CallendarPageComponent
               ),
-
-            // children: [{ path: 'add', component: ModalEventComponent }],
+            children: [{ path: 'callendar/add', component: ModalEventComponent }],
           },
         ],
       },
     ],
   },
 
-  // { path:'profile', component: ProfilePageComponent},
-
   //admin
-  { path: 'crud', component: AdminCrudPageComponent },
+  { path: 'crud', component: AdminCrudPageComponent, canActivate: [adminGuard]},
   { path: 'crud/add', component: AddEditScaperoomComponent },
   { path: 'crud/edit/:id', component: AddEditScaperoomComponent },
 
-  {
-    path: 'callendar',
-    component: CallendarPageComponent,
-    children: [{ path: 'add', component: ModalEventComponent }],
-  },
+  // {
+  //   path: 'callendar',
+  //   component: CallendarPageComponent,
+  //   children: [{ path: 'add', component: ModalEventComponent }],
+  // },
 
   { path: '**', redirectTo: 'profile', pathMatch: 'full' },
 ];
