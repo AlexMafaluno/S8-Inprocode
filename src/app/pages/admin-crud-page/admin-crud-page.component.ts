@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ListCrudComponent } from "../../components/list-crud/list-crud.component";
+import { ListCrudComponent } from "../../components/organisms/list-crud/list-crud.component";
 import { ScapeRoom } from '../../interfaces/scaperoom';
 import { RouterModule } from '@angular/router';
 import { ScaperoomService } from '../../services/scaperoom.service';

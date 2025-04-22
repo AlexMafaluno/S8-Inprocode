@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row d-flex flex-column">
+    <div class="col-12 d-flex justify-content-center my-3">
+      <app-filter-panel (filteredGenre)="onGenreSelected($event)"></app-filter-panel>
+    </div>
+    <div class="col-xl-8 justify-content-center mx-auto">
+      <div class="card text-center">
+        <div id="map"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a [routerLink]="['/scaperoom/:id']" style="text-decoration: none; color: inherit;"><app-exit-button></app-exit-button></a>

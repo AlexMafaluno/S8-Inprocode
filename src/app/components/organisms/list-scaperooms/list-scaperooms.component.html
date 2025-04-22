@@ -1,0 +1,25 @@
+
+<div class="container mt-4">
+        @if(listScapeRooms.length > 0){
+        <div class="parent">
+          @for(item of listScapeRooms;track item){
+            @if(item.type ==='logro'){
+              <app-achivement-item 
+              [card]="item"
+              ></app-achivement-item>
+            }@else{
+              <app-scaperoom-item
+                [card]="item" [routerLink]="['/scaperoom', item.id]"
+              ></app-scaperoom-item>
+            }
+          }@empty {
+            <p>No hay scapeRooms para mostrar</p>
+          }
+        </div>
+      }
+      </div>
+
+
+
+  
+ 
