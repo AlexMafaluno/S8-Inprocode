@@ -4,7 +4,7 @@ import { MapPageComponent } from './pages/map-page/map-page.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import { ListScaperoomsComponent } from './components/list-scaperooms/list-scaperooms.component';
 import { ScapeRoomCardComponent } from './components/scape-room-card/scape-room-card.component';
-import { ScaperoomsCollectionViewComponent } from './pages/scaperooms-collection-view/scaperooms-collection-view.component';
+import { ScaperoomsCollectionPageComponent } from './pages/scaperooms-collection-page/scaperooms-collection-page.component';
 import { ModalComponent } from './components/modal/modal.component';
 import { CallendarPageComponent } from './pages/callendar-page/callendar-page.component';
 import { ChartPageComponent } from './pages/chart-page/chart-page.component';
@@ -38,27 +38,28 @@ export const routes: Routes = [
         path: 'profile',
         children: [
           {
-            path:'',
-        canMatch: [AuthGuard],
-        loadComponent: () =>
-          import('./pages/profile-page/profile-page.component').then(
-            (m) => m.ProfilePageComponent
-          ),
-        },
-        {
-          path: 'charts',
-          loadComponent: () =>
-            import('./pages/chart-page/chart-page.component').then(
-              (m) => m.ChartPageComponent
-            ),
-        }
-        ]},
+            path: '',
+            canMatch: [AuthGuard],
+            loadComponent: () =>
+              import('./pages/profile-page/profile-page.component').then(
+                (m) => m.ProfilePageComponent
+              ),
+          },
+          {
+            path: 'charts',
+            loadComponent: () =>
+              import('./pages/chart-page/chart-page.component').then(
+                (m) => m.ChartPageComponent
+              ),
+          },
+        ],
+      },
       {
         path: 'scaperooms',
         loadComponent: () =>
           import(
-            './pages/scaperooms-collection-view/scaperooms-collection-view.component'
-          ).then((m) => m.ScaperoomsCollectionViewComponent),
+            './pages/scaperooms-collection-page/scaperooms-collection-page.component'
+          ).then((m) => m.ScaperoomsCollectionPageComponent),
       },
       {
         path: 'scaperoom/:id',
@@ -73,21 +74,23 @@ export const routes: Routes = [
           {
             path: 'map',
             loadComponent: () =>
-              import('./pages/map-page/map-page.component').then((m) => m.MapPageComponent),
+              import('./pages/map-page/map-page.component').then(
+                (m) => m.MapPageComponent
+              ),
           },
           {
             path: 'callendar',
             loadComponent: () =>
-              import('./pages/callendar-page/callendar-page.component').then(m => m.CallendarPageComponent)
-           
+              import('./pages/callendar-page/callendar-page.component').then(
+                (m) => m.CallendarPageComponent
+              ),
+
             // children: [{ path: 'add', component: ModalEventComponent }],
           },
         ],
       },
     ],
   },
-    
-
 
   // { path:'profile', component: ProfilePageComponent},
 
@@ -104,4 +107,3 @@ export const routes: Routes = [
 
   { path: '**', redirectTo: 'profile', pathMatch: 'full' },
 ];
-  
