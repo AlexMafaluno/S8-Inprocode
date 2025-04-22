@@ -3,7 +3,7 @@ import { AvatarPicComponent } from "../../components/atoms/avatar-pic/avatar-pic
 import { RouterModule } from '@angular/router';
 import { AddButtonComponent } from "../../components/atoms/add-button/add-button.component";
 import { CounterComponent } from "../../components/counter/counter.component";
-import { ListScaperoomsComponent } from "../../components/list-scaperooms/list-scaperooms.component";
+import { ListScaperoomsComponent } from "../../components/organisms/list-scaperooms/list-scaperooms.component";
 import { ScapeRoom } from '../../interfaces/scaperoom';
 import { ExitButtonComponent } from "../../components/atoms/exit-button/exit-button.component";
 import { LevelComponent } from "../../components/atoms/level/level.component";
