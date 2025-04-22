@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ListScaperoomsComponent } from '../../components/list-scaperooms/list-scaperooms.component';
+import { ListScaperoomsComponent } from '../../components/organisms/list-scaperooms/list-scaperooms.component';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { FilterComponent } from "../../components/filter/filter.component";
