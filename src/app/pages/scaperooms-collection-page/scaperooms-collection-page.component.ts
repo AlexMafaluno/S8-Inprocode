@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ListScaperoomsComponent } from '../../components/organisms/list-scaperooms/list-scaperooms.component';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../components/modal/modal.component';
-import { FilterPanelComponent } from "../../components/filter-panel/filter-panel.component";
+import { FilterPanelComponent } from "../../components/organisms/filter-panel/filter-panel.component";
 import { ScapeRoom, ScapeRoomItem } from '../../interfaces/scaperoom';
 import { Photo } from '../../interfaces/photo';
 import { ScaperoomFacadeService } from '../../services/scaperoom-facade.service';
