@@ -4,7 +4,7 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import * as L from 'leaflet'; // ✅ Importa Leaflet
 import { LocationService } from '../../services/location.service';
 import { Location } from '../../interfaces/location';
-import { DropdownButtomComponent } from "../../components/dropdown-buttom/dropdown-buttom.component";
+import { DropdownButtomComponent } from "../../components/molecules/dropdown-buttom/dropdown-buttom.component";
 import { ExitButtonComponent } from "../../components/atoms/exit-button/exit-button.component";
 
 @Component({
