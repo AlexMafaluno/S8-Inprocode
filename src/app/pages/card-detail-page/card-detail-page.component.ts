@@ -3,12 +3,12 @@ import { ScapeRoomCardComponent } from "../../components/scape-room-card/scape-r
 import { ScaperoomService } from '../../services/scaperoom.service';
 import { ActivatedRoute } from '@angular/router';
 import { ScapeRoom } from '../../interfaces/scaperoom';
-import { CardComponent } from "../../components/card/card.component";
+import { ScaperoomItemComponent } from "../../components/molecules/scaperoom-item/scaperoom-item.component";
 import { ScaperoomFacadeService } from '../../services/scaperoom-facade.service';
 
 @Component({
   selector: 'app-card-detail-page',
-  imports: [ScapeRoomCardComponent, CardComponent],
+  imports: [ScapeRoomCardComponent, ScaperoomItemComponent],
   templateUrl: './card-detail-page.component.html',
   styleUrl: './card-detail-page.component.scss'
 })
