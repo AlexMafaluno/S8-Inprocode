@@ -53,9 +53,10 @@ private loggingService = inject(LoggingService);
       .get<{ data: ScapeRoom }>(API_ENDPOINTS.getScaperoomById(id))
       .pipe(map((response) => response.data),
       catchError((err) => {
-        // Write the logic to log errors
-        console.error('Error fetching scape room:', err);
-        throw err; // Re-throw the error to propagate it
+        console.log('Error al cargar scaperoom con id', err)
+          const errorObj = createAppError(err);
+          this.loggingService.logError(errorObj);
+        throw throwError(() => err); // Re-throw the error to propagate it
       }));
   }
 
