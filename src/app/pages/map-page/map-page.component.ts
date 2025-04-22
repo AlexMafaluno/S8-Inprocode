@@ -4,12 +4,12 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 import * as L from 'leaflet'; // ✅ Importa Leaflet
 import { LocationService } from '../../services/location.service';
 import { Location } from '../../interfaces/location';
-import { DropdownButtomComponent } from "../../components/molecules/dropdown-buttom/dropdown-buttom.component";
 import { ExitButtonComponent } from "../../components/atoms/exit-button/exit-button.component";
+import { FilterPanelComponent } from "../../components/organisms/filter-panel/filter-panel.component";
 
 @Component({
   selector: 'app-map-page',
-  imports: [CommonModule, DropdownButtomComponent, ExitButtonComponent,RouterModule],
+  imports: [CommonModule, ExitButtonComponent, RouterModule, FilterPanelComponent],
   templateUrl: './map-page.component.html',
   styleUrls: ['./map-page.component.scss']
 })
@@ -23,7 +23,7 @@ export class MapPageComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     this.initMap();
     this.getlistLocations();
-    this.onGenreChange(this.selectedGenre);
+    this.onGenreSelected(this.selectedGenre);
   }
 
   private initMap(): void {
@@ -98,7 +98,7 @@ export class MapPageComponent implements AfterViewInit {
 
 }
 
-onGenreChange(genre:string){
+onGenreSelected(genre:string){
 
   if (genre === 'default') {
     return this.getlistLocations();

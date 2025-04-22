@@ -1,9 +1,7 @@
 <div class="container">
   <div class="row d-flex flex-column">
     <div class="col-12 d-flex justify-content-center my-3">
-      <app-dropdown-buttom
-        (genreSelected)="onGenreChange($event)"
-      ></app-dropdown-buttom>
+      <app-filter-panel (filteredGenre)="onGenreSelected($event)"></app-filter-panel>
     </div>
     <div class="col-xl-8 justify-content-center mx-auto">
       <div class="card text-center">
