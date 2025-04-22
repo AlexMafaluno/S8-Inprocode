@@ -8,9 +8,9 @@
               [card]="item"
               ></app-achivement-card>
             }@else{
-              <app-card
+              <app-scaperoom-item
                 [card]="item" [routerLink]="['/scaperoom', item.id]"
-              ></app-card>
+              ></app-scaperoom-item>
             }
           }@empty {
             <p>No hay scapeRooms para mostrar</p>
