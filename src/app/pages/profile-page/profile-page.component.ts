@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AvatarPicComponent } from "../../components/atoms/avatar-pic/avatar-pic.component";
 import { RouterModule } from '@angular/router';
 import { AddButtonComponent } from "../../components/atoms/add-button/add-button.component";
-import { CounterComponent } from "../../components/counter/counter.component";
+import { CounterComponent } from "../../components/atoms/counter/counter.component";
 import { ListScaperoomsComponent } from "../../components/organisms/list-scaperooms/list-scaperooms.component";
 import { ScapeRoom } from '../../interfaces/scaperoom';
 import { ExitButtonComponent } from "../../components/atoms/exit-button/exit-button.component";
