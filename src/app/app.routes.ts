@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
 import { HomeViewComponent } from './pages/home-view/home-view.component';
-import { MapComponent } from './pages/map/map.component';
+import { MapPageComponent } from './pages/map-page/map-page.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import { ListScaperoomsComponent } from './components/list-scaperooms/list-scaperooms.component';
 import { ScapeRoomCardComponent } from './components/scape-room-card/scape-room-card.component';
 import { ScaperoomsCollectionViewComponent } from './pages/scaperooms-collection-view/scaperooms-collection-view.component';
 import { ModalComponent } from './components/modal/modal.component';
-import { CallendarViewComponent } from './pages/callendar-view/callendar-view.component';
-import { ChartViewComponent } from './pages/chart-view/chart-view.component';
+import { CallendarPageComponent } from './pages/callendar-page/callendar-page.component';
+import { ChartPageComponent } from './pages/chart-page/chart-page.component';
 import { ModalEventComponent } from './components/modal-event/modal-event.component';
 import { CardDetailPageComponent } from './pages/card-detail-page/card-detail-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
@@ -36,12 +36,23 @@ export const routes: Routes = [
     children: [
       {
         path: 'profile',
+        children: [
+          {
+            path:'',
         canMatch: [AuthGuard],
         loadComponent: () =>
           import('./pages/profile-page/profile-page.component').then(
             (m) => m.ProfilePageComponent
           ),
-      },
+        },
+        {
+          path: 'charts',
+          loadComponent: () =>
+            import('./pages/chart-page/chart-page.component').then(
+              (m) => m.ChartPageComponent
+            ),
+        }
+        ]},
       {
         path: 'scaperooms',
         loadComponent: () =>
@@ -62,19 +73,21 @@ export const routes: Routes = [
           {
             path: 'map',
             loadComponent: () =>
-              import('./pages/map/map.component').then((m) => m.MapComponent),
+              import('./pages/map-page/map-page.component').then((m) => m.MapPageComponent),
           },
           {
-            path: 'charts',
+            path: 'callendar',
             loadComponent: () =>
-              import('./pages/chart-view/chart-view.component').then(
-                (m) => m.ChartViewComponent
-              ),
+              import('./pages/callendar-page/callendar-page.component').then(m => m.CallendarPageComponent)
+           
+            // children: [{ path: 'add', component: ModalEventComponent }],
           },
         ],
       },
     ],
   },
+    
+
 
   // { path:'profile', component: ProfilePageComponent},
 
@@ -85,9 +98,10 @@ export const routes: Routes = [
 
   {
     path: 'callendar',
-    component: CallendarViewComponent,
+    component: CallendarPageComponent,
     children: [{ path: 'add', component: ModalEventComponent }],
   },
 
   { path: '**', redirectTo: 'profile', pathMatch: 'full' },
 ];
+  
