@@ -35,6 +35,14 @@ getUid(): string | null {
 }
 
 
+// Este método es un ejemplo, ajusta según tu implementación de autenticación
+isUserAdmin(): boolean {
+  // Lógica para verificar si el usuario es admin
+  // Por ejemplo, mirando el rol del usuario almacenado en el localStorage o en el token
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  return user?.role === 'admin'; // Asegúrate de que el objeto de usuario tenga el campo 'role'
+}
+
 
   async login(email: string, password: string) {
     const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
