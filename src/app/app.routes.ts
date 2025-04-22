@@ -14,7 +14,7 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminCrudPageComponent } from './pages/admin-crud-page/admin-crud-page.component';
-import { AddEditScaperoomComponent } from './components/add-edit-scaperoom/add-edit-scaperoom.component';
+import { AddEditScaperoomComponent } from './components/atoms/add-edit-scaperoom/add-edit-scaperoom.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { LayoutComponent } from './Layouts/layout/layout.component';
 
