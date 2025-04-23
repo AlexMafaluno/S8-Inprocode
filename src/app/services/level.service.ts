@@ -58,7 +58,7 @@ private updateLevel() {
    // Mostrar el mensaje SOLO si es un nuevo threshold
    if (lastThreshold > this.lastThresholdReached) {
   this.toastrService.success(`Alcanzaste el nivel ${newLevel}`, 'Exito')
-  
+  this.lastThresholdReached = lastThreshold;
 }
 this.setLevel(newLevel);
 }
