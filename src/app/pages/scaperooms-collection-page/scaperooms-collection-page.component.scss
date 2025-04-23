@@ -4,3 +4,39 @@
     right: 1rem;
     z-index:1050;
 }
+
+.dynamic-strip {
+    height: 6px;
+    width: 100%;
+    background: linear-gradient(270deg, #ff6ec4, #7873f5, #4ade80);
+    background-size: 600% 600%;
+    animation: colorShift 5s ease infinite;
+    border-radius: 4px 4px 4px 4px;
+  }
+  
+  @keyframes colorShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .spinner {
+
+    position: fixed; /* o absolute, según tu layout */
+      bottom: 5rem; /* o top: 2rem; si lo querés arriba */
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%,-50%);
+      z-index: 9999; /* bien alto para estar por encima del contenido */
+    
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        color: inherit; /* o el color que quieras */
+      }
+      
+      .icon-button:focus {
+        outline: none;
+      }
