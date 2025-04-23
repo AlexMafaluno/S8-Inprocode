@@ -17,12 +17,13 @@ private toastrService = inject(ToastrService);
   private currentDivisionId = 0;
   divisions: Division[] = [
     { id: 1, name: 'Candado etereo', icon: '🌫️', threshold: 0 },
-    { id: 2, name: 'Candado de madera', icon: '🔒', threshold: 10 },
+    { id: 2, name: 'Candado de madera', icon: '🪵', threshold: 10 },
     { id: 3, name: 'Candado de bronce', icon: '🟤', threshold: 25 },
     { id: 4, name: 'Candado de plata', icon: '⚪', threshold: 50 },
-    { id: 5, name: 'Candado de oro', icon: '🟡', threshold: 75 },
-    { id: 6, name: 'Candado de diamante', icon: '💎', threshold: 99 },
-    { id: 7, name: 'Candado legendario', icon: '🔥', threshold: 149 }
+    { id: 5, name: 'Candado de oro', icon: '✈️', threshold: 75 },
+    { id: 6, name: 'Candado de cristal', icon: '🧩', threshold: 99 },
+    { id: 7, name: 'Candado de diamante', icon: '💎', threshold: 149 },
+    { id: 7, name: 'Candado legendario', icon: '🔱', threshold: 1000 }
   ]
 
   currentDivision = computed(() => {
