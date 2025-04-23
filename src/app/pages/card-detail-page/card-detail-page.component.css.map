@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"card-detail-page.component.css"}
+{"version":3,"sources":["card-detail-page.component.scss","card-detail-page.component.css"],"names":[],"mappings":"AAAA;EAEI,YAAA;ACAJ;ADEI;EAJJ;IAKM,aAAA;ECCJ;AACF","file":"card-detail-page.component.css"}
