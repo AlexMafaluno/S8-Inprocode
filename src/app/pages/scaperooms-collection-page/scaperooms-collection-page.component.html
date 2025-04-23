@@ -2,8 +2,11 @@
   <app-progress-spinner class="spinner"/>
   }
 
-<div class="title text-center p-4">
-  <h3>Mis fotos</h3>
+<div class="title d-flex align-items-center justify-content-between p-4">
+  <h3 class="m-0 w-100 text-center">Mis fotos</h3>
+ <div class="position-absolute end-0 me-4">
+  <app-modal-button></app-modal-button>
+</div>
 </div>
 
 <div class="dynamic-strip position-absolute top-5 start-0"></div>
@@ -33,3 +36,4 @@ class="scroll-container"
 
 <app-filter-button class="app-filter-button"></app-filter-button>
 <app-modal-filter   (sort)="sortBy($event)"></app-modal-filter>
+<app-division-modal></app-division-modal>
