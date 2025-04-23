@@ -37,22 +37,6 @@ ngOnInit(): void {
     if (fallbackRoom) this.selectedCard = fallbackRoom;
   });
   }
-  //   const userId = 359; 
-  
-  // this.scaperoomFacadeService.getScapeRoomWithPotos(userId).subscribe((scapeRooms) => {
-  //   const scaperoom = scapeRooms.find(room => room.id === id);
-  //   if (scaperoom) {
-  //     this.selectedCard = scaperoom;
-  //     console.log("ScapeRoom con foto:", this.selectedCard);
-  //   } else {
-  //     console.warn(`No se encontró un scaperoom con id ${id}`);
-  //   }
-  // });
-  /*
-  this.scaperoomService.getScapeRoom(id).subscribe((scaperoom) => {
-    console.log("ScapeRoom recibido:", scaperoom);
-    this.selectedCard = scaperoom;
-  })
-    */
+
 }
 }
