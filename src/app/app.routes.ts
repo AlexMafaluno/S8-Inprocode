@@ -1,21 +1,10 @@
 import { Routes } from '@angular/router';
-import { HomeViewComponent } from './pages/home-view/home-view.component';
-import { MapPageComponent } from './pages/map-page/map-page.component';
-import { ChartsComponent } from './components/charts/charts.component';
-import { ListScaperoomsComponent } from './components/organisms/list-scaperooms/list-scaperooms.component';
-// import { ScaperoomDetailComponent } from './components/scaperoom-detail/scaperoom-detail.component';
-import { ScaperoomsCollectionPageComponent } from './pages/scaperooms-collection-page/scaperooms-collection-page.component';
-import { ModalComponent } from './components/modal/modal.component';
-import { CallendarPageComponent } from './pages/callendar-page/callendar-page.component';
-import { ChartPageComponent } from './pages/chart-page/chart-page.component';
-import { ModalEventComponent } from './components/modal-event/modal-event.component';
-import { CardDetailPageComponent } from './pages/card-detail-page/card-detail-page.component';
+import { ModalEventComponent } from './components/organisms/modal-event/modal-event.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminCrudPageComponent } from './pages/admin-crud-page/admin-crud-page.component';
 import { AddEditScaperoomComponent } from './components/atoms/add-edit-scaperoom/add-edit-scaperoom.component';
-import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { LayoutComponent } from './Layouts/layout/layout.component';
 import { adminGuard } from './shared/guards/admin.guard';
 
