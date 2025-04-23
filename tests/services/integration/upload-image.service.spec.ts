@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { UploadImageService } from '../../src/app/services/upload-image.service';
+
 import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
+import { UploadImageService } from '../../../src/app/services/integration/upload-image.service';
 
 describe('UploadImageService', () => {
   let service: UploadImageService;

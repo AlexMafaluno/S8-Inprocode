@@ -1,10 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { ScaperoomService } from '../../src/app/services/scaperoom.service';
-import { provideHttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
-import { API_ENDPOINTS } from '../../src/app/config/url';
-import { ScapeRoom } from '../../src/app/interfaces/scaperoom';
+import { API_ENDPOINTS } from '../../../src/app/config/url';
+import { ScapeRoom } from '../../../src/app/interfaces/scaperoom';
+import { ScaperoomService } from '../../../src/app/services/integration/scaperoom.service';
 
 describe('ScaperoomService', () => {
   let service: ScaperoomService;
