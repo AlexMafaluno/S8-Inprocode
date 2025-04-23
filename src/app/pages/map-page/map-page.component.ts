@@ -39,7 +39,7 @@ export class MapPageComponent implements AfterViewInit {
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(this.map);
 
-    L.marker([41.4667, 2.2803]).addTo(this.map);
+    // L.marker([41.4667, 2.2803]).addTo(this.map);
 
     this.map.on('click', (event: L.LeafletMouseEvent) => {
       if (this.marker) {
