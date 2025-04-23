@@ -1,70 +1,50 @@
-import { Injectable } from '@angular/core';
+import { effect, inject, Injectable } from '@angular/core';
+import { Achievement } from '../interfaces/achievement';
+import { CounterService } from './counter.service';
+import { NotificationService } from './notification.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AchivementsService {
 
+  private counterService= inject(CounterService);
+  private notificationService= inject(NotificationService);
   getAchivements(){
-    return this.achivements;
+    return this.achivementsReached;
   }
-  achivements: {
-    id: number;
-    description: string;
-    type: 'logro';
-    hidden?: boolean;
-    revealedDescription?: string;
-  }[] = [
-    { id: 1, description: 'jugar 10 scape rooms', type: 'logro' },
-    { id: 2, description: 'jugar 30 scape rooms', type: 'logro' },
-    { id: 3, description: 'jugar 50 scape rooms', type: 'logro' },
-    { id: 4, description: 'jugar tu primer escape room', type: 'logro' },
-    { id: 5, description: 'jugar en 3 temáticas distintas', type: 'logro' },
-    { id: 6, description: 'jugar una room de terror', type: 'logro' },
-    {
-      id: 7,
-      description: 'jugar una room cada día por una semana',
-      type: 'logro',
-    },
-    { id: 8, description: 'jugar 3 rooms en un solo día', type: 'logro' },
-    {
-      id: 21,
-      description: '???', // Se revela cuando se desbloquea
-      type: 'logro',
-      hidden: true,
-      revealedDescription: 'Encontraste un easter egg en una escape room',
-    },
-    {
-      id: 22,
-      description: '???',
-      type: 'logro',
-      hidden: true,
-      revealedDescription:
-        'Intentaste abrir una puerta con el código 1234 (malísimo intento)',
-    },
-    {
-      id: 23,
-      description: '???',
-      type: 'logro',
-      hidden: true,
-      revealedDescription:
-        'Estuviste más de 5 minutos mirando un objeto sin interactuar',
-    },
-    {
-      id: 24,
-      description: '???',
-      type: 'logro',
-      hidden: true,
-      revealedDescription: 'Repetiste la misma acción errónea 5 veces seguidas',
-    },
-    {
-      id: 25,
-      description: '???',
-      type: 'logro',
-      hidden: true,
-      revealedDescription:
-        'Completaste una escape room exactamente en 00:00:00 (perfect timing!)',
-    },
+  achivementsReached: Achievement[]=[];
+  public achivements: Achievement[] =[ 
+    { id: 1, description: 'jugar tu primer escape room', icon:'assets/images/achivements/trophy_8.png', type: 'logro',threshold: 1 },
+    { id: 2, description: 'jugar 10 scape rooms', icon:'assets/images/achivements/trophy_1.png', type: 'logro', threshold: 10 },
+    { id: 3, description: 'jugar 30 scape rooms', icon:'assets/images/achivements/trophy_2.png', type: 'logro',threshold: 30 },
+    { id: 4, description: 'jugar 50 scape rooms', icon:'assets/images/achivements/trophy_3.png', type: 'logro',threshold: 50 },
+    { id: 5, description: 'jugar 50 scape rooms', icon:'assets/images/achivements/trophy_7.png', type: 'logro',threshold: 100 },
+    { id: 6, description: 'jugar en 3 temáticas distintas', icon:'assets/images/achivements/trophy_5.png', type: 'logro'},
+    { id: 7, description: 'jugar una room de terror', icon:'assets/images/achivements/trophy_6.png', type: 'logro'}
   ];
-  constructor() {}
+
+  addAchievement(){
+    let counter = this.counterService.count();
+    console.log(counter);
+    this.achivements.forEach(achievement => {
+      if (
+        achievement.threshold !== undefined &&                   // Si tiene umbral
+        counter >= achievement.threshold &&                      // Si el contador ha alcanzado ese umbral
+        !this.achivementsReached.some(a => a.id === achievement.id) // Si aún no ha sido añadido
+      ) {
+        this.achivementsReached.push(achievement);
+        this.notificationService.success('Enhorabuena! Logro desbloqueado', 'LOGRO')
+        console.log('🎉 Logro desbloqueado:', achievement.description);
+      }
+    });
+    
+  }
+  
+  constructor() {
+    effect(() => {
+      const count = this.counterService.count();
+      this.addAchievement(); // Evalúa y agrega si toca
+    });
+  }
 }
