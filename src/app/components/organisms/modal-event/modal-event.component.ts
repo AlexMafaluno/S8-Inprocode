@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { Event } from '../../../interfaces/event';
-import { EventsService } from '../../../services/events.service';
+import { EventsService } from '../../../services/integration/events.service';
 @Component({
   selector: 'app-modal-event',
   imports: [CommonModule, ReactiveFormsModule, RouterModule, FormsModule],

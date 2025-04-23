@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, inject } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import * as L from 'leaflet'; // ✅ Importa Leaflet
-import { LocationService } from '../../services/location.service';
+
 import { Location } from '../../interfaces/location';
 import { ExitButtonComponent } from "../../components/atoms/exit-button/exit-button.component";
 import { FilterPanelComponent } from "../../components/organisms/filter-panel/filter-panel.component";
+import { LocationService } from '../../services/integration/location.service';
 
 @Component({
   selector: 'app-map-page',

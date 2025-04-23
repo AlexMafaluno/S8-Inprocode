@@ -7,7 +7,7 @@ import {
 import { CalendarOptions } from '@fullcalendar/core/index.js';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import { EventsService } from '../../services/events.service';
+import { EventsService } from '../../services/integration/events.service';
 import esLocale from '@fullcalendar/core/locales/es';
 import { EventItem, Event } from '../../interfaces/event';
 import { ModalEventComponent } from "../organisms/modal-event/modal-event.component";
