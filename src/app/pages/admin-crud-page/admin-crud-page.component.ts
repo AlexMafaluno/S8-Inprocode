@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ListCrudComponent } from "../../components/organisms/list-crud/list-crud.component";
 import { ScapeRoom } from '../../interfaces/scaperoom';
 import { RouterModule } from '@angular/router';
-import { ScaperoomService } from '../../services/scaperoom.service';
+import { ScaperoomService } from '../../services/integration/scaperoom.service';
 
 @Component({
   selector: 'app-admin-crud-page',

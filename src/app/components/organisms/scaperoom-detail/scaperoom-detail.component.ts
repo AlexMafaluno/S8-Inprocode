@@ -7,12 +7,12 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { catchError, EMPTY, throwError } from 'rxjs';
 
 import { ExitButtonComponent } from '../../atoms/exit-button/exit-button.component';
-import { LevelService } from '../../../services/level.service';
+import { LevelService } from '../../../services/business/level.service';
 import { NotificationService } from '../../../services/notification.service';
 import { Photo } from '../../../interfaces/photo';
-import { CounterService } from '../../../services/counter.service';
-import { PhotoService } from '../../../services/photo.service';
-import { UploadImageService } from '../../../services/upload-image.service';
+import { CounterService } from '../../../services/business/counter.service';
+import { PhotoService } from '../../../services/integration/photo.service';
+import { UploadImageService } from '../../../services/integration/upload-image.service';
 import { ScapeRoom, ScapeRoomItem } from '../../../interfaces/scaperoom';
 import { FileInputComponent } from "../../atoms/file-input/file-input.component";
 import { FileUploadComponent } from "../../molecules/file-upload/file-upload.component";

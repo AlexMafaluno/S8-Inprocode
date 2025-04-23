@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { ScaperoomService } from '../../../services/scaperoom.service';
+import { ScaperoomService } from '../../../services/integration/scaperoom.service';
 import { ToastrService } from 'ngx-toastr';
 import { ScapeRoom } from '../../../interfaces/scaperoom';
 import { CommonModule } from '@angular/common';

@@ -4,22 +4,23 @@ import { CommonModule } from '@angular/common';
 import { FilterPanelComponent } from "../../components/organisms/filter-panel/filter-panel.component";
 import { ScapeRoom, ScapeRoomItem } from '../../interfaces/scaperoom';
 import { Photo } from '../../interfaces/photo';
-import { ScaperoomFacadeService } from '../../services/scaperoom-facade.service';
+import { ScaperoomFacadeService } from '../../services/business/scaperoom-facade.service';
 import { ProgressSpinnerComponent } from "../../components/atoms/progress-spinner/progress-spinner.component";
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { catchError, EMPTY, of, throwError } from 'rxjs';
-import { PhotoService } from '../../services/photo.service';
-import { CounterService } from '../../services/counter.service';
+import { PhotoService } from '../../services/integration/photo.service';
+import { CounterService } from '../../services/business/counter.service';
 import { UserStatsComponent } from "../../components/organisms/user-stats/user-stats.component";
 import { FilterButtonComponent } from "../../components/atoms/filter-button/filter-button.component";
 import { ModalFilterComponent } from "../../components/organisms/modal-filter/modal-filter.component";
-import { FilterService } from '../../services/filter.service';
+import { FilterService } from '../../services/business/filter.service';
 import { ModalButtonComponent } from "../../components/atoms/modal-button/modal-button.component";
 import { DivisionModalComponent } from "../../components/organisms/division-modal/division-modal.component";
+import { OffcanvasTogglePanelComponent } from "../../components/molecules/offcanvas-toggle-panel/offcanvas-toggle-panel.component";
 
 @Component({
   selector: 'app-scaperooms-collection-page',
-  imports: [ListScaperoomsComponent, CommonModule, FilterPanelComponent, InfiniteScrollDirective, ProgressSpinnerComponent, UserStatsComponent, FilterButtonComponent, ModalFilterComponent, ModalButtonComponent, DivisionModalComponent],
+  imports: [ListScaperoomsComponent, CommonModule, FilterPanelComponent, InfiniteScrollDirective, ProgressSpinnerComponent, UserStatsComponent, FilterButtonComponent, ModalFilterComponent, ModalButtonComponent, DivisionModalComponent, OffcanvasTogglePanelComponent],
   templateUrl: './scaperooms-collection-page.component.html',
   styleUrl: './scaperooms-collection-page.component.scss'
 })

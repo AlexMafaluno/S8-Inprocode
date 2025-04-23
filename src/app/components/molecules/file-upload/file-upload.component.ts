@@ -1,7 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { NotificationService } from '../../../services/notification.service';
-import { PhotoService } from '../../../services/photo.service';
-import { LevelService } from '../../../services/level.service';
+import { PhotoService } from '../../../services/integration/photo.service';
+import { LevelService } from '../../../services/business/level.service';
 import { Router } from '@angular/router';
 import { catchError, EMPTY } from 'rxjs';
 import { FileInputComponent } from "../../atoms/file-input/file-input.component";

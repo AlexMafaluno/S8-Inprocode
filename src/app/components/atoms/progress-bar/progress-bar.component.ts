@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { LevelService } from '../../../services/level.service';
+import { LevelService } from '../../../services/business/level.service';
 
 @Component({
   selector: 'app-progress-bar',

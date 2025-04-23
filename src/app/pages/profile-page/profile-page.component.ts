@@ -8,10 +8,10 @@ import { ScapeRoom } from '../../interfaces/scaperoom';
 import { ExitButtonComponent } from "../../components/atoms/exit-button/exit-button.component";
 import { LevelComponent } from "../../components/atoms/level/level.component";
 import { UserBadgeComponent } from "../../components/organisms/user-badge/user-badge.component";
-import { LevelService } from '../../services/level.service';
+import { LevelService } from '../../services/business/level.service';
 import { ExperienceComponent } from "../../components/atoms/experience/experience.component";
-import { AchivementsService } from '../../services/achivements.service';
-import { CounterService } from '../../services/counter.service';
+import { AchivementsService } from '../../services/business/achivements.service';
+import { CounterService } from '../../services/business/counter.service';
 import { UserStatsComponent } from "../../components/organisms/user-stats/user-stats.component";
 
 @Component({

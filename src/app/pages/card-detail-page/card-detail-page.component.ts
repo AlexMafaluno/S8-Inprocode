@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ScaperoomService } from '../../services/scaperoom.service';
+import { ScaperoomService } from '../../services/integration/scaperoom.service';
 import { ActivatedRoute } from '@angular/router';
 import { ScapeRoom } from '../../interfaces/scaperoom';
 import { ScaperoomItemComponent } from "../../components/molecules/scaperoom-item/scaperoom-item.component";
-import { ScaperoomFacadeService } from '../../services/scaperoom-facade.service';
+import { ScaperoomFacadeService } from '../../services/business/scaperoom-facade.service';
 import { ScaperoomDetailComponent } from '../../components/organisms/scaperoom-detail/scaperoom-detail.component';
 
 @Component({

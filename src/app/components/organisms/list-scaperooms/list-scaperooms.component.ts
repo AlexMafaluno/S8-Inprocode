@@ -6,7 +6,7 @@ import { ScaperoomItemComponent } from "../../molecules/scaperoom-item/scaperoom
 import { Photo } from '../../../interfaces/photo';
 import { AchivementItemComponent } from "../../molecules/achivement-item/achivement-item.component";
 import { ModalFilterComponent } from "../modal-filter/modal-filter.component";
-import { FilterService } from '../../../services/filter.service';
+import { FilterService } from '../../../services/business/filter.service';
 
 @Component({
   selector: 'app-list-scaperooms',

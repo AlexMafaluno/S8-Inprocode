@@ -2,7 +2,7 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { AddButtonComponent } from "../../atoms/add-button/add-button.component";
 import { CounterComponent } from "../../atoms/counter/counter.component";
 import { DropdownButtomComponent } from "../../molecules/dropdown-buttom/dropdown-buttom.component";
-import { ScaperoomService } from '../../../services/scaperoom.service';
+import { ScaperoomService } from '../../../services/integration/scaperoom.service';
 import { ScapeRoom } from '../../../interfaces/scaperoom';
 
 @Component({

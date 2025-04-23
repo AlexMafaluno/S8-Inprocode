@@ -5,7 +5,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 
 import { ToastrService } from 'ngx-toastr';
-import { ScaperoomService } from '../../../services/scaperoom.service';
+import { ScaperoomService } from '../../../services/integration/scaperoom.service';
 import { ProgressSpinnerComponent } from '../../atoms/progress-spinner/progress-spinner.component';
 import { ScapeRoom } from '../../../interfaces/scaperoom';
 

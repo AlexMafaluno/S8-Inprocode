@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FullcalendarComponent } from "../../components/fullcalendar/fullcalendar.component";
+import { FullcalendarComponent } from "../../components/molecules/fullcalendar/fullcalendar.component";
 import { ModalEventComponent } from "../../components/organisms/modal-event/modal-event.component";
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
