@@ -24,7 +24,7 @@ export class PhotoService {
               const errorObj = createAppError(err);
               this.loggingService.logError(errorObj);
               console.error('Error fetching photos:', err);
-              return throwError(() => err); // Re-throw the error to propagate it
+              return throwError(() => new Error(err?.error?.message || 'Error al obtener fotos')); //Se pasaa como Error
             }));
 }
 
