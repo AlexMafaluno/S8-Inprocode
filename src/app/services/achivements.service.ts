@@ -10,9 +10,7 @@ export class AchivementsService {
 
   private counterService= inject(CounterService);
   private notificationService= inject(NotificationService);
-  getAchivements(){
-    return this.achivementsReached;
-  }
+  
   achivementsReached: Achievement[]=[];
   public achivements: Achievement[] =[ 
     { id: 1, description: 'jugar tu primer escape room', icon:'assets/images/achivements/trophy_8.png', type: 'logro',threshold: 1 },
@@ -24,6 +22,12 @@ export class AchivementsService {
     { id: 7, description: 'jugar una room de terror', icon:'assets/images/achivements/trophy_6.png', type: 'logro'}
   ];
 
+
+  getAchivements(){
+    return this.achivementsReached;
+  }
+
+  
   addAchievement(){
     let counter = this.counterService.count();
     console.log(counter);
