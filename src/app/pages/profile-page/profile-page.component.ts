@@ -12,10 +12,11 @@ import { LevelService } from '../../services/level.service';
 import { ExperienceComponent } from "../../components/atoms/experience/experience.component";
 import { AchivementsService } from '../../services/achivements.service';
 import { CounterService } from '../../services/counter.service';
+import { UserStatsComponent } from "../../components/organisms/user-stats/user-stats.component";
 
 @Component({
   selector: 'app-profile-page',
-  imports: [RouterModule, CounterComponent, ListScaperoomsComponent, ExitButtonComponent, UserBadgeComponent, ExperienceComponent],
+  imports: [RouterModule, CounterComponent, ListScaperoomsComponent, ExitButtonComponent, UserBadgeComponent, ExperienceComponent, UserStatsComponent],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss'
 })
@@ -28,21 +29,21 @@ achivements: any = [];
 ngOnInit(): void {
   this.achivements = this.achivementsService.getAchivements();
 }
-gainExperience(value: number){
- this.levelService.gainExperience(value);
+// gainExperience(value: number){
+//  this.levelService.gainExperience(value);
 
-}
-onResetProgreso(){
-  if(confirm('¿Estás seguro de que quieres borrar el progreso?')){
-  this.counterService.reset();
-}
-}
+// }
+// onResetProgreso(){
+//   if(confirm('¿Estás seguro de que quieres borrar el progreso?')){
+//   this.counterService.reset();
+// }
+// }
 
-get count() {
-  return this.counterService.count; // Signal<number>
-}
+// get count() {
+//   return this.counterService.count; // Signal<number>
+// }
 
-get experience(){
-  return this.levelService.exp;
-}
+// get experience(){
+//   return this.levelService.exp;
+// }
 }
