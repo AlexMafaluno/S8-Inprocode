@@ -1,8 +1,12 @@
 <div class="card shadow content text-center">
-    <div class="title">
-        <h1>{{card.id}}</h1>
-    </div>
-    <div class="card-content">
-        <app-progress-bar/>
-    </div>
+  <img
+    [src]="card.icon"
+    alt="Icono del logro"
+    class="card-image"
+  />
+  <div class="card-body content">
+    <h5 class="card-title mb-2">ID: {{ card.id}}</h5>
+    <!-- Si querés más contenido como texto o botones -->
+    <p class="card-text"><strong>{{card.description}}</strong></p>
+  </div>
   </div>

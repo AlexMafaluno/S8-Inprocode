@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files *//*# sourceMappingURL=styles.css.map */
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle, rgb(245, 245, 245) 0%, rgb(225, 234, 237) 65%, rgb(255, 240, 240) 100%);
+  font-family: Arial, sans-serif; /* opcional: fuente */
+}/*# sourceMappingURL=styles.css.map */

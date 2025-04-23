@@ -1,25 +1,19 @@
 <div class="card-detail-container">
   <div class="card-detail">
 
-    <!-- <app-image [src]="card.imageUrl || 'assets/images/default-image.png'"></app-image> -->
     <p>Nº00{{card.id}}</p>
     <h1>{{card.title}}</h1>
     <h4>{{card.director}}</h4>
 
-    <div>
-      <input type="file" (change)="onFileSelected($event)">
-      <button (click)="onUpload(card.id)">Subir imagen</button>
-    </div>
+    <app-file-upload [cardId]="card.id" (uploadSuccess)="increaseCounter()"></app-file-upload>
+
     @if(!!errorMessage){
       <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
     }
   
-    <!-- <div class="card-actions">
-    <input type="checkbox" class="btn-check" id="btn-check-outlined" autocomplete="off">
-    <label class="btn btn-outline-primary" for="btn-check-outlined">Hecho</label><br> -->
-    <div class="pluggins">
+    <div class="d-flex justify-content-center gap-5">
     <button type="button" class="btn btn-primary" [routerLink]="['/scaperoom', card.id, 'map']"><i class="bi bi-geo-alt fs-4"></i></button>
-    <button type="button" class="btn btn-primary" routerLink="/callendar"><i class="bi bi-calendar fs-4"></i></button>
+    <button type="button" class="btn btn-primary" [routerLink]="['/scaperoom', card.id,'callendar']"><i class="bi bi-calendar fs-4"></i></button>
   </div>
     <a [routerLink]="['/scaperooms']" style="text-decoration: none; color: inherit;"><app-exit-button></app-exit-button></a>
   </div>

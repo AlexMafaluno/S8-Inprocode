@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"profile-page.component.css"}
+{"version":3,"sources":["profile-page.component.scss","profile-page.component.css"],"names":[],"mappings":"AAAA;EACI,eAAA;EACA,YAAA;EACA,aAAA;ACCJ","file":"profile-page.component.css"}

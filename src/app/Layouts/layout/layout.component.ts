@@ -3,10 +3,11 @@ import { Router, RouterModule } from '@angular/router';
 import { NavbarComponent } from "../../components/organisms/navbar/navbar.component";
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OffcanvasTogglePanelComponent } from "../../components/molecules/offcanvas-toggle-panel/offcanvas-toggle-panel.component";
 
 @Component({
   selector: 'app-layout',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule,RouterModule, NavbarComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, NavbarComponent, OffcanvasTogglePanelComponent],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })

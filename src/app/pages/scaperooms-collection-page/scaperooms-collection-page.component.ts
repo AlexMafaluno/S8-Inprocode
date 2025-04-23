@@ -1,24 +1,26 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ListScaperoomsComponent } from '../../components/organisms/list-scaperooms/list-scaperooms.component';
 import { CommonModule } from '@angular/common';
-import { ModalComponent } from '../../components/modal/modal.component';
 import { FilterPanelComponent } from "../../components/organisms/filter-panel/filter-panel.component";
 import { ScapeRoom, ScapeRoomItem } from '../../interfaces/scaperoom';
 import { Photo } from '../../interfaces/photo';
-import { ScaperoomFacadeService } from '../../services/scaperoom-facade.service';
+import { ScaperoomFacadeService } from '../../services/business/scaperoom-facade.service';
 import { ProgressSpinnerComponent } from "../../components/atoms/progress-spinner/progress-spinner.component";
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { catchError, EMPTY, of, throwError } from 'rxjs';
-import { PhotoService } from '../../services/photo.service';
-import { CounterService } from '../../services/counter.service';
+import { PhotoService } from '../../services/integration/photo.service';
+import { CounterService } from '../../services/business/counter.service';
 import { UserStatsComponent } from "../../components/organisms/user-stats/user-stats.component";
 import { FilterButtonComponent } from "../../components/atoms/filter-button/filter-button.component";
-import { ModalFilterComponent } from "../../components/modal-filter/modal-filter.component";
-import { FilterService } from '../../services/filter.service';
+import { ModalFilterComponent } from "../../components/organisms/modal-filter/modal-filter.component";
+import { FilterService } from '../../services/business/filter.service';
+import { ModalButtonComponent } from "../../components/atoms/modal-button/modal-button.component";
+import { DivisionModalComponent } from "../../components/organisms/division-modal/division-modal.component";
+import { OffcanvasTogglePanelComponent } from "../../components/molecules/offcanvas-toggle-panel/offcanvas-toggle-panel.component";
 
 @Component({
   selector: 'app-scaperooms-collection-page',
-  imports: [ListScaperoomsComponent, CommonModule,FilterPanelComponent, InfiniteScrollDirective, ProgressSpinnerComponent, UserStatsComponent, FilterButtonComponent, ModalFilterComponent],
+  imports: [ListScaperoomsComponent, CommonModule, FilterPanelComponent, InfiniteScrollDirective, ProgressSpinnerComponent, UserStatsComponent, FilterButtonComponent, ModalFilterComponent, ModalButtonComponent, DivisionModalComponent, OffcanvasTogglePanelComponent],
   templateUrl: './scaperooms-collection-page.component.html',
   styleUrl: './scaperooms-collection-page.component.scss'
 })
@@ -51,16 +53,14 @@ loadScapeRooms(userId: number): void {
   if(this.loading || !this.hasMore) return;
 
     this.loading = true;
-    this.scaperoomFacade.getScapeRoomWithPotos(userId, this.page)
-    // .pipe(
-    //   catchError((errorMessage) => {
-    //     console.log('Error desde el componente padre');
-    //     this.errorMessage = errorMessage;
-    //     this.loading = false;
-    //     return EMPTY;
-    //     // return throwError(() => errorMessage);
-    //   }))
+    this.scaperoomFacade.getScapeRoomWithPotos(userId, this.page).pipe(
+      catchError((err) => {
+        this.errorMessage = err.message;
+        this.loading = false; 
+        return EMPTY;
+      }))
       .subscribe({
+      
       next: (res: ScapeRoom[]) => {
         this.scaperoomFacade.addScapeRooms(res);
         this.listScapeRooms = this.scaperoomFacade.scapeRooms();
@@ -68,12 +68,6 @@ loadScapeRooms(userId: number): void {
         this.hasMore = res.length > 0; // Adjust logic if pagination is needed
         this.page++;
         console.log('Cargando página:', this.listScapeRooms);
-        this.loading = false;
-      },
-      error: (err) => {
-        console.error('Error al cargar los scaperooms con fotos:', err);
-        this.listScapeRooms = [];
-        this.errorMessage = err;
         this.loading = false;
       }
     });

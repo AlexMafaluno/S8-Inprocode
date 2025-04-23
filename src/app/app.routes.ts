@@ -1,24 +1,18 @@
 import { Routes } from '@angular/router';
-import { HomeViewComponent } from './pages/home-view/home-view.component';
-import { MapPageComponent } from './pages/map-page/map-page.component';
-import { ChartsComponent } from './components/charts/charts.component';
-import { ListScaperoomsComponent } from './components/organisms/list-scaperooms/list-scaperooms.component';
-// import { ScaperoomDetailComponent } from './components/scaperoom-detail/scaperoom-detail.component';
-import { ScaperoomsCollectionPageComponent } from './pages/scaperooms-collection-page/scaperooms-collection-page.component';
-import { ModalComponent } from './components/modal/modal.component';
-import { CallendarPageComponent } from './pages/callendar-page/callendar-page.component';
-import { ChartPageComponent } from './pages/chart-page/chart-page.component';
-import { ModalEventComponent } from './components/modal-event/modal-event.component';
-import { CardDetailPageComponent } from './pages/card-detail-page/card-detail-page.component';
+import { ModalEventComponent } from './components/organisms/modal-event/modal-event.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RegisterPageComponent } from './pages/register-page/register-page.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { AdminCrudPageComponent } from './pages/admin-crud-page/admin-crud-page.component';
 import { AddEditScaperoomComponent } from './components/atoms/add-edit-scaperoom/add-edit-scaperoom.component';
-import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { LayoutComponent } from './Layouts/layout/layout.component';
+import { adminGuard } from './shared/guards/admin.guard';
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 
 export const routes: Routes = [
+
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+  { path: 'welcome', component: WelcomePageComponent },
   { path: '', pathMatch: 'full', redirectTo: '/login' },
 
   //Rutas de auth
@@ -84,26 +78,23 @@ export const routes: Routes = [
               import('./pages/callendar-page/callendar-page.component').then(
                 (m) => m.CallendarPageComponent
               ),
-
-            // children: [{ path: 'add', component: ModalEventComponent }],
+            children: [{ path: 'callendar/add', component: ModalEventComponent }],
           },
         ],
       },
     ],
   },
 
-  // { path:'profile', component: ProfilePageComponent},
-
   //admin
-  { path: 'crud', component: AdminCrudPageComponent },
+  { path: 'crud', component: AdminCrudPageComponent},
   { path: 'crud/add', component: AddEditScaperoomComponent },
   { path: 'crud/edit/:id', component: AddEditScaperoomComponent },
 
-  {
-    path: 'callendar',
-    component: CallendarPageComponent,
-    children: [{ path: 'add', component: ModalEventComponent }],
-  },
+  // {
+  //   path: 'callendar',
+  //   component: CallendarPageComponent,
+  //   children: [{ path: 'add', component: ModalEventComponent }],
+  // },
 
   { path: '**', redirectTo: 'profile', pathMatch: 'full' },
 ];

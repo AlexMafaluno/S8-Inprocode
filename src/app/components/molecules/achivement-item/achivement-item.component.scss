@@ -1,7 +1,8 @@
 .card {
     position: relative; /* Para que los elementos internos se posicionen respecto a este */
     width: 100%; /* Hace que el ancho de .card sea flexible */
-    height: 500px; /* Ajusta la altura automáticamente según el contenido */
+    height: 200px; /* Ajusta la altura automáticamente según el contenido */
+    max-width: 400px; /* Máximo ancho para las tarjetas en pantallas grandes */
     //max-width: 300px;
   overflow: hidden; /* Evita que la imagen sobresalga */
   border-radius: 10px; /* Opcional: bordes redondeados */
@@ -11,29 +12,33 @@
   justify-content: center;
   }
 
-// .card-image {
-//     position: absolute; 
-//     top: 0;
-//     left: 0;  
-//     width: 100%;
-//     height: 100%;
-//     object-fit: cover; /* Mantiene la imagen proporcional y ajustada al tamaño del contenedor */
-//     z-index: 0; /* Asegura que quede en el fondo */
-//   }
+.card-image {
+    position: absolute; 
+    top: 0;
+    left: 0;  
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantiene la imagen proporcional y ajustada al tamaño del contenedor */
+    z-index: 0; /* Asegura que quede en el fondo */
+  }
 
-  .content {
-    position: relative; /* Para que quede encima de la imagen */
-    z-index: 1; /* Superior a la imagen */
-    background: rgba(215, 215, 215, 0.6); /* Fondo oscuro semitransparente */
-    color: #9f9f9f; /* Texto en color blanco */
-    padding: 20px;
-    border-radius: 10px; /* Opcional: bordes redondeados */
+  
+.card-body.content {
+  position: relative;
+  z-index: 1;
+  background: rgba(215, 215, 215, 0.6);
+  color: #333;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
   }
 
   @media (max-width: 768px) {
-    // .card {
-    //   width: calc(50% - 8px); /* Ajusta a 2 columnas en pantallas medianas */
-    // }
   }
   
   @media (max-width: 480px) {

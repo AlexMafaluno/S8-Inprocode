@@ -1,1 +1,5 @@
-/*# sourceMappingURL=profile-page.component.css.map */
+.app-exit-button {
+  position: fixed;
+  bottom: 5rem;
+  z-index: 1050;
+}/*# sourceMappingURL=profile-page.component.css.map */

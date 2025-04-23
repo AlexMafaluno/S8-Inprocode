@@ -5,7 +5,7 @@ import { AddButtonComponent } from "../../atoms/add-button/add-button.component"
 import { EditButtonComponent } from "../../atoms/edit-button/edit-button.component";
 import { DeleteButtonComponent } from "../../atoms/delete-button/delete-button.component";
 import { RouterModule } from '@angular/router';
-import { ScaperoomService } from '../../../services/scaperoom.service';
+import { ScaperoomService } from '../../../services/integration/scaperoom.service';
 
 @Component({
   selector: 'app-list-crud',

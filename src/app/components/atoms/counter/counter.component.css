@@ -1,1 +1,4 @@
-/*# sourceMappingURL=counter.component.css.map */
+.counter {
+  display: flex; /* Alinea los elementos en una fila */
+  align-items: center; /* Alinea verticalmente en el centro */
+}/*# sourceMappingURL=counter.component.css.map */

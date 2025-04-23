@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, inject } from '@angular/core';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import * as L from 'leaflet'; // ✅ Importa Leaflet
-import { LocationService } from '../../services/location.service';
+
 import { Location } from '../../interfaces/location';
 import { ExitButtonComponent } from "../../components/atoms/exit-button/exit-button.component";
 import { FilterPanelComponent } from "../../components/organisms/filter-panel/filter-panel.component";
+import { LocationService } from '../../services/integration/location.service';
 
 @Component({
   selector: 'app-map-page',
@@ -39,7 +40,7 @@ export class MapPageComponent implements AfterViewInit {
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(this.map);
 
-    L.marker([41.4667, 2.2803]).addTo(this.map);
+    // L.marker([41.4667, 2.2803]).addTo(this.map);
 
     this.map.on('click', (event: L.LeafletMouseEvent) => {
       if (this.marker) {

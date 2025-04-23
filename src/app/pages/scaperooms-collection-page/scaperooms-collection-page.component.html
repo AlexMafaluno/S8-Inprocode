@@ -1,19 +1,24 @@
 @if(loading){
-  <app-progress-spinner/>
+  <app-progress-spinner class="spinner"/>
   }
 
-<div class="title">
-  <h4>Mis fotos</h4>
+<div class="title d-flex align-items-center justify-content-between p-4">
+  <h3 class="m-0 w-100 text-center">Mis fotos</h3>
+ <div class="position-absolute end-0 me-4">
+  <app-modal-button></app-modal-button>
 </div>
-<section>
+</div>
+
+<div class="dynamic-strip position-absolute top-5 start-0"></div>
+<section class="pt-4 mb-4">
   <app-user-stats></app-user-stats>
 </section>
 
 <section>
-<app-filter-panel (filteredGenre)="onGenreSelected($event)"></app-filter-panel>
+<app-filter-panel class=" text-center" (filteredGenre)="onGenreSelected($event)"></app-filter-panel>
 </section>
 
-<section 
+<section  
 class="scroll-container"
   infiniteScroll
   [infiniteScrollDistance]="2" 
@@ -21,7 +26,9 @@ class="scroll-container"
   (scrolled)="onScroll()"
 >
 <!-- class="flex-1 max-w-7xl mx-auto"> -->
+ 
   <app-list-scaperooms [listScapeRooms]="listScapeRooms"></app-list-scaperooms>
+
 </section>
 @if(!!errorMessage){
   <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
@@ -29,3 +36,4 @@ class="scroll-container"
 
 <app-filter-button class="app-filter-button"></app-filter-button>
 <app-modal-filter   (sort)="sortBy($event)"></app-modal-filter>
+<app-division-modal></app-division-modal>
