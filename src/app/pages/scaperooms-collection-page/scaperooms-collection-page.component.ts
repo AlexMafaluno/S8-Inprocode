@@ -16,11 +16,10 @@ import { ModalFilterComponent } from "../../components/organisms/modal-filter/mo
 import { FilterService } from '../../services/business/filter.service';
 import { ModalButtonComponent } from "../../components/atoms/modal-button/modal-button.component";
 import { DivisionModalComponent } from "../../components/organisms/division-modal/division-modal.component";
-import { OffcanvasTogglePanelComponent } from "../../components/molecules/offcanvas-toggle-panel/offcanvas-toggle-panel.component";
 
 @Component({
   selector: 'app-scaperooms-collection-page',
-  imports: [ListScaperoomsComponent, CommonModule, FilterPanelComponent, InfiniteScrollDirective, ProgressSpinnerComponent, UserStatsComponent, FilterButtonComponent, ModalFilterComponent, ModalButtonComponent, DivisionModalComponent, OffcanvasTogglePanelComponent],
+  imports: [ListScaperoomsComponent, CommonModule, FilterPanelComponent, InfiniteScrollDirective, ProgressSpinnerComponent, UserStatsComponent, FilterButtonComponent, ModalFilterComponent, ModalButtonComponent, DivisionModalComponent],
   templateUrl: './scaperooms-collection-page.component.html',
   styleUrl: './scaperooms-collection-page.component.scss'
 })
