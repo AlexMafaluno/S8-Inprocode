@@ -6,7 +6,7 @@ import { Photo, PhotoItem } from '../interfaces/photo';
 import { API_ENDPOINTS, API_ROOT} from '../config/url';
 import { LoggingService } from './logging.service';
 import { createAppError } from '../config/response';
-import { ApiConfigService } from './api-config.service';
+import { ApiConfigService } from './integration/api-config.service';
 @Injectable({
   providedIn: 'root'
 })
