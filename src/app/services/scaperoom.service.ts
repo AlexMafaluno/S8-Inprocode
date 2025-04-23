@@ -4,7 +4,7 @@ import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { ScapeRoom, ScapeRoomItem } from '../interfaces/scaperoom';
 import { API_ENDPOINTS } from '../config/url';
 import { LoggingService } from './logging.service';
-import { ApiConfigService } from './api-config.service';
+import { ApiConfigService } from './integration/api-config.service';
 import { createAppError } from '../config/response';
 @Injectable({
   providedIn: 'root',
