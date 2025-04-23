@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ListScaperoomsComponent } from '../../components/organisms/list-scaperooms/list-scaperooms.component';
 import { CommonModule } from '@angular/common';
-import { ModalComponent } from '../../components/modal/modal.component';
 import { FilterPanelComponent } from "../../components/organisms/filter-panel/filter-panel.component";
 import { ScapeRoom, ScapeRoomItem } from '../../interfaces/scaperoom';
 import { Photo } from '../../interfaces/photo';
@@ -13,7 +12,7 @@ import { PhotoService } from '../../services/photo.service';
 import { CounterService } from '../../services/counter.service';
 import { UserStatsComponent } from "../../components/organisms/user-stats/user-stats.component";
 import { FilterButtonComponent } from "../../components/atoms/filter-button/filter-button.component";
-import { ModalFilterComponent } from "../../components/modal-filter/modal-filter.component";
+import { ModalFilterComponent } from "../../components/organisms/modal-filter/modal-filter.component";
 import { FilterService } from '../../services/filter.service';
 
 @Component({
