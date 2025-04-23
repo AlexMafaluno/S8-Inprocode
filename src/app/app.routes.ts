@@ -7,8 +7,12 @@ import { AdminCrudPageComponent } from './pages/admin-crud-page/admin-crud-page.
 import { AddEditScaperoomComponent } from './components/atoms/add-edit-scaperoom/add-edit-scaperoom.component';
 import { LayoutComponent } from './Layouts/layout/layout.component';
 import { adminGuard } from './shared/guards/admin.guard';
+import { WelcomePageComponent } from './pages/welcome-page/welcome-page.component';
 
 export const routes: Routes = [
+
+  { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+  { path: 'welcome', component: WelcomePageComponent },
   { path: '', pathMatch: 'full', redirectTo: '/login' },
 
   //Rutas de auth
