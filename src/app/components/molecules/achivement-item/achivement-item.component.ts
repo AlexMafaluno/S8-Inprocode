@@ -4,7 +4,7 @@ import { ProgressBarComponent } from "../../atoms/progress-bar/progress-bar.comp
 
 @Component({
   selector: 'app-achivement-item',
-  imports: [CommonModule, ProgressBarComponent],
+  imports: [CommonModule],
   templateUrl: './achivement-item.component.html',
   styleUrl: './achivement-item.component.scss'
 })
