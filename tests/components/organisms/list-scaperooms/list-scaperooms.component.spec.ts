@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ScaperoomService } from '../../../../src/app/services/scaperoom.service';
+
 import { ScapeRoom } from '../../../../src/app/interfaces/scaperoom';
 import { of } from 'rxjs';
 import { provideHttpClient } from '@angular/common/http';
@@ -7,6 +7,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, input, output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
 import { ListScaperoomsComponent } from '../../../../src/app/components/organisms/list-scaperooms/list-scaperooms.component';
+import { ScaperoomService } from '../../../../src/app/services/integration/scaperoom.service';
 
 describe('Test for grid always returns 3 columns', () => {
   let component: ListScaperoomsComponent;
