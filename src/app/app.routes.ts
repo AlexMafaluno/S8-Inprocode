@@ -82,7 +82,7 @@ export const routes: Routes = [
   },
 
   //admin
-  { path: 'crud', component: AdminCrudPageComponent, canActivate: [adminGuard]},
+  { path: 'crud', component: AdminCrudPageComponent},
   { path: 'crud/add', component: AddEditScaperoomComponent },
   { path: 'crud/edit/:id', component: AddEditScaperoomComponent },
 
