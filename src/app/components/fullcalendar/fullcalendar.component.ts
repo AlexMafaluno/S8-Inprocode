@@ -10,7 +10,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 import { EventsService } from '../../services/events.service';
 import esLocale from '@fullcalendar/core/locales/es';
 import { EventItem, Event } from '../../interfaces/event';
-import { ModalEventComponent } from "../modal-event/modal-event.component";
+import { ModalEventComponent } from "../organisms/modal-event/modal-event.component";
 
 @Component({
   selector: 'app-fullcalendar',
