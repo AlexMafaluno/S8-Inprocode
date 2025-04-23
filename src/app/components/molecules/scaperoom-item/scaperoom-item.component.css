@@ -3,6 +3,7 @@
   position: relative; /* Para que los elementos internos se posicionen respecto a este */
   width: 100%; /* Hace que el ancho de .card sea flexible */
   height: 500px; /* Ajusta la altura automáticamente según el contenido */
+  max-width: 400px; /* Máximo ancho para las tarjetas en pantallas grandes */
   overflow: hidden; /* Evita que la imagen sobresalga */
   border-radius: 10px; /* Opcional: bordes redondeados */
   align-items: center;
@@ -23,7 +24,7 @@
 .content {
   position: relative; /* Para que quede encima de la imagen */
   z-index: 1; /* Superior a la imagen */
-  background: rgba(215, 215, 215, 0.6); /* Fondo oscuro semitransparente */
+  background: rgba(255, 255, 255, 0.6); /* Fondo oscuro semitransparente */
   color: #9f9f9f; /* Texto en color blanco */
   padding: 20px;
   border-radius: 10px; /* Opcional: bordes redondeados */
@@ -33,4 +34,4 @@
   .card {
     height: 160px;
   }
-}/*# sourceMappingURL=card.component.css.map */
+}/*# sourceMappingURL=scaperoom-item.component.css.map */

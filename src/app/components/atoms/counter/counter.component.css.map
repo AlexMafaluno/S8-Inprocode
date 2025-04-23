@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"counter.component.css"}
+{"version":3,"sources":["counter.component.scss","counter.component.css"],"names":[],"mappings":"AAAA;EACI,aAAA,EAAA,qCAAA;EACA,mBAAA,EAAA,sCAAA;ACCJ","file":"counter.component.css"}
