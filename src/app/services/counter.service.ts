@@ -1,18 +1,20 @@
 import { computed, effect, inject, Injectable, signal } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { Division } from '../interfaces/division';
+import { AchivementsService } from './achivements.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CounterService {
 private toastrService = inject(ToastrService);
+// private achivementsService= inject(AchivementsService);
+
   private readonly storageKey = 'user-photo-count';
   private photoCount = signal<number>(this.getStoredCount());
   private counterThresholds = [0, 10, 25, 50, 75, 99, 149]; // divisones:
   private lastThresholdReached = 0;
   private currentDivisionId = 0;
-
   divisions: Division[] = [
     { id: 1, name: 'Candado etereo', icon: '🌫️', threshold: 0 },
     { id: 2, name: 'Candado de madera', icon: '🔒', threshold: 10 },
