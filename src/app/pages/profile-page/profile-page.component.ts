@@ -16,7 +16,7 @@ import { UserStatsComponent } from "../../components/organisms/user-stats/user-s
 
 @Component({
   selector: 'app-profile-page',
-  imports: [RouterModule, CounterComponent, ListScaperoomsComponent, ExitButtonComponent, UserBadgeComponent, ExperienceComponent, UserStatsComponent],
+  imports: [RouterModule, ListScaperoomsComponent,  UserBadgeComponent, UserStatsComponent],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss'
 })
@@ -29,21 +29,5 @@ achivements: any = [];
 ngOnInit(): void {
   this.achivements = this.achivementsService.getAchivements();
 }
-// gainExperience(value: number){
-//  this.levelService.gainExperience(value);
 
-// }
-// onResetProgreso(){
-//   if(confirm('¿Estás seguro de que quieres borrar el progreso?')){
-//   this.counterService.reset();
-// }
-// }
-
-// get count() {
-//   return this.counterService.count; // Signal<number>
-// }
-
-// get experience(){
-//   return this.levelService.exp;
-// }
 }
