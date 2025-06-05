@@ -43,4 +43,4 @@ Thumbs.db
 
 **/environments/
 
-**/config/
+src/config/url.ts
